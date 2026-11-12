@@ -1,28 +1,13 @@
 import { defineConfig } from "vite-plus";
 
-const TOOLING_IGNORE_PATTERNS = [
-  ".agent/**",
-  ".agents/**",
-  ".claude/**",
-  ".codex/**",
-  ".continue/**",
-  ".cursor/**",
-  ".gemini/**",
-  ".grok/**",
-  ".opencode/**",
-  ".pi/**",
-  ".remember/**",
-  ".roo/**",
-  ".windsurf/**",
-  "tools/oxlint/anti-slop/**",
-];
+import { TOOLING_IGNORE_PATTERNS } from "./tools/ignore-patterns.ts";
 
 export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
   fmt: {
-    ignorePatterns: TOOLING_IGNORE_PATTERNS,
+    ignorePatterns: [...TOOLING_IGNORE_PATTERNS, "specs/**"],
   },
   lint: {
     ignorePatterns: TOOLING_IGNORE_PATTERNS,
