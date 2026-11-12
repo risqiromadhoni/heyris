@@ -46,3 +46,6 @@ pnpm-debug.log*
 /playwright/.cache/
 /playwright/.auth/
 /.playwright-mcp/
+
+# Unlighthouse
+/.unlighthouse/

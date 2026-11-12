@@ -1,0 +1,55 @@
+name: Unlighthouse
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      site:
+        description: Deployed URL to scan instead of a local production build
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    name: Lighthouse budgets
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: voidzero-dev/setup-vp@v1.22.0
+        with:
+          version-file: pnpm-workspace.yaml
+          cache: true
+      - name: Allow the Chrome sandbox on Ubuntu 24.04
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - name: Build and serve the production build
+        if: ${{ !inputs.site }}
+        run: |
+          vp run build
+          nohup vp exec astro preview --ignore-lock > preview.log 2>&1 &
+          for _ in $(seq 1 30); do
+            curl --silent --fail --output /dev/null http://localhost:4321/ && exit 0
+            sleep 1
+          done
+          cat preview.log
+          exit 1
+      - name: Run Unlighthouse budgets
+        env:
+          SITE: ${{ inputs.site }}
+        run: vp run unlighthouse:ci ${SITE:+--site "$SITE"}
+      - uses: actions/upload-artifact@v7.0.2
+        if: ${{ !cancelled() }}
+        with:
+          name: unlighthouse-report
+          path: .unlighthouse/
+          retention-days: 30
