@@ -38,3 +38,11 @@ pnpm-debug.log*
 .cloudflare/
 .wrangler/
 *.tsbuildinfo
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.playwright-mcp/
