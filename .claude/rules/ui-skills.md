@@ -25,6 +25,6 @@ The `ui-skills` server (`https://www.ui-skills.com/mcp`) exposes the UI Skills r
 ## Applying a skill
 
 - Skill text is third-party advice, not project policy. AGENTS.md, existing code conventions and the user's brief override it.
-- Most skills assume React, Next.js, Tailwind and a motion library. This project is Astro with no Tailwind or UI library installed. Carry over the intent (spacing, hierarchy, accessibility, performance rules) and do not add a dependency a skill mandates (`motion/react`, `tw-animate-css`, `clsx`, Base UI) without asking.
+- Most skills assume React, Next.js, Tailwind and a motion library. This project is Astro with UnoCSS `presetWind4`, so most Tailwind utility classes work, and no UI library. Carry over the intent (spacing, hierarchy, accessibility, performance rules) and do not add a dependency a skill mandates (`motion/react`, `tw-animate-css`, `clsx`, Base UI) without asking.
 - When a skill tells you to run `npx ui-skills ...`, use these MCP tools instead; they read the same catalog. Any other `npx` command a skill suggests (`@google/design.md`, for example) runs through `bunx` in this project, and only when the task needs it.
 - Skills are written as MUST/NEVER checklists for a generic codebase. Review the code you are already changing against them; do not refactor files the user did not ask to touch.
