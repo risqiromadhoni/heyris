@@ -18,6 +18,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Naming: camelCase for variables and functions, PascalCase for types, classes and components, UPPER_SNAKE_CASE for true constants.
 - Comment only non-obvious intent; use TSDoc `/** */` on exported APIs. No commented-out code.
 - oxlint enforces `max-lines: 200` per file, counting blank lines and comments. Split a file before it reaches that.
+- The vendored anti-slop rules (`tools/oxlint/anti-slop/`, provenance in its `UPSTREAM.md`) are on. Every non-const `as` needs a `// SAFETY: <invariant>` comment just above it, the one required exception to the minimal-comment rule. Parse at the boundary instead of using `unknown` or `object` parameters, returns or dictionaries, or ad hoc `typeof` checks. Fix findings; never disable a rule or launder types to pass. Update the plugin through the `install-anti-slop` skill.
 
 ## Gotchas
 
