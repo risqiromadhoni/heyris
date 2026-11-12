@@ -31,3 +31,10 @@ pnpm-debug.log*
 !.env.example
 
 .cursorignore
+
+# void
+.void/
+.void-wrangler.jsonc
+.cloudflare/
+.wrangler/
+*.tsbuildinfo

@@ -1,5 +1,10 @@
 // @ts-check
+import cloudflare from "@astrojs/cloudflare";
 import { defineConfig } from "astro/config";
+import { voidPlugin } from "void";
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  output: "server",
+  adapter: cloudflare({ configPath: "./.void-wrangler.jsonc" }),
+  vite: { plugins: [voidPlugin()] },
+});
