@@ -16,3 +16,5 @@ peerDependencyRules:
 allowBuilds:
   esbuild: true
   workerd: true
+  puppeteer: false
+  vue-demi: false
