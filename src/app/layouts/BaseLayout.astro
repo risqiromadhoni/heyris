@@ -1,0 +1,133 @@
+---
+import { Font } from "astro:assets";
+import {
+	DEFAULT_LOCALE,
+	LOCALES,
+	OG_LOCALE,
+	dictionaryFor,
+	localizedPath,
+	ogImagePath,
+	type Locale,
+} from "@/shared/i18n";
+import { OG_IMAGE } from "@/shared/config";
+import { ShaderCanvas } from "@/shared/ui";
+
+interface Props {
+	locale: Locale;
+	/** Document title, already formatted with `pageTitle` from `@/shared/i18n`. */
+	title: string;
+	description: string;
+	/** This page's path in its own locale. Used for the canonical and Open Graph URLs. */
+	path?: string;
+	/** This page's path in each locale where it exists, including its own. */
+	alternates?: Partial<Record<Locale, string>>;
+	/** Path of the page's raw Markdown, for articles. */
+	markdownPath?: string;
+	ogType?: "website" | "article";
+	/** The page's own title without the site name. It names the Open Graph image. Defaults to the site title. */
+	pageName?: string;
+	/** Keeps the page out of search: `noindex`, and no canonical or Open Graph image. */
+	noindex?: boolean;
+}
+
+const {
+	locale,
+	title,
+	description,
+	path,
+	alternates = {},
+	markdownPath,
+	ogType = "website",
+	pageName,
+	noindex = false,
+} = Astro.props;
+
+const strings = dictionaryFor(locale);
+const absolute = (pathname: string) => new URL(pathname, Astro.site).href;
+const indexed = !noindex && path !== undefined;
+const canonical = indexed ? absolute(path) : undefined;
+const ogImage = indexed ? absolute(ogImagePath(path)) : undefined;
+
+const hreflangs = LOCALES.flatMap((lang) => {
+	const href = alternates[lang];
+
+	return href ? [{ lang, url: absolute(href) }] : [];
+});
+
+const defaultHref = alternates[DEFAULT_LOCALE];
+---
+
+<html lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<script is:inline>
+			(() => {
+				const root = document.documentElement;
+				const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+				const stored = () => {
+					try {
+						return localStorage.getItem("theme");
+					} catch {
+						return null;
+					}
+				};
+
+				const apply = (dark) => root.classList.toggle("dark", dark);
+				const isSaved = (value) => value === "light" || value === "dark";
+				apply(isSaved(stored()) ? stored() === "dark" : media.matches);
+				media.addEventListener("change", (event) => {
+					if (!isSaved(stored())) apply(event.matches);
+				});
+			})();
+		</script>
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{canonical && <link rel="canonical" href={canonical} />}
+		{noindex && <meta name="robots" content="noindex" />}
+		{hreflangs.map(({ lang, url }) => <link rel="alternate" hreflang={lang} href={url} />)}
+		{defaultHref && <link rel="alternate" hreflang="x-default" href={absolute(defaultHref)} />}
+		<link rel="alternate" type="application/rss+xml" title={strings.footer.rss} href={localizedPath(locale, "rss")} />
+		{markdownPath && <link rel="alternate" type="text/markdown" href={markdownPath} />}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		<meta property="og:locale" content={OG_LOCALE[locale]} />
+		{
+			ogImage && (
+				<>
+					<meta property="og:image" content={ogImage} />
+					<meta
+						property="og:image:alt"
+						content={strings.og.imageAlt(pageName ?? strings.meta.siteTitle)}
+					/>
+					<meta property="og:image:width" content={String(OG_IMAGE.width)} />
+					<meta property="og:image:height" content={String(OG_IMAGE.height)} />
+					<meta property="og:image:type" content="image/png" />
+				</>
+			)
+		}
+		<meta name="twitter:card" content="summary_large_image" />
+		<Font cssVariable="--font-source-serif" preload />
+		<Font cssVariable="--font-dm-sans" preload />
+		<Font cssVariable="--font-dm-mono" />
+	</head>
+	<body class="bg-lr-bg text-lr-text">
+		<ShaderCanvas scene="backdrop" />
+		<a
+			href="#content"
+			class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lr-bg focus:px-3 focus:py-2 focus:font-sans focus:text-[14px] focus:text-lr-heading focus:outline-2 focus:outline-offset-2 focus:outline-lr-text"
+		>
+			{strings.skipLink}
+		</a>
+		<slot name="header" />
+		<main id="content" tabindex="-1">
+			<slot />
+		</main>
+		<slot name="footer" />
+	</body>
+</html>
