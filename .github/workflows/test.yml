@@ -1,0 +1,38 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  vitest:
+    name: Unit, browser and type tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: voidzero-dev/setup-vp@v1.22.0
+        with:
+          version-file: pnpm-workspace.yaml
+          cache: true
+      - name: Generate Astro types
+        run: vp exec astro sync
+      - name: Install Chromium for browser mode
+        run: vp exec playwright install --with-deps chromium
+      - name: Run Vitest
+        run: vp run test
+      - uses: actions/upload-artifact@v7.0.2
+        if: ${{ failure() }}
+        with:
+          name: vitest-failure-screenshots
+          path: .vitest/attachments/
+          retention-days: 30
