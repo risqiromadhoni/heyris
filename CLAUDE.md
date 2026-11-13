@@ -12,9 +12,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm check` runs `vp check`, then `astro check` (types in `.astro` files, which `vp check` skips), then Knip (unused files, exports and dependencies). Knip, `vp lint` and `vp fmt` share the ignore list in `tools/ignore-patterns.ts`; add new agent-tooling folders there, not in one tool's config.
 - Unused imports, variables and parameters are errors: oxlint's `no-unused-vars` in `.ts`, and `noUnusedLocals` / `noUnusedParameters` in `tsconfig.json` for `astro check`. Prefix a parameter that must stay with `_`.
 - `typescript` is pinned to `^6` because `@astrojs/check` 0.9 accepts only TypeScript 5 or 6. Don't upgrade it to 7 until `@astrojs/check` supports it.
-- There are no unit tests, so skip `vp test`. End-to-end and accessibility tests are Playwright (`pnpm test:e2e`); read `.claude/rules/playwright.md` before writing one.
+- `pnpm test` (`vp test`) runs Vitest once in three projects: `unit` (`src/**/*.test.ts`, Node), `browser` (`src/**/*.browser.test.ts`, headless Chromium) and `types` (`src/**/*.test-d.ts`, `tsc` only). Read `.claude/rules/vitest.md` before writing one.
+- `vp check` and the `types` tests read the generated `.astro/` types, so a fresh clone needs `pnpm astro sync` first. CI runs it before both.
+- End-to-end and accessibility tests are Playwright (`pnpm test:e2e`); read `.claude/rules/playwright.md` before writing one.
 - Lighthouse budgets (in `unlighthouse.config.ts`: performance 90, accessibility 100, best practices 100, SEO 90): `pnpm build`, `pnpm astro preview`, then `pnpm unlighthouse:ci`. Stop the preview with `pnpm astro preview stop`.
-- CI in `.github/workflows/` runs the check, Playwright and Unlighthouse workflows on pushes and pull requests to `main`, through `voidzero-dev/setup-vp` pinned to an exact release.
+- CI in `.github/workflows/` runs the check, test, Playwright and Unlighthouse workflows on pushes and pull requests to `main`, through `voidzero-dev/setup-vp` pinned to an exact release.
 - Deploy with `pnpm void:deploy` (`void deploy --platform cloudflare`). Plain `void deploy` fails without an interactive terminal, and `pnpm deploy` is a pnpm built-in, not the script.
 
 ## Conventions
@@ -54,6 +56,7 @@ Frontmatter, directive syntax and writing rules: `docs/content-authoring.md`.
 ## Gotchas
 
 - `astro.config.mjs` uses `output: "server"` because Void's deploy needs Astro's Worker entry. Pages render on request unless they `export const prerender = true`. Don't switch back to `output: "static"`.
+- pnpm 12 installs before `pnpm exec` or `pnpm run` whenever `package.json` differs from `node_modules`. A `git stash` that holds a dependency change therefore uninstalls it on the next pnpm command; run `pnpm install --frozen-lockfile` after `git stash pop`.
 - pnpm 12 blocks install scripts. A new dependency that needs one must be added to `allowBuilds` in `pnpm-workspace.yaml` (`false` denies it, as for `puppeteer` and `vue-demi`, which Unlighthouse does not need). Upgrading `astro` or its `@astrojs/*` internals also means updating the exact versions in `minimumReleaseAgeExclude`, and the pinned `@astrojs/markdown-satteri` dev dependency to the version `astro` uses.
 - When Astro detects an agent it runs `astro dev` and `astro preview` in the background, so the command returns at once. Pass `--ignore-lock` to keep one in the foreground, as Playwright's `webServer` and CI do.
 - Void's dev server writes `src/middleware.ts` and a `.gitignore` line for it, and removes both when it stops cleanly. A killed server leaves them behind: delete both before `pnpm build` or `pnpm void:deploy`, or the build ships Void's dev-trigger middleware. Never commit that line. Playwright stops its dev server with SIGTERM for this reason.

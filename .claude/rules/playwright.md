@@ -1,6 +1,6 @@
 # Playwright
 
-`@playwright/test` (1.65) is the one Playwright dependency. It provides the e2e runner, both MCP servers in `.mcp.json` and the Test Agents in `.claude/agents/`, so upgrading it upgrades all three.
+`@playwright/test` (1.65) provides the e2e runner, both MCP servers in `.mcp.json` and the Test Agents in `.claude/agents/`, so upgrading it upgrades all three. `playwright` is pinned to the same version for Vitest's browser mode (`@vitest/browser-playwright`, pinned to the Vitest that `vite-plus` bundles). Upgrade `playwright` and `@playwright/test` together, so both use one set of browser builds.
 
 ## MCP servers
 

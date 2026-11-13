@@ -1,8 +1,56 @@
+import { fileURLToPath } from "node:url";
+
 import { defineConfig } from "vite-plus";
+import { playwright } from "vite-plus/test/browser-playwright";
 
 import { TOOLING_IGNORE_PATTERNS } from "./tools/ignore-patterns.ts";
 
+const BROWSER_TESTS = "src/**/*.browser.test.ts";
+
 export default defineConfig({
+  resolve: {
+    alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
+  },
+  test: {
+    restoreMocks: true,
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          environment: "node",
+          include: ["src/**/*.test.ts"],
+          exclude: [BROWSER_TESTS],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: "browser",
+          include: [BROWSER_TESTS],
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright({
+              contextOptions: { permissions: ["clipboard-read", "clipboard-write"] },
+            }),
+            instances: [{ browser: "chromium" }],
+          },
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: "types",
+          typecheck: {
+            enabled: true,
+            only: true,
+            include: ["src/**/*.test-d.ts"],
+          },
+        },
+      },
+    ],
+  },
   staged: {
     "*": () => "vpr check:fix",
   },

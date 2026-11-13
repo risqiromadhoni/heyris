@@ -50,6 +50,9 @@ pnpm-debug.log*
 # Unlighthouse
 /.unlighthouse/
 
+# Vitest reports and failure screenshots
+/.vitest/
+
 # Local notes, kept out of git
 /docs/
 src/middleware.ts
