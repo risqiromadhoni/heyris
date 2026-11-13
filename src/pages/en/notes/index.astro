@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { NotesIndexPage } from "@/_pages/notes-index";
+import { dictionaryFor, localizedPath, pageTitle } from "@/shared/i18n";
+import { SiteFooter, SiteTopBar } from "@/shared/ui";
+
+export const prerender = true;
+
+const locale = "en";
+const strings = dictionaryFor(locale);
+const path = localizedPath(locale, "notes");
+const alternates = { id: localizedPath("id", "notes"), en: path };
+---
+
+<BaseLayout
+	locale={locale}
+	title={pageTitle(locale, strings.notes.title)}
+	description={strings.notes.intro}
+	path={path}
+	pageName={strings.notes.title}
+	alternates={alternates}
+>
+	<SiteTopBar slot="header" locale={locale} current="notes" alternates={alternates} />
+	<NotesIndexPage locale={locale} />
+	<SiteFooter slot="footer" locale={locale} />
+</BaseLayout>
