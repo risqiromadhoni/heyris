@@ -7,7 +7,7 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   fmt: {
-    ignorePatterns: [...TOOLING_IGNORE_PATTERNS, "specs/**"],
+    ignorePatterns: [...TOOLING_IGNORE_PATTERNS, "specs/**", "src/content/**"],
   },
   lint: {
     ignorePatterns: TOOLING_IGNORE_PATTERNS,
