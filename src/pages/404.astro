@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { NotFoundPage } from "@/_pages/not-found";
+import { dictionaryFor, pageTitle } from "@/shared/i18n";
+import { SiteFooter, SiteTopBar } from "@/shared/ui";
+
+export const prerender = true;
+
+const locale = "id";
+const strings = dictionaryFor(locale);
+---
+
+<BaseLayout
+	locale={locale}
+	title={pageTitle(locale, strings.notFound.title)}
+	description={strings.notFound.body}
+	noindex
+>
+	<SiteTopBar slot="header" locale={locale} alternates={{}} />
+	<NotFoundPage />
+	<SiteFooter slot="footer" locale={locale} />
+</BaseLayout>

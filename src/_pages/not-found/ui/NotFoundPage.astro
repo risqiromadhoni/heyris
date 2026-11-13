@@ -1,0 +1,49 @@
+---
+import { dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+
+/** One page of links, in one language: the home page, Tulisan and Catatan. */
+const linksIn = (locale: Locale) => {
+	const strings = dictionaryFor(locale);
+
+	return [
+		{ label: strings.nav.home, href: localizedPath(locale, "home") },
+		{ label: strings.nav.writing, href: localizedPath(locale, "writing") },
+		{ label: strings.nav.notes, href: localizedPath(locale, "notes") },
+	];
+};
+
+const LINK_CLASS =
+	"border-b border-lr-underline text-lr-text hover:border-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text";
+
+const id = dictionaryFor("id");
+const en = dictionaryFor("en");
+---
+
+<div class="mx-auto flex max-w-[1440px] flex-col gap-16 px-5 pt-16 pb-16 sm:px-[49px]">
+	<div class="flex max-w-[760px] flex-col gap-6">
+		<h1 class="type-display">{id.notFound.title}</h1>
+		<p class="type-body">{id.notFound.body}</p>
+		<ul class="type-link flex flex-wrap gap-x-7 gap-y-3">
+			{
+				linksIn("id").map((link) => (
+					<li>
+						<a href={link.href} class={LINK_CLASS}>{link.label}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+	<div lang="en" class="flex max-w-[760px] flex-col gap-6 border-t border-lr-line pt-10">
+		<h2 class="type-h2">{en.notFound.title}</h2>
+		<p class="type-body">{en.notFound.body}</p>
+		<ul class="type-link flex flex-wrap gap-x-7 gap-y-3">
+			{
+				linksIn("en").map((link) => (
+					<li>
+						<a href={link.href} class={LINK_CLASS}>{link.label}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>
