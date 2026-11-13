@@ -1,0 +1,25 @@
+---
+import type { SceneName } from "./scenes";
+
+interface Props {
+	/** `backdrop` covers the viewport behind the content. `panel` covers its positioned parent. */
+	scene: SceneName;
+}
+
+const { scene } = Astro.props;
+---
+
+<canvas
+	aria-hidden="true"
+	data-shader-scene={scene}
+	class:list={[
+		scene === "backdrop"
+			? "pointer-events-none fixed inset-0 -z-10 size-full"
+			: "absolute inset-0 size-full",
+	]}></canvas>
+
+<script>
+	import { mountShaderCanvases } from "./mount";
+
+	mountShaderCanvases();
+</script>
