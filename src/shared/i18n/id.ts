@@ -51,7 +51,7 @@ export const id = {
   writing: {
     title: "Tulisan",
     intro:
-      "Tulisan teknis tentang Git, monorepo, cara kerja internet, Cloudflare, dan Rust. Setiap tulisan saya tulis dalam bahasa Indonesia dulu, lalu saya terjemahkan ke bahasa Inggris.",
+      "Tulisan teknis tentang Git, monorepo, cara kerja internet, Cloudflare, dan Rust. Saya menulis dalam bahasa Indonesia, lalu menerjemahkannya ke bahasa Inggris.",
     count: (n: number) => `${n} tulisan`,
     newest: "Terbaru",
   },

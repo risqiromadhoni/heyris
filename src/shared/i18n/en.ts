@@ -55,7 +55,7 @@ export const en: Dictionary = {
   writing: {
     title: "Writing",
     intro:
-      "Technical writing on Git, monorepos, how the internet works, Cloudflare, and Rust. Each post starts in Indonesian, and I translate it into English afterward.",
+      "Technical writing on Git, monorepos, how the internet works, Cloudflare, and Rust. I write in Indonesian, then translate into English.",
     count: (n) => count(n, "post", "posts"),
     newest: "Newest",
   },
