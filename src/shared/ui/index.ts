@@ -15,3 +15,5 @@ export { default as Byline } from "./Byline/Byline.astro";
 export { default as FeedbackLine } from "./FeedbackLine/FeedbackLine.astro";
 
 export { default as Prose } from "./Prose/Prose.astro";
+
+export { default as LanguageToggle } from "./LanguageToggle/LanguageToggle.astro";

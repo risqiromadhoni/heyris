@@ -1,5 +1,6 @@
 ---
-import type { Locale } from "@/shared/i18n";
+import { localizedPath, type Locale } from "@/shared/i18n";
+import { LanguageToggle } from "@/shared/ui";
 import BioToggle from "./BioToggle.astro";
 import ContactLinks from "./ContactLinks.astro";
 import HomeTitle from "./HomeTitle.astro";
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const alternates = { id: localizedPath("id", "home"), en: localizedPath("en", "home") };
 ---
 
 <div
@@ -21,7 +23,10 @@ const { locale } = Astro.props;
 	<div class="mx-auto flex w-full max-w-[600px] min-w-0 flex-col lg:mx-0 lg:max-w-none">
 		<div class="flex flex-col gap-3">
 			<HomeTitle />
-			<ContactLinks locale={locale} />
+			<div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+				<ContactLinks locale={locale} />
+				<LanguageToggle locale={locale} alternates={alternates} />
+			</div>
 		</div>
 		<BioToggle locale={locale} />
 		<div class="flex flex-col gap-14">
