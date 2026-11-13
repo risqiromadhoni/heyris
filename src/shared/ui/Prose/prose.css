@@ -512,6 +512,15 @@
   color: var(--lr-nav);
 }
 
+/* Both are `ul`s that draw their own rows, so they opt out of the bulleted-list rules above. */
+.article-prose :is(.md-commits, .md-checklist) > li {
+  margin-top: 0;
+}
+
+.article-prose :is(.md-commits, .md-checklist) > li::before {
+  content: none;
+}
+
 /* Carousel: scroll-snap track, 640 px slides, arrows and a pagination pill */
 
 .article-prose .md-carousel {
