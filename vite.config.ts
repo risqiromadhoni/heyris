@@ -4,7 +4,7 @@ import { TOOLING_IGNORE_PATTERNS } from "./tools/ignore-patterns.ts";
 
 export default defineConfig({
   staged: {
-    "*": "vp check --fix",
+    "*": () => "vpr check:fix",
   },
   fmt: {
     ignorePatterns: [...TOOLING_IGNORE_PATTERNS, "specs/**", "src/content/**"],
@@ -17,6 +17,7 @@ export default defineConfig({
     ],
     rules: {
       "vite-plus/prefer-vite-plus-imports": "error",
+      "no-unused-vars": "error",
       "max-lines": [
         "error",
         {

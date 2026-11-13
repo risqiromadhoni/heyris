@@ -8,8 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Run scripts with `pnpm dev` / `pnpm build` (or `vp run dev` / `vp run build`), never `vp dev` / `vp build`: those run plain Vite without the Astro and Void plugins.
 - `vp check` formats, lints and type-checks; `vp check --fix` rewrites files. It skips `.astro` files, so match their existing style by hand.
-- The pre-commit hook runs `vp check --fix` on staged files (`vp staged`), so a lint or type error blocks the commit.
-- `pnpm check` runs `vp check` then Knip (unused files, exports and dependencies). Knip, `vp lint` and `vp fmt` share the ignore list in `tools/ignore-patterns.ts`; add new agent-tooling folders there, not in one tool's config.
+- The pre-commit hook (`vp staged`) runs `vpr check:fix` over the whole project: `vp check --fix`, `astro check`, then `knip --fix`. A lint, type or unused-code error blocks the commit. The `staged` task is a function so lint-staged doesn't append file paths, which Knip rejects.
+- `pnpm check` runs `vp check`, then `astro check` (types in `.astro` files, which `vp check` skips), then Knip (unused files, exports and dependencies). Knip, `vp lint` and `vp fmt` share the ignore list in `tools/ignore-patterns.ts`; add new agent-tooling folders there, not in one tool's config.
+- Unused imports, variables and parameters are errors: oxlint's `no-unused-vars` in `.ts`, and `noUnusedLocals` / `noUnusedParameters` in `tsconfig.json` for `astro check`. Prefix a parameter that must stay with `_`.
+- `typescript` is pinned to `^6` because `@astrojs/check` 0.9 accepts only TypeScript 5 or 6. Don't upgrade it to 7 until `@astrojs/check` supports it.
 - There are no unit tests, so skip `vp test`. End-to-end and accessibility tests are Playwright (`pnpm test:e2e`); read `.claude/rules/playwright.md` before writing one.
 - Lighthouse budgets (in `unlighthouse.config.ts`: performance 90, accessibility 100, best practices 100, SEO 90): `pnpm build`, `pnpm astro preview`, then `pnpm unlighthouse:ci`. Stop the preview with `pnpm astro preview stop`.
 - CI in `.github/workflows/` runs the check, Playwright and Unlighthouse workflows on pushes and pull requests to `main`, through `voidzero-dev/setup-vp` pinned to an exact release.
