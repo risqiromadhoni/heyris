@@ -2,7 +2,7 @@
 
 ## Application Overview
 
-The previous heyris.me served English at the root and Indonesian under `/id`. `astro.config.mjs` lists permanent redirects (`oldSiteRedirects`) so those URLs keep working: posts to `/en/writing/<slug>` and `/tulisan/<slug>`, the posts indexes, `/about`, `/projects`, `/resources` and `/tags` to the closest page. In server mode Astro answers a GET with a 301 and a `Location` header. Tag pages, `/experiences` and URLs with a trailing slash (`/posts/`) stay 404: the site uses `trailingSlash: "never"`, and Astro's `redirects` cannot match a trailing slash.
+The previous heyris.me served English at the root and Indonesian under `/id`. `astro.config.mjs` lists permanent redirects (`oldSiteRedirects`) so those URLs keep working: the posts indexes, `/about`, `/projects`, `/resources` and `/tags` go to the closest page. Post URLs are endpoints (`src/pages/posts/[slug].ts`, `src/pages/id/posts/[slug].ts`, built on `src/app/redirects/old-post.ts`) that send `/posts/<slug>` to `/en/writing/<slug>` and `/id/posts/<slug>` to `/tulisan/<slug>`. A config redirect would take two hops, because the adapter writes its `_redirects` target with a `.html` suffix. In server mode Astro answers a GET with a 301 and a `Location` header. Tag pages, `/experiences` and URLs with a trailing slash (`/posts/`) stay 404: the site uses `trailingSlash: "never"`, and Astro's `redirects` cannot match a trailing slash.
 
 ## Test Scenarios
 

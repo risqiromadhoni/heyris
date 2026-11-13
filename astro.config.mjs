@@ -12,14 +12,13 @@ const site = process.env.VITE_APP_SITE || DEFAULT_APP_SITE;
 
 /**
  * The previous heyris.me served English at the root and Indonesian under `/id`. These permanent
- * redirects keep its post and page URLs working. Tag pages and `/experiences` have no
+ * redirects keep its page URLs working. Post URLs (`/posts/<slug>`, `/id/posts/<slug>`) are
+ * endpoints in `src/pages`, so they take one hop. Tag pages and `/experiences` have no
  * counterpart and stay 404.
  */
 const oldSiteRedirects = {
   "/posts": "/en/writing",
-  "/posts/[slug]": "/en/writing/[slug]",
   "/id/posts": "/tulisan",
-  "/id/posts/[slug]": "/tulisan/[slug]",
   "/about": "/en",
   "/id/about": "/",
   "/projects": "/en",
