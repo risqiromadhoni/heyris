@@ -5,10 +5,13 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
 import UnoCSS from "unocss/astro";
 import { voidPlugin } from "void";
+import { DEFAULT_APP_SITE } from "./env.ts";
 import { satteriOptions } from "./src/app/markdown/index.ts";
 
+const site = process.env.VITE_APP_SITE || DEFAULT_APP_SITE;
+
 export default defineConfig({
-  site: "https://heyris.me",
+  site,
   output: "server",
   trailingSlash: "never",
   build: { format: "file" },

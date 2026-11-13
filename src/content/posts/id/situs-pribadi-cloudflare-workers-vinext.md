@@ -43,7 +43,7 @@ Bahasa bisa diganti kapan saja, dan tema gelap atau terang mengikuti pilihan And
 
 ## Mencari batas vinext di Workers
 
-Di [tulisan sebelumnya](https://heyris.me/tulisan) saya membahas alasan memilih Workers. Kali ini saya mencari titik di mana vinext mulai tersendat. Tiga yang rawan:
+Di [tulisan sebelumnya](/tulisan) saya membahas alasan memilih Workers. Kali ini saya mencari titik di mana vinext mulai tersendat. Tiga yang rawan:
 
 1. Runtime Workers berbeda dari Node.js, jadi pustaka yang bergantung pada API Node saya periksa satu per satu
 2. vinext meniru App Router, tetapi tidak semua API Next.js tersedia

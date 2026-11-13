@@ -2,6 +2,7 @@
 // seed: e2e/seed.spec.ts
 
 import { expect, test } from "../fixtures";
+import { APP_SITE } from "../site";
 
 test.describe("Robots file", () => {
   test("Lists the sitemap in robots.txt", async ({ request }) => {
@@ -13,6 +14,6 @@ test.describe("Robots file", () => {
     const body = await response.text();
     expect(body).toContain("User-agent: *");
     expect(body).toContain("Allow: /");
-    expect(body).toContain("Sitemap: https://heyris.me/sitemap-index.xml");
+    expect(body).toContain(`Sitemap: ${new URL("/sitemap-index.xml", APP_SITE).href}`);
   });
 });

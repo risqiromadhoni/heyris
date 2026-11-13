@@ -2,6 +2,7 @@
 // seed: e2e/seed.spec.ts
 
 import { expect, test } from "../fixtures";
+import { APP_SITE } from "../site";
 import { pngSize } from "./png-size";
 
 test.describe("Home page", () => {
@@ -10,7 +11,7 @@ test.describe("Home page", () => {
     await page.goto("/");
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
       "content",
-      "https://heyris.me/og/index.png",
+      new URL("/og/index.png", APP_SITE).href,
     );
     await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute(
       "content",

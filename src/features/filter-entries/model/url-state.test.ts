@@ -3,7 +3,7 @@ import { describe, expect, it } from "vite-plus/test";
 import { normalizeText } from "./text";
 import { filterUrl, readFilterUrl } from "./url-state";
 
-const PAGE = "https://heyris.me/catatan";
+const PAGE = "https://example.com/catatan";
 
 describe("readFilterUrl", () => {
   it("defaults to every topic and no search", () => {

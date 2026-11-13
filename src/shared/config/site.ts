@@ -1,9 +1,10 @@
 /**
  * Site-wide constants. Each value appears once here and is read everywhere else.
+ * `url` is `site` from astro.config.mjs, which comes from `VITE_APP_SITE`.
  */
 export const SITE = {
   name: "@risqiromadhoni",
   author: "Risqi Romadhoni",
   email: "halo@heyris.me",
-  url: "https://heyris.me",
+  url: import.meta.env.SITE,
 } as const;

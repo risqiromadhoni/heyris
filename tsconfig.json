@@ -1,6 +1,7 @@
 {
   "extends": ["astro/tsconfigs/strict", "./.void/tsconfig.json"],
-  "include": [".astro/types.d.ts", "**/*"],
+  "files": [".astro/types.d.ts"],
+  "include": [".void/*.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
     "types": ["void/env"],

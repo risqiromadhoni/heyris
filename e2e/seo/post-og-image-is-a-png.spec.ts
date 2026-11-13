@@ -2,6 +2,7 @@
 // seed: e2e/seed.spec.ts
 
 import { expect, test } from "../fixtures";
+import { APP_SITE } from "../site";
 import { pngSize } from "./png-size";
 
 const IMAGE_PATH = "/og/tulisan/situs-pribadi-cloudflare-workers-vinext.png";
@@ -12,7 +13,7 @@ test.describe("Post page", () => {
     await page.goto("/tulisan/situs-pribadi-cloudflare-workers-vinext");
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
       "content",
-      `https://heyris.me${IMAGE_PATH}`,
+      new URL(IMAGE_PATH, APP_SITE).href,
     );
 
     // 2. Request the image path
