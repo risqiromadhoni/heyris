@@ -52,7 +52,7 @@ export default defineConfig({
     ],
   },
   staged: {
-    "*": () => "vpr check:fix",
+    "*": () => ["vpr check:fix", "vp test"],
   },
   fmt: {
     ignorePatterns: [...TOOLING_IGNORE_PATTERNS, "specs/**", "src/content/**"],
