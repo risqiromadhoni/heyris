@@ -7,7 +7,7 @@ test.describe("Home page", () => {
   test("Declares document metadata", async ({ page }) => {
     // 1. Open the home page at /
     await page.goto("/");
-    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await expect(page.locator("html")).toHaveAttribute("lang", "id");
     await expect(page.locator("meta[charset]")).toHaveAttribute("charset", /^utf-8$/i);
     await expect(page.locator('meta[name="viewport"]')).toHaveAttribute(
       "content",
@@ -15,7 +15,7 @@ test.describe("Home page", () => {
     );
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      /^Personal site of @risqiromadhoni/,
+      /^Situs pribadi @risqiromadhoni/,
     );
   });
 });

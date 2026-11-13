@@ -1,0 +1,134 @@
+---
+import { SITE } from "@/shared/config";
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+import { bioFor } from "../model/bio";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+const bio = bioFor(locale);
+
+/** Splits a paragraph around the contact address so the address can be a mail link. */
+const parts = (text: string) => text.split(SITE.email);
+---
+
+<div class="bio flex flex-col gap-[21.6px] pt-[40.3px] pb-14">
+	<div class="flex justify-between border-b border-lr-line font-sans text-[14px]/[1.4] text-lr-nav">
+		<span id="bio-label" class="pt-[3.2px]">{strings.home.bio}</span>
+		<div role="radiogroup" aria-labelledby="bio-label" class="flex gap-4">
+			<label class="option">
+				<input type="radio" name="bio" value="short" checked class="sr-only" />
+				<span class="option-label">{strings.home.bioShort}</span>
+				<span class="indicator" aria-hidden="true"></span>
+			</label>
+			<label class="option">
+				<input type="radio" name="bio" value="long" class="sr-only" />
+				<span class="option-label">{strings.home.bioLong}</span>
+				<span class="indicator" aria-hidden="true"></span>
+			</label>
+		</div>
+	</div>
+
+	<div class="bio-text bio-short">
+		{
+			bio.short.map((text) => (
+				<p class="type-body">
+					{parts(text).map((part, index) => (
+						<>
+							{index > 0 && (
+								<a href={`mailto:${SITE.email}`} class="mail-link">
+									{SITE.email}
+								</a>
+							)}
+							{part}
+						</>
+					))}
+				</p>
+			))
+		}
+	</div>
+
+	<div class="bio-text bio-long">
+		{
+			bio.long.map((text) => (
+				<p class="type-body">
+					{parts(text).map((part, index) => (
+						<>
+							{index > 0 && (
+								<a href={`mailto:${SITE.email}`} class="mail-link">
+									{SITE.email}
+								</a>
+							)}
+							{part}
+						</>
+					))}
+				</p>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.option {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding-top: 3.2px;
+		cursor: pointer;
+		color: var(--lr-nav);
+	}
+
+	.option:hover,
+	.option:has(input:checked) {
+		color: var(--lr-text);
+	}
+
+	.option:has(input:focus-visible) .option-label {
+		outline: 2px solid var(--lr-text);
+		outline-offset: 2px;
+	}
+
+	.indicator {
+		height: 1px;
+		margin-bottom: -1px;
+		width: 100%;
+		background: var(--lr-text);
+		opacity: 0;
+	}
+
+	.option:has(input:checked) .indicator {
+		opacity: 1;
+	}
+
+	.bio-text {
+		display: flex;
+		flex-direction: column;
+		gap: 23.2px;
+	}
+
+	.bio-long {
+		display: none;
+	}
+
+	.bio:has(input[value="long"]:checked) .bio-short {
+		display: none;
+	}
+
+	.bio:has(input[value="long"]:checked) .bio-long {
+		display: flex;
+	}
+
+	.mail-link {
+		color: var(--lr-nav);
+		text-decoration: underline;
+		text-decoration-color: var(--lr-underline);
+		text-underline-offset: 3px;
+	}
+
+	.mail-link:hover {
+		text-decoration-color: var(--lr-nav);
+	}
+</style>

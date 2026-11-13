@@ -1,0 +1,82 @@
+---
+import { SITE } from "@/shared/config";
+---
+
+<script>
+	/** How long the farewell stays before the handle returns, in ms. */
+	const HOLD_MS = 1500;
+
+	const title = document.querySelector("[data-home-title]");
+	const trigger = document.querySelector("[data-contact-trigger]");
+
+	if (title instanceof HTMLHeadingElement && trigger instanceof HTMLAnchorElement) {
+		let hold: number | undefined;
+
+		const show = (state: "default" | "greeting" | "farewell") => {
+			title.dataset.state = state;
+		};
+
+		const cancelHold = () => {
+			window.clearTimeout(hold);
+			hold = undefined;
+		};
+
+		const greet = () => {
+			cancelHold();
+			show("greeting");
+		};
+
+		const farewell = () => {
+			cancelHold();
+			show("farewell");
+
+			hold = window.setTimeout(() => show("default"), HOLD_MS);
+		};
+
+		trigger.addEventListener("pointerenter", greet);
+		trigger.addEventListener("focus", greet);
+		trigger.addEventListener("pointerleave", farewell);
+		trigger.addEventListener("blur", farewell);
+	}
+</script>
+
+<h1 class="home-title type-display" data-home-title data-state="default">
+	<span class="part part-default">{SITE.name}</span>
+	<span class="part part-greeting" lang="en" aria-hidden="true">Hi, nice to meet you 👋</span>
+	<span class="part part-farewell" lang="en" aria-hidden="true">See you next time 👋</span>
+</h1>
+
+<style>
+	/* Scales down on phones so the handle, the icon-only contact trigger and the gap fit a 320 px column. */
+	.home-title {
+		display: grid;
+		font-size: clamp(26px, 9vw, 42.4px);
+	}
+
+	.part {
+		grid-area: 1 / 1;
+		opacity: 0;
+		filter: blur(2px);
+		transform: translateY(4px);
+		transition:
+			opacity 150ms ease-in-out,
+			filter 150ms ease-in-out,
+			transform 150ms ease-in-out;
+	}
+
+	.home-title[data-state="default"] .part-default,
+	.home-title[data-state="greeting"] .part-greeting,
+	.home-title[data-state="farewell"] .part-farewell {
+		opacity: 1;
+		filter: none;
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.part {
+			filter: none;
+			transform: none;
+			transition: none;
+		}
+	}
+</style>

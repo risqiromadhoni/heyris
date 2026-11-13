@@ -1,0 +1,38 @@
+---
+import { Picture } from "astro:assets";
+import artwork from "../../../../designs/generated-4.png";
+
+interface Props {
+	/** Classes for the `<img>`, which Picture applies them to. */
+	class?: string;
+	loading?: "eager" | "lazy";
+	fetchpriority?: "high" | "low" | "auto";
+	/** `avatar` is a 20 px round crop with a hairline border, sized for 2x screens. */
+	crop?: "full" | "avatar";
+}
+
+/**
+ * The illustration as AVIF and WebP, optimised at build time. Decorative by default: `alt` is
+ * empty, so use it only where the art carries no meaning.
+ */
+const { class: className, loading = "lazy", fetchpriority = "auto", crop = "full" } = Astro.props;
+const avatar = crop === "avatar";
+// The artwork is portrait: crop it to the square avatar instead of stretching it into the circle.
+
+const classes = [avatar && "size-5 shrink-0 rounded-full border border-lr-line", className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Picture
+	src={artwork}
+	formats={["avif", "webp"]}
+	fallbackFormat="jpg"
+	alt=""
+	class={classes}
+	loading={loading}
+	fetchpriority={fetchpriority}
+	width={avatar ? 40 : undefined}
+	height={avatar ? 40 : undefined}
+	fit={avatar ? "cover" : undefined}
+/>

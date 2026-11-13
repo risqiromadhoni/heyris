@@ -1,0 +1,47 @@
+---
+import { entryLocale, entrySlug, foreignLocale, getPostListing } from "@/shared/api/content";
+import { dictionaryFor, formatMonthYear, localizedPath, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+const posts = (await getPostListing(locale)).slice(0, 5);
+---
+
+<section aria-labelledby="home-writing" class="flex flex-col gap-[19.2px]">
+	<div class="flex items-center justify-between">
+		<h2 id="home-writing" class="type-h2">{strings.home.writing}</h2>
+		<a
+			href={localizedPath(locale, "writing")}
+			class="inline-flex items-center gap-1 font-sans text-[14px] font-medium text-lr-nav hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+			>{strings.home.seeAll}<span aria-hidden="true" class="i-lucide-arrow-right size-4"></span></a
+		>
+	</div>
+	<ul class="border-t border-lr-line">
+		{
+			posts.map((post) => (
+				<li class="border-b border-lr-line">
+					<a
+						href={localizedPath(entryLocale(post.id), "post", entrySlug(post.id))}
+						hreflang={foreignLocale(post, locale)}
+						class="group flex flex-col pt-[12.24px] pb-[13.24px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text sm:flex-row sm:gap-5"
+					>
+						<span
+							class="type-body min-w-0 flex-1 group-hover:underline"
+							lang={foreignLocale(post, locale)}>{post.data.title}</span
+						>
+						<time
+							datetime={post.data.date.toISOString().slice(0, 7)}
+							class="type-ui shrink-0 whitespace-nowrap"
+						>
+							{formatMonthYear(post.data.date, locale)}
+						</time>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</section>

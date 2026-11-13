@@ -1,0 +1,155 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+---
+
+<script>
+	const toggle = document.querySelector("[data-theme-toggle]");
+
+	if (toggle instanceof HTMLButtonElement) {
+		toggle.addEventListener("click", () => {
+			const dark = document.documentElement.classList.toggle("dark");
+
+			toggle.dataset.moved = "";
+
+			try {
+				localStorage.setItem("theme", dark ? "dark" : "light");
+			} catch {
+				// Storage is blocked: the switch still holds until the page reloads.
+			}
+		});
+	}
+</script>
+
+<button
+	type="button"
+	data-theme-toggle
+	class="theme-toggle absolute top-[18px] left-[80.6%] size-24 -translate-x-1/2 rounded-full focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-lr-text"
+>
+	<span class="sr-only name-to-dark">{strings.theme.toDark}</span>
+	<span class="sr-only name-to-light">{strings.theme.toLight}</span>
+	<span aria-hidden="true" class="body sun">
+		<span class="sun-glow"></span>
+		<span class="sun-core"></span>
+	</span>
+	<span aria-hidden="true" class="body moon">
+		<span class="moon-glow"></span>
+		<span class="moon-core"></span>
+	</span>
+</button>
+
+<style>
+	/* The accessible name flips with the theme, before any script runs. */
+	.name-to-light {
+		display: none;
+	}
+
+	:global(.dark) .name-to-dark {
+		display: none;
+	}
+
+	:global(.dark) .name-to-light {
+		display: inline;
+	}
+
+	/* Both bodies turn on one wheel around a point 620px below their centre. */
+	.body {
+		position: absolute;
+		inset: 0;
+		transform-origin: 50% 668px;
+		pointer-events: none;
+	}
+
+	.sun {
+		rotate: 0deg;
+		opacity: 1;
+	}
+
+	.moon {
+		rotate: 60deg;
+		opacity: 0;
+	}
+
+	:global(.dark) .sun {
+		rotate: 60deg;
+		opacity: 0;
+	}
+
+	:global(.dark) .moon {
+		rotate: 0deg;
+		opacity: 1;
+	}
+
+	.sun-glow {
+		position: absolute;
+		inset: 10px;
+		border-radius: 9999px;
+		background: #ffc24a;
+		opacity: 0.75;
+		filter: blur(26px);
+	}
+
+	.sun-core {
+		position: absolute;
+		inset: 20px;
+		border-radius: 9999px;
+		background: radial-gradient(50% 50%, #fff8cf, #ffd65a 60%, #ffb52e);
+		box-shadow: 0 0 20px #ff9f1cb3;
+	}
+
+	.moon-glow {
+		position: absolute;
+		inset: 0;
+		border-radius: 9999px;
+		background: #f3eddc;
+		opacity: 0.35;
+		filter: blur(24px);
+	}
+
+	.moon-core {
+		position: absolute;
+		inset: 24px;
+		border-radius: 9999px;
+		background: #f3eddc;
+		box-shadow: 0 0 18px #f3eddc99;
+	}
+
+	/* Animations start on the first click (data-moved), so a page load shows the resting state. */
+	@media (prefers-reduced-motion: no-preference) {
+		[data-moved] .sun {
+			animation: sky-rise 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		:global(.dark) [data-moved] .sun {
+			animation-name: sky-set;
+		}
+
+		[data-moved] .moon {
+			animation: sky-set 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		:global(.dark) [data-moved] .moon {
+			animation-name: sky-rise;
+		}
+	}
+
+	@keyframes sky-set {
+		from {
+			rotate: 0deg;
+			opacity: 1;
+		}
+	}
+
+	@keyframes sky-rise {
+		from {
+			rotate: -60deg;
+			opacity: 0;
+		}
+	}
+</style>

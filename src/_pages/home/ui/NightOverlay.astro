@@ -1,0 +1,67 @@
+---
+/**
+ * Star positions from the design (node Star 1 to Star 8, dark frame). `left` is a share of the
+ * 469 px panel, as in the old site, and `top` and `size` are px.
+ */
+const STARS = [
+	{ left: "11.94%", top: 40, size: 3, opacity: 0.9 },
+	{ left: "25.59%", top: 86, size: 2, opacity: 0.7 },
+	{ left: "45.2%", top: 30, size: 3, opacity: 0.85 },
+	{ left: "57.14%", top: 74, size: 2, opacity: 0.6 },
+	{ left: "20.47%", top: 150, size: 2, opacity: 0.55 },
+	{ left: "63.97%", top: 150, size: 2, opacity: 0.5 },
+	{ left: "36.25%", top: 120, size: 2, opacity: 0.6 },
+	{ left: "5.12%", top: 110, size: 2, opacity: 0.5 },
+];
+---
+
+<!-- Four layers, each its own element so the blend modes reach the artwork beneath. -->
+<div aria-hidden="true" class="night-layer night-multiply absolute inset-0 pointer-events-none"></div>
+<div aria-hidden="true" class="night-layer night-top absolute inset-0 pointer-events-none"></div>
+<div aria-hidden="true" class="night-layer night-glow absolute inset-0 pointer-events-none"></div>
+<div aria-hidden="true" class="night-layer night-stars absolute inset-0 pointer-events-none">
+	{
+		STARS.map((star) => (
+			<span
+				class="night-star"
+				style={`left: ${star.left}; top: ${star.top}px; width: ${star.size}px; height: ${star.size}px; opacity: ${star.opacity};`}
+			></span>
+		))
+	}
+</div>
+
+<style>
+	.night-layer {
+		opacity: 0;
+	}
+
+	:global(.dark) .night-layer {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.night-layer {
+			transition: opacity 1.2s ease-in-out;
+		}
+	}
+
+	.night-multiply {
+		background: linear-gradient(to bottom, #16256e, #3a4aa0 40%, #5a5f9e);
+		mix-blend-mode: multiply;
+	}
+
+	.night-top {
+		background: linear-gradient(to bottom, #060a2ab3, #060a2a00 45%);
+	}
+
+	.night-glow {
+		background: radial-gradient(55% 17.5% at 50% 20%, #ffb45a55, #ffb45a00);
+		mix-blend-mode: screen;
+	}
+
+	.night-star {
+		position: absolute;
+		border-radius: 9999px;
+		background: #f3eddc;
+	}
+</style>

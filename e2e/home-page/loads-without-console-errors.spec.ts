@@ -13,7 +13,7 @@ test.describe("Home page", () => {
     });
     page.on("pageerror", (error) => pageErrors.push(error.message));
     await page.goto("/");
-    await expect(page.getByRole("heading", { name: "Astro" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "@risqiromadhoni" })).toBeVisible();
     expect(consoleErrors).toEqual([]);
     expect(pageErrors).toEqual([]);
   });
