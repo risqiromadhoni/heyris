@@ -12,6 +12,13 @@
       "sourceType": "github",
       "skillPath": "skills/install-anti-slop/SKILL.md",
       "computedHash": "72309811a88f92e56b6041960b7bd6f187deea251486982fd457378460b38d8a"
+    },
+    "modern-web-guidance": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "sourceType": "github",
+      "skillPath": "skills/modern-web-guidance/SKILL.md",
+      "computedHash": "9e69ce00dc314b64f6664031b70295ea46c7de93ac682c624808df6e48e08b66",
+      "installMode": "copy"
     }
   }
 }
