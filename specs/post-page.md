@@ -20,7 +20,7 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
     - expect: The document title is "Situs pribadi di Cloudflare Workers dengan vinext · Risqi Romadhoni"
     - expect: Exactly one level-1 heading inside the main landmark reads "Situs pribadi di Cloudflare Workers dengan vinext"
   2. Check the feedback line
-    - expect: The "Kabari saya" link is a mailto link to halo@heyris.me with the subject "Koreksi: Situs pribadi di Cloudflare Workers dengan vinext", URL-encoded
+    - expect: The "Kabari saya" link is a mailto link to risqi.romadhoni96@gmail.com with the subject "Koreksi: Situs pribadi di Cloudflare Workers dengan vinext", URL-encoded
 
 #### 1.2. Links its Markdown alternate and serves it as text/markdown
 

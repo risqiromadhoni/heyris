@@ -29,7 +29,7 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
     - expect: The html element has lang="id"
     - expect: A meta charset tag declares utf-8
     - expect: A viewport meta tag sets width=device-width
-    - expect: A meta description starts with "Situs pribadi @risqiromadhoni"
+    - expect: The meta description is "Situs pribadi @risqiromadhoni, software engineer sejak 2016. Berisi tulisan teknis tentang Git, TypeScript, dan cara kerja internet, serta catatan singkat."
 
 #### 1.3. Serves both favicons
 
@@ -184,7 +184,7 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
   1. Open the home page at / and find the list "Kontak Risqi"
     - expect: The list has three links
   2. Read the link "Email"
-    - expect: Its href starts with mailto:halo@heyris.me?subject=Halo%20Risqi
+    - expect: Its href starts with mailto:risqi.romadhoni96@gmail.com?subject=Halo%20Risqi
   3. Read the links "GitHub" and "LinkedIn"
     - expect: GitHub links to https://github.com/risqiromadhoni and LinkedIn to https://www.linkedin.com/in/risqir
     - expect: Both open in a new tab (target="_blank") with rel containing noopener

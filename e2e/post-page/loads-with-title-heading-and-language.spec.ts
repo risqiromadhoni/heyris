@@ -17,7 +17,7 @@ test.describe("Post page", () => {
     // 2. Check the feedback line links to a correction mail
     await expect(page.getByRole("link", { name: "Kabari saya" })).toHaveAttribute(
       "href",
-      "mailto:halo@heyris.me?subject=Koreksi%3A%20Situs%20pribadi%20di%20Cloudflare%20Workers%20dengan%20vinext",
+      "mailto:risqi.romadhoni96@gmail.com?subject=Koreksi%3A%20Situs%20pribadi%20di%20Cloudflare%20Workers%20dengan%20vinext",
     );
   });
 });

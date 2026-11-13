@@ -1,34 +1,37 @@
 import type { Locale } from "@/shared/i18n";
 
-/** The home bio in two lengths. Each entry is one paragraph. */
+/**
+ * The home bio in two lengths. Each entry is one paragraph. BioToggle turns every `SITE.email` in
+ * the text into a mail link, so the address in the copy must match `SITE.email`.
+ */
 interface Bio {
   readonly short: readonly string[];
   readonly long: readonly string[];
 }
 
-/** Indonesian bio. The short text is the design's; the long text is the draft from the spec's open items. */
+/** Indonesian bio. */
 const ID_BIO: Bio = {
   short: [
-    "Saya software engineer dan penulis. Saya membangun situs web yang ringan, tanpa pelacak, dan sesuai WCAG 2.2 AA. Kodenya TypeScript dengan Effect, jalan di Cloudflare Workers. Situs yang sedang Anda baca ini contohnya.",
-    "Saya menulis catatan teknis dalam bahasa Indonesia, dan setiap tulisan punya versi Markdown untuk dibaca manusia maupun AI. Kalau Anda punya proyek, pertanyaan, atau sekadar ingin menyapa, kirim surel ke halo@heyris.me.",
+    "Saya bekerja di bidang perangkat lunak sejak 2016. Saya membangun frontend dan backend dengan TypeScript, React, Next.js, dan Nest.js. Situs yang sedang Anda baca ini berjalan di Cloudflare Workers.",
+    "Saya menulis di sini dalam bahasa Indonesia, dan setiap tulisan juga bisa dibaca dalam format Markdown. Kalau Anda punya proyek atau pertanyaan, kirim email ke risqi.romadhoni96@gmail.com.",
   ],
   long: [
-    "Saya software engineer dan penulis. Saya membangun situs web yang ringan, tanpa pelacak, dan sesuai WCAG 2.2 AA: kontras teks yang cukup, fokus keyboard yang selalu terlihat, target sentuh yang cukup besar, dan gerak yang berkurang bila diminta. Kodenya TypeScript dengan Effect, jalan di Cloudflare Workers. Situs yang sedang Anda baca ini contohnya.",
-    "Situs ini tidak memasang cookie pelacak dan tidak memuat skrip pihak ketiga, jadi tidak perlu banner persetujuan. Halamannya tersedia dalam bahasa Indonesia dan Inggris, dan tema gelap atau terang mengikuti pilihan Anda.",
-    "Saya menulis catatan teknis dalam bahasa Indonesia tentang Effect, Cloudflare Workers, aksesibilitas, privasi, dan performa web, dan setiap tulisan punya versi Markdown untuk dibaca manusia maupun AI. Kalau Anda punya proyek, pertanyaan, atau sekadar ingin menyapa, kirim surel ke halo@heyris.me.",
+    "Saya belajar pemrograman secara otodidak dan bekerja di bidang perangkat lunak sejak 2016. Sekarang saya bekerja mandiri. Saya membangun frontend serta backend dengan TypeScript, React, Next.js, dan Nest.js. Sebagai Full Stack Engineer di Yummy Corp, saya membantu sistem pesanan Yummyshop melayani lebih dari 50.000 pedagang UKM. Setelah itu, sebagai Senior Software Engineer di sana, saya membangun layanan berbasis event dengan Nest.js dan RabbitMQ. Di luar kerja, saya berkebun dengan hidroponik dan akuaponik.",
+    "Situs ini berjalan di Cloudflare Workers, dan saya membangunnya dengan target WCAG 2.2 AA. Situs ini tidak memasang cookie pelacak dan tidak memakai layanan analitik. Antarmuka situs tersedia dalam bahasa Indonesia dan Inggris. Tema gelap atau terang mengikuti sistem Anda, kecuali Anda memilih sendiri.",
+    "Tulisan saya antara lain membahas Git, monorepo dengan Turborepo, serta cara kerja internet dan nameserver. Saya juga menulis tentang memindahkan domain ke Cloudflare, dan alasan engineer TypeScript belajar Rust serta WebAssembly. Catatan singkat berisi potongan kode dan hal yang baru saya pelajari. Kalau Anda punya proyek atau pertanyaan, kirim email ke risqi.romadhoni96@gmail.com.",
   ],
 };
 
 /** English bio, a translation of `ID_BIO` with the same paragraphs and claims. */
 const EN_BIO: Bio = {
   short: [
-    "I am a software engineer and writer. I build websites that are lightweight, free of trackers and meet WCAG 2.2 AA. My code is TypeScript with Effect, running on Cloudflare Workers. The site you are reading is an example.",
-    "I write technical articles in Indonesian, and every post has a Markdown version for people and AI to read. If you have a project, a question, or just want to say hello, send an email to halo@heyris.me.",
+    "I've worked in software since 2016. I build frontends and backends with TypeScript, React, Next.js, and Nest.js. The site you're reading runs on Cloudflare Workers.",
+    "I write here in Indonesian, and every post can also be read as Markdown. If you have a project or a question, email risqi.romadhoni96@gmail.com.",
   ],
   long: [
-    "I am a software engineer and writer. I build websites that are lightweight, free of trackers and meet WCAG 2.2 AA: enough text contrast, a keyboard focus that is always visible, touch targets large enough, and motion that is reduced when requested. My code is TypeScript with Effect, running on Cloudflare Workers. The site you are reading is an example.",
-    "This site sets no tracking cookies and loads no third-party scripts, so it needs no consent banner. Its pages are available in Indonesian and English, and the dark or light theme follows your choice.",
-    "I write technical articles in Indonesian about Effect, Cloudflare Workers, accessibility, privacy and web performance, and every post has a Markdown version for people and AI to read. If you have a project, a question, or just want to say hello, send an email to halo@heyris.me.",
+    "I taught myself to program and have worked in software since 2016. I'm self-employed now. I build frontends and backends with TypeScript, React, Next.js, and Nest.js. As a Full Stack Engineer at Yummy Corp, I helped the Yummyshop order system serve more than 50,000 SME merchants. Later, as a Senior Software Engineer there, I built event-driven services with Nest.js and RabbitMQ. Outside work, I garden with hydroponics and aquaponics.",
+    "This site runs on Cloudflare Workers, and I built it with WCAG 2.2 AA as the target. It sets no tracking cookies and uses no analytics service. The interface is available in Indonesian and English. The dark or light theme follows your system setting, unless you pick one yourself.",
+    "My writing covers topics such as Git, monorepos with Turborepo, and how the internet and nameservers work. I also write about moving a domain to Cloudflare, and why TypeScript engineers learn Rust and WebAssembly. Short notes hold code snippets and things I have recently learned. If you have a project or a question, email risqi.romadhoni96@gmail.com.",
   ],
 };
 

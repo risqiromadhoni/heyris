@@ -13,7 +13,7 @@ test.describe("Home page", () => {
     // 2. Check the email link
     await expect(contact.getByRole("link", { name: "Email" })).toHaveAttribute(
       "href",
-      /^mailto:halo@heyris\.me\?subject=Halo%20Risqi/,
+      /^mailto:risqi\.romadhoni96@gmail\.com\?subject=Halo%20Risqi/,
     );
 
     // 3. Check the GitHub and LinkedIn links

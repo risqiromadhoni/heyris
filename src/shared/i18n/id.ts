@@ -23,7 +23,7 @@ export const id = {
     siteTitle: "Risqi Romadhoni",
     title: (page: string) => `${page} · Risqi Romadhoni`,
     homeDescription:
-      "Situs pribadi @risqiromadhoni, software engineer, berisi indeks tulisan, tulisan panjang, dan catatan singkat.",
+      "Situs pribadi @risqiromadhoni, software engineer sejak 2016. Berisi tulisan teknis tentang Git, TypeScript, dan cara kerja internet, serta catatan singkat.",
   },
   nav: {
     label: "Navigasi utama",

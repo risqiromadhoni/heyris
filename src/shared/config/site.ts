@@ -5,7 +5,7 @@
 export const SITE = {
   name: "@risqiromadhoni",
   author: "Risqi Romadhoni",
-  email: "halo@heyris.me",
+  email: "risqi.romadhoni96@gmail.com",
   github: "https://github.com/risqiromadhoni",
   linkedin: "https://www.linkedin.com/in/risqir",
   url: import.meta.env.SITE,

@@ -15,7 +15,7 @@ test.describe("Home page", () => {
     );
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      /^Situs pribadi @risqiromadhoni/,
+      "Situs pribadi @risqiromadhoni, software engineer sejak 2016. Berisi tulisan teknis tentang Git, TypeScript, dan cara kerja internet, serta catatan singkat.",
     );
   });
 });

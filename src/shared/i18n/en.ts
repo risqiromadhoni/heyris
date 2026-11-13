@@ -27,7 +27,7 @@ export const en: Dictionary = {
     siteTitle: "Risqi Romadhoni",
     title: (page) => `${page} · Risqi Romadhoni`,
     homeDescription:
-      "Personal site of @risqiromadhoni, a software engineer, with a writing index, long-form posts and short notes.",
+      "Personal site of @risqiromadhoni, software engineer since 2016, with technical writing on Git, TypeScript, and how the internet works, plus short notes.",
   },
   nav: {
     label: "Main navigation",
