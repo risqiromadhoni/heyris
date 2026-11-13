@@ -49,3 +49,6 @@ pnpm-debug.log*
 
 # Unlighthouse
 /.unlighthouse/
+
+# Local notes, kept out of git
+/docs/
