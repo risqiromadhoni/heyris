@@ -8,6 +8,7 @@ const topics: Record<Topic, string> = {
   astro: "Astro",
   react: "React",
   ruby: "Ruby",
+  api: "API",
   effect: "Effect",
   cloudflare: "Cloudflare",
   accessibility: "Aksesibilitas",

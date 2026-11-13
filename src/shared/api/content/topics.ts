@@ -7,6 +7,7 @@ export const TOPICS = [
   "astro",
   "react",
   "ruby",
+  "api",
   "effect",
   "cloudflare",
   "accessibility",
