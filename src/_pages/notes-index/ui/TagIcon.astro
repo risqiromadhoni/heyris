@@ -1,0 +1,22 @@
+---
+import type { NoteIcon } from "@/shared/api/content";
+
+interface Props {
+	icon: NoteIcon;
+}
+
+/** UnoCSS icon class per note icon. Written out in this file so the extractor finds every one. */
+const ICON_CLASS: Record<NoteIcon, string> = {
+	lightbulb: "i-ph-lightbulb",
+	"list-checks": "i-ph-list-checks",
+	"arrows-clockwise": "i-ph-arrows-clockwise",
+	gauge: "i-ph-gauge",
+	sparkle: "i-ph-sparkle",
+	code: "i-ph-code",
+	database: "i-ph-database",
+};
+
+const { icon } = Astro.props;
+---
+
+<span aria-hidden="true" class={`${ICON_CLASS[icon]} size-[13px]`}></span>

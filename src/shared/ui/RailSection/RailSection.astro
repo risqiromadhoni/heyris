@@ -1,0 +1,28 @@
+---
+interface Props {
+	/** The heading of the section: a year, a month, or the pinned group's label. */
+	heading: string;
+	/** The count line under the heading, already formatted. */
+	count: string;
+	/** Id of the heading, which names the section for assistive technology. */
+	headingId: string;
+	/** `data-*` attributes for the section, such as the filter's group hook. */
+	[attribute: `data-${string}`]: string | undefined;
+}
+
+const { heading, count, headingId, ...attributes } = Astro.props;
+---
+
+<section
+	aria-labelledby={headingId}
+	class="flex flex-col gap-4 lg:grid lg:grid-cols-[300px_minmax(0,760px)]"
+	{...attributes}
+>
+	<div class="pt-4 lg:sticky lg:top-6 lg:self-start">
+		<h2 id={headingId} class="type-h2">{heading}</h2>
+		<p class="mt-1 type-ui"><span data-count>{count}</span></p>
+	</div>
+	<div class="min-w-0 border-t border-lr-line">
+		<slot />
+	</div>
+</section>

@@ -1,0 +1,66 @@
+---
+import {
+	entryLocale,
+	entrySlug,
+	foreignLocale,
+	readingTime,
+	type Post,
+} from "@/shared/api/content";
+import { dictionaryFor, formatMonth, localizedPath, type Locale } from "@/shared/i18n";
+
+interface Props {
+	post: Post;
+	locale: Locale;
+	/** Whether this is the newest published post, which gets the "Terbaru" badge. */
+	newest: boolean;
+}
+
+const { post, locale, newest } = Astro.props;
+const strings = dictionaryFor(locale);
+const foreign = foreignLocale(post, locale);
+---
+
+<li
+	data-filter-item
+	data-topic={post.data.topic}
+	data-search={`${post.data.title} ${post.data.summary}`}
+>
+	<a
+		href={localizedPath(entryLocale(post.id), "post", entrySlug(post.id))}
+		hreflang={foreign}
+		class="group flex flex-col gap-4 rounded-lg border-b border-lr-line px-4 pt-4 pb-[17px] hover:border-transparent hover:bg-lr-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text sm:flex-row sm:gap-8"
+	>
+		<div class="flex min-w-0 flex-1 flex-col gap-1.5">
+			{
+				newest && (
+					<span class="type-tag inline-flex items-center gap-2">
+						<span aria-hidden="true" class="size-1.5 rounded-full bg-lr-text"></span>
+						{strings.writing.newest}
+					</span>
+				)
+			}
+			<span
+				class:list={[
+					"flex items-center gap-3",
+					newest ? "type-row" : "font-serif text-[17px] leading-[1.4] text-lr-text",
+				]}
+			>
+				<span class="min-w-0" lang={foreign}>{post.data.title}</span>
+				<span
+					aria-hidden="true"
+					class="i-ph-arrow-up-right size-4 shrink-0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
+				></span>
+			</span>
+			<span class="font-sans text-[14px] leading-[1.5] text-lr-nav" lang={foreign}
+				>{post.data.summary}</span
+			>
+			<span class="type-tag">{strings.topics[post.data.topic]}</span>
+		</div>
+		<div class="flex shrink-0 flex-row gap-3 sm:w-24 sm:flex-col sm:gap-1 sm:text-right">
+			<time class="type-ui" datetime={post.data.date.toISOString().slice(0, 7)}>
+				{formatMonth(post.data.date, locale)}
+			</time>
+			<span class="type-meta">{strings.readingTime(readingTime(post))}</span>
+		</div>
+	</a>
+</li>

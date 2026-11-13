@@ -1,0 +1,49 @@
+---
+import { LOCALES, dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+
+interface Props {
+	/** The language of the page the toggle sits on. */
+	locale: Locale;
+	/** The page's path in each locale where it exists, as `BaseLayout` takes them. */
+	alternates: Partial<Record<Locale, string>>;
+	/** The index the toggle falls back to when the other language has no version of this page. */
+	section?: "home" | "writing" | "notes";
+}
+
+const LANGUAGE_LABEL: Record<Locale, string> = { id: "ID", en: "EN" };
+
+const { locale, alternates, section = "home" } = Astro.props;
+const strings = dictionaryFor(locale);
+
+const languages = LOCALES.map((lang) => ({
+	lang,
+	label: LANGUAGE_LABEL[lang],
+	current: lang === locale,
+	// The same page in the other language when it exists, otherwise that language's index.
+	href: alternates[lang] ?? localizedPath(lang, section),
+}));
+---
+
+<p class="flex items-center gap-2 font-sans text-[14px] text-lr-nav">
+	{
+		languages.map((item, index) => (
+			<>
+				{index > 0 && <span aria-hidden="true">/</span>}
+				{item.current ? (
+					<span lang={item.lang} aria-current="true" class="text-lr-text">
+						{item.label}
+						<span class="sr-only"> {strings.lang.current}</span>
+					</span>
+				) : (
+					<a
+						href={item.href}
+						hreflang={item.lang}
+						lang={item.lang}
+						class="hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+						>{item.label}</a
+					>
+				)}
+			</>
+		))
+	}
+</p>

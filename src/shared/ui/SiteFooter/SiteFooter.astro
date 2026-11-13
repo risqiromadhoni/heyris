@@ -1,0 +1,39 @@
+---
+import { SITE } from "@/shared/config";
+import { dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+/** Stands in for the link label, so the sentence from the dictionary can be split around the link. */
+const SLOT = "\u0000";
+const MARKDOWN_LABEL = "Markdown";
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+const [before = "", after = ""] = strings.footer.markdown(SLOT).split(SLOT);
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="mx-auto max-w-[1440px] px-5 pb-[49px] sm:px-[49px]">
+	<div
+		class="mt-16 flex flex-col gap-4 border-t border-lr-line pt-6 font-sans text-[14px] text-lr-nav sm:flex-row sm:items-center sm:justify-between"
+	>
+		<p>{before}<a
+			href="/llms.txt"
+			class="border-b border-lr-underline text-lr-text hover:border-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+			>{MARKDOWN_LABEL}</a>{after}</p>
+		<div class="flex items-center gap-7">
+			<span class="inline-flex items-center gap-1.5">
+				<span aria-hidden="true" class="i-ph-rss size-4 text-lr-text"></span>
+				<a
+					href={localizedPath(locale, "rss")}
+					class="border-b border-lr-underline text-lr-text hover:border-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+					>{strings.footer.rss}</a
+				>
+			</span>
+			<p>{`© ${year} ${SITE.author}`}</p>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,47 @@
+---
+import type { Note, Topic } from "@/shared/api/content";
+import { FEATURED_NOTE_TOPICS } from "@/shared/config";
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** Every listed note, pinned ones included, so the counts agree with the page. A featured topic with no notes gets no pill. */
+	notes: Note[];
+}
+
+const PILL =
+	"inline-flex items-center gap-1.5 rounded-full border border-lr-line px-3 py-1.5 font-sans text-[13px] text-lr-text aria-pressed:border-lr-text aria-pressed:bg-lr-text aria-pressed:text-lr-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text";
+
+const { locale, notes } = Astro.props;
+const strings = dictionaryFor(locale);
+
+const countOf = (topic: Topic) => notes.filter((note) => note.data.topic === topic).length;
+const topics = FEATURED_NOTE_TOPICS.filter((topic) => countOf(topic) > 0);
+---
+
+<div role="group" aria-label={strings.filter.topics} data-filter-control class="flex flex-wrap gap-2">
+	<button type="button" data-filter-topic="all" aria-pressed="true" class={PILL}>
+		{strings.filter.all}
+		<span class="pill-count">{notes.length}</span>
+	</button>
+	{
+		topics.map((topic) => (
+			<button type="button" data-filter-topic={topic} aria-pressed="false" class={PILL}>
+				{strings.topics[topic]}
+				<span class="pill-count">{countOf(topic)}</span>
+			</button>
+		))
+	}
+</div>
+
+<style>
+	.pill-count {
+		color: var(--lr-nav);
+		font-size: 12px;
+	}
+
+	[aria-pressed="true"] .pill-count {
+		color: inherit;
+		opacity: 0.7;
+	}
+</style>

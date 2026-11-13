@@ -1,0 +1,41 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+---
+
+<div data-filter-control class="w-[190px] max-w-full">
+	<label
+		class="flex items-center gap-2 border-b border-lr-line pb-2 font-sans text-[14px] text-lr-nav focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-lr-text"
+	>
+		<span aria-hidden="true" class="i-ph-magnifying-glass size-4 shrink-0"></span>
+		<span class="sr-only">{strings.filter.search}</span>
+		<input
+			type="search"
+			name="q"
+			autocomplete="off"
+			data-filter-search
+			placeholder={strings.filter.search}
+			class="min-w-0 flex-1 bg-transparent text-lr-text placeholder:text-lr-nav focus:outline-none"
+		/>
+	</label>
+	<p class="sr-only" aria-live="polite" data-filter-status></p>
+</div>
+
+<style is:global>
+	/* Controls stay hidden until the script runs, so a page without JavaScript shows every entry. */
+	[data-filter-root]:not([data-ready]) [data-filter-control] {
+		display: none;
+	}
+</style>
+
+<script>
+	import { mountFilterEntries } from "../model/mount";
+
+	mountFilterEntries();
+</script>

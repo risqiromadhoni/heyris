@@ -1,0 +1,62 @@
+---
+import { SITE } from "@/shared/config";
+import { dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+import LanguageToggle from "../LanguageToggle/LanguageToggle.astro";
+
+interface Props {
+	locale: Locale;
+	/** The section the page belongs to. Its nav link gets `aria-current="page"`. Pages outside the nav omit it. */
+	current?: "home" | "writing" | "notes";
+	/** The page's path in each locale where it exists, as `BaseLayout` takes them. */
+	alternates: Partial<Record<Locale, string>>;
+}
+
+const { locale, current, alternates } = Astro.props;
+const strings = dictionaryFor(locale);
+
+const sections = [
+	{ key: "home", label: strings.nav.home, href: localizedPath(locale, "home") },
+	{ key: "writing", label: strings.nav.writing, href: localizedPath(locale, "writing") },
+	{ key: "notes", label: strings.nav.notes, href: localizedPath(locale, "notes") },
+];
+---
+
+<header
+	class="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 pt-5 pb-16 sm:px-[49px] sm:pt-[49px]"
+>
+	<a
+		href={localizedPath(locale, "home")}
+		class="type-site rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+		>{SITE.name}</a
+	>
+	<div class="flex items-center gap-7 max-sm:gap-4">
+		<nav aria-label={strings.nav.label}>
+			<ul class="flex items-center gap-7 max-sm:gap-4">
+				{
+					sections.map((section) => {
+						const isCurrent = section.key === current;
+
+						return (
+							<li>
+								<a
+									href={section.href}
+									aria-current={isCurrent ? "page" : undefined}
+									class:list={[
+										"inline-flex flex-col border-b-2 pt-px pb-[3px] font-sans text-[14px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text",
+										isCurrent
+											? "border-lr-text text-lr-text"
+											: "border-transparent text-lr-nav hover:text-lr-text",
+									]}
+								>
+									{section.label}
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</nav>
+		<span aria-hidden="true" class="h-4 w-px bg-lr-line"></span>
+		<LanguageToggle locale={locale} alternates={alternates} section={current} />
+	</div>
+</header>

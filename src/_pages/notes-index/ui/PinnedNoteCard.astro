@@ -1,0 +1,40 @@
+---
+import type { Note } from "@/shared/api/content";
+import { entryLocale, entrySlug, foreignLocale } from "@/shared/api/content";
+import { dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+import TagIcon from "./TagIcon.astro";
+
+interface Props {
+	note: Note;
+	locale: Locale;
+}
+
+const { note, locale } = Astro.props;
+const strings = dictionaryFor(locale);
+const foreign = foreignLocale(note, locale);
+---
+
+<li
+	data-filter-item
+	data-topic={note.data.topic}
+	data-search={`${note.data.title} ${note.data.summary}`}
+>
+	<a
+		href={localizedPath(entryLocale(note.id), "note", entrySlug(note.id))}
+		hreflang={foreign}
+		class="group flex h-full flex-col gap-2.5 rounded-lg border border-lr-line bg-lr-surface p-5 hover:border-lr-nav focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+	>
+		<span class="flex items-center justify-between gap-3">
+			<span aria-hidden="true" class="i-ph-push-pin size-4 text-lr-text"></span>
+			<span class="type-tag">{strings.notes.pinned}</span>
+		</span>
+		<span class="type-card" lang={foreign}>{note.data.title}</span>
+		<span class="font-sans text-[14px] leading-[1.5] text-lr-nav" lang={foreign}
+			>{note.data.summary}</span
+		>
+		<span class="flex items-center gap-1.5 type-tag">
+			<TagIcon icon={note.data.icon} />
+			{strings.topics[note.data.topic]}
+		</span>
+	</a>
+</li>

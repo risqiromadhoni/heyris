@@ -1,0 +1,61 @@
+---
+import {
+	entryLocale,
+	entrySlug,
+	foreignLocale,
+	readingTime,
+	type Note,
+} from "@/shared/api/content";
+import { dictionaryFor, formatWeekdayShort, localizedPath, type Locale } from "@/shared/i18n";
+import TagIcon from "./TagIcon.astro";
+
+interface Props {
+	note: Note;
+	locale: Locale;
+}
+
+const { note, locale } = Astro.props;
+const strings = dictionaryFor(locale);
+const day = String(note.data.date.getUTCDate()).padStart(2, "0");
+const weekday = formatWeekdayShort(note.data.date, locale);
+const foreign = foreignLocale(note, locale);
+---
+
+<li
+	data-filter-item
+	data-topic={note.data.topic}
+	data-search={`${note.data.title} ${note.data.summary}`}
+>
+	<a
+		href={localizedPath(entryLocale(note.id), "note", entrySlug(note.id))}
+		hreflang={foreign}
+		class="group flex flex-col gap-4 rounded-lg border-b border-lr-line px-4 pt-4 pb-[17px] hover:border-transparent hover:bg-lr-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text sm:flex-row sm:gap-5"
+	>
+		<div class="flex items-baseline gap-2 sm:w-11 sm:shrink-0 sm:flex-col sm:items-start sm:gap-0.5">
+			<time
+				datetime={note.data.date.toISOString().slice(0, 10)}
+				class="font-serif text-[26px] leading-none font-semibold text-lr-heading">{day}</time
+			>
+			<span class="type-tag">{weekday}</span>
+		</div>
+		<div class="flex min-w-0 flex-1 flex-col gap-1.5">
+			<span class="type-row flex items-center gap-3">
+				<span class="min-w-0" lang={foreign}>{note.data.title}</span>
+				<span
+					aria-hidden="true"
+					class="i-ph-arrow-up-right size-4 shrink-0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
+				></span>
+			</span>
+			<span class="font-sans text-[14px] leading-[1.5] text-lr-nav" lang={foreign}
+				>{note.data.summary}</span
+			>
+			<span class="flex items-center gap-1.5 type-tag">
+				<TagIcon icon={note.data.icon} />
+				{strings.topics[note.data.topic]}
+			</span>
+		</div>
+		<div class="flex shrink-0 flex-row gap-3 sm:w-20 sm:flex-col sm:gap-1 sm:text-right">
+			<span class="type-meta">{strings.readingTime(readingTime(note))}</span>
+		</div>
+	</a>
+</li>

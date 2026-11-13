@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { WritingIndexPage } from "@/_pages/writing-index";
+import { dictionaryFor, localizedPath, pageTitle } from "@/shared/i18n";
+import { SiteFooter, SiteTopBar } from "@/shared/ui";
+
+export const prerender = true;
+
+const locale = "id";
+const strings = dictionaryFor(locale);
+const path = localizedPath(locale, "writing");
+const alternates = { id: path, en: localizedPath("en", "writing") };
+---
+
+<BaseLayout
+	locale={locale}
+	title={pageTitle(locale, strings.writing.title)}
+	description={strings.writing.intro}
+	path={path}
+	pageName={strings.writing.title}
+	alternates={alternates}
+>
+	<SiteTopBar slot="header" locale={locale} current="writing" alternates={alternates} />
+	<WritingIndexPage locale={locale} />
+	<SiteFooter slot="footer" locale={locale} />
+</BaseLayout>

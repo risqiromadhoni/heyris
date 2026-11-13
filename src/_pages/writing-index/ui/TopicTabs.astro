@@ -1,0 +1,29 @@
+---
+import type { Post } from "@/shared/api/content";
+import { FEATURED_WRITING_TOPICS } from "@/shared/config";
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** Every listed post. A featured topic with no posts gets no tab. */
+	posts: Post[];
+}
+
+const TAB =
+	"pb-1 border-b-2 border-transparent font-sans text-[14px] text-lr-nav hover:text-lr-text aria-pressed:border-lr-text aria-pressed:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text";
+
+const { locale, posts } = Astro.props;
+const strings = dictionaryFor(locale);
+const topics = FEATURED_WRITING_TOPICS.filter((topic) => posts.some((post) => post.data.topic === topic));
+---
+
+<div role="group" aria-label={strings.filter.topics} data-filter-control class="flex flex-wrap gap-x-5 gap-y-2">
+	<button type="button" data-filter-topic="all" aria-pressed="true" class={TAB}>{strings.filter.all}</button>
+	{
+		topics.map((topic) => (
+			<button type="button" data-filter-topic={topic} aria-pressed="false" class={TAB}>
+				{strings.topics[topic]}
+			</button>
+		))
+	}
+</div>
