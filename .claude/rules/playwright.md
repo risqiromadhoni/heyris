@@ -46,6 +46,6 @@ The target is WCAG 2.2 Level AA. `makeAxeBuilder()` returns an `AxeBuilder` limi
 
 - `pnpm test:e2e` runs chromium, firefox and webkit. Add `--project=chromium` for one browser. `pnpm test:e2e:report` serves the last HTML report.
 - The config starts `astro dev --ignore-lock` itself, or reuses a server already listening on port 4321 outside CI. `--ignore-lock` matters: when Astro 7 detects an agent it backgrounds `astro dev` and `astro preview`, so the parent exits at once, Playwright reports `Process from config.webServer exited early`, and an orphan keeps the port. Stop an orphan with `pnpm astro dev stop`.
-- Keep `gracefulShutdown: SIGTERM` on the `webServer`. Playwright's default SIGKILL skips Void's cleanup, which leaves its generated `src/middleware.ts` and that file's `.gitignore` line behind (see the Void gotcha in `CLAUDE.md`).
+- Keep `gracefulShutdown: SIGTERM` on the `webServer`. Playwright's default SIGKILL skips Void's cleanup, which leaves its generated `src/middleware.ts` behind (see the Void gotcha in `CLAUDE.md`).
 - Firefox 159, the build Playwright 1.65 ships, does not start on macOS 27 (`Could not find profile folder`, even outside Playwright). On such a Mac run `--project=chromium --project=webkit`; CI on Ubuntu runs all three. Never heal a test for that error.
 - CI runs the suite in `.github/workflows/playwright.yml` and uploads `playwright-report/`.
