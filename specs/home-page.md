@@ -75,16 +75,16 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
   3. Click the theme toggle "Beralih ke mode terang"
     - expect: The html element does not have the dark class
 
-#### 1.7. Saves the chosen theme in localStorage under the theme key
+#### 1.7. Saves the chosen theme in localStorage under the theme key, and clears it on returning to the system theme
 
 **File:** `e2e/home-page/saves-the-theme-in-local-storage.spec.ts`
 
 **Steps:**
-  1. Open the home page at /
+  1. Open the home page at / with the system in light mode
   2. Click the theme toggle to switch to dark mode
     - expect: localStorage.theme is "dark"
-  3. Click the theme toggle again to switch back to light mode
-    - expect: localStorage.theme is "light"
+  3. Click the theme toggle again to switch back to light mode, which the system already shows
+    - expect: localStorage.theme is removed
 
 #### 1.8. Flips the theme button's accessible name between dark and light mode
 
@@ -188,3 +188,29 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
   3. Read the links "GitHub" and "LinkedIn"
     - expect: GitHub links to https://github.com/risqiromadhoni and LinkedIn to https://www.linkedin.com/in/risqir
     - expect: Both open in a new tab (target="_blank") with rel containing noopener
+
+#### 1.17. Saves light when the system is dark, and clears it on switching back
+
+**File:** `e2e/home-page/saves-light-when-the-system-is-dark.spec.ts`
+
+**Steps:**
+  1. Open the home page at / with the system in dark mode
+    - expect: The html element has the dark class
+  2. Click the theme toggle to switch to light mode
+    - expect: localStorage.theme is "light"
+    - expect: The html element does not have the dark class
+  3. Click the theme toggle again to switch back to dark mode
+    - expect: localStorage.theme is removed
+    - expect: The html element has the dark class
+
+#### 1.18. Follows a theme change made in another tab
+
+**File:** `e2e/home-page/follows-a-theme-change-from-another-tab.spec.ts`
+
+**Steps:**
+  1. Open the home page at / in two tabs of one browser context
+    - expect: Neither html element has the dark class
+  2. Click the theme toggle in the first tab
+    - expect: The second tab's html element has the dark class, without a reload
+  3. Click the theme toggle in the first tab again
+    - expect: The second tab's html element does not have the dark class

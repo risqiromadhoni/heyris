@@ -11,6 +11,7 @@ const strings = dictionaryFor(locale);
 
 <script>
 	const toggle = document.querySelector("[data-theme-toggle]");
+	const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 
 	if (toggle instanceof HTMLButtonElement) {
 		toggle.addEventListener("click", () => {
@@ -19,7 +20,9 @@ const strings = dictionaryFor(locale);
 			toggle.dataset.moved = "";
 
 			try {
-				localStorage.setItem("theme", dark ? "dark" : "light");
+				// Choosing what the system already shows undoes the override, so the site follows the system again.
+				if (dark === systemDark.matches) localStorage.removeItem("theme");
+				else localStorage.setItem("theme", dark ? "dark" : "light");
 			} catch {
 				// Storage is blocked: the switch still holds until the page reloads.
 			}

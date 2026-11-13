@@ -75,9 +75,17 @@ const defaultHref = alternates[DEFAULT_LOCALE];
 
 				const apply = (dark) => root.classList.toggle("dark", dark);
 				const isSaved = (value) => value === "light" || value === "dark";
-				apply(isSaved(stored()) ? stored() === "dark" : media.matches);
-				media.addEventListener("change", (event) => {
-					if (!isSaved(stored())) apply(event.matches);
+
+				const resolve = () => {
+					const saved = stored();
+					apply(isSaved(saved) ? saved === "dark" : media.matches);
+				};
+
+				resolve();
+				media.addEventListener("change", resolve);
+				// Another tab changed or cleared the saved theme.
+				window.addEventListener("storage", (event) => {
+					if (event.key === "theme" || event.key === null) resolve();
 				});
 			})();
 		</script>

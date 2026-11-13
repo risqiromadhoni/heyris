@@ -30,7 +30,7 @@ Every surface is built from one neutral ramp; there is no accent color. Use `lr-
 
 ## Themes
 
-Tokens above hold the light values. Dark mode swaps each one to the value below. Toggle it by adding the `dark` class on `<html>`, store `light` or `dark` under the `theme` key in localStorage, and apply it from an inline script in `<head>` before paint, falling back to `prefers-color-scheme`.
+Tokens above hold the light values. Dark mode swaps each one to the value below. Toggle it by adding the `dark` class on `<html>`, store `light` or `dark` under the `theme` key in localStorage only when it differs from the system (choosing what the system shows removes the key), and apply it from an inline script in `<head>` before paint, falling back to `prefers-color-scheme`.
 
 | Token          | Light       | Dark        |
 | -------------- | ----------- | ----------- |
