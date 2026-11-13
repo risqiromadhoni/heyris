@@ -52,3 +52,4 @@ pnpm-debug.log*
 
 # Local notes, kept out of git
 /docs/
+src/middleware.ts
