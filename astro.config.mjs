@@ -10,11 +10,32 @@ import { satteriOptions } from "./src/app/markdown/index.ts";
 
 const site = process.env.VITE_APP_SITE || DEFAULT_APP_SITE;
 
+/**
+ * The previous heyris.me served English at the root and Indonesian under `/id`. These permanent
+ * redirects keep its post and page URLs working. Tag pages and `/experiences` have no
+ * counterpart and stay 404.
+ */
+const oldSiteRedirects = {
+  "/posts": "/en/writing",
+  "/posts/[slug]": "/en/writing/[slug]",
+  "/id/posts": "/tulisan",
+  "/id/posts/[slug]": "/tulisan/[slug]",
+  "/about": "/en",
+  "/id/about": "/",
+  "/projects": "/en",
+  "/id/projects": "/",
+  "/resources": "/en",
+  "/id/resources": "/",
+  "/tags": "/en/writing",
+  "/id/tags": "/tulisan",
+};
+
 export default defineConfig({
   site,
   output: "server",
   trailingSlash: "never",
   build: { format: "file" },
+  redirects: oldSiteRedirects,
   adapter: cloudflare({ configPath: "./.void-wrangler.jsonc" }),
   i18n: {
     defaultLocale: "id",
