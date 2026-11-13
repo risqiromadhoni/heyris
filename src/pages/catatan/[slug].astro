@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { NotePage } from "@/_pages/note";
+import { entrySlug, getNotes, hasNoteIn, type Note } from "@/shared/api/content";
+import {
+	counterpartPath,
+	dictionaryFor,
+	localizedPath,
+	pageTitle,
+	type Locale,
+} from "@/shared/i18n";
+import { ArticleTopBar } from "@/shared/ui";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	const notes = await getNotes("id");
+
+	return notes.map((entry) => ({ params: { slug: entrySlug(entry.id) }, props: { entry } }));
+}
+
+interface Props {
+	entry: Note;
+}
+
+const locale: Locale = "id";
+const { entry } = Astro.props;
+const slug = entrySlug(entry.id);
+const path = localizedPath(locale, "note", slug);
+const strings = dictionaryFor(locale);
+const englishPath = (await hasNoteIn("en", slug)) ? counterpartPath(path) : undefined;
+const alternates = { id: path, en: englishPath };
+---
+
+<BaseLayout
+	locale={locale}
+	title={pageTitle(locale, entry.data.title)}
+	description={entry.data.summary}
+	path={path}
+	pageName={entry.data.title}
+	alternates={alternates}
+	markdownPath={localizedPath(locale, "noteMarkdown", slug)}
+	ogType="article"
+>
+	<ArticleTopBar
+		slot="header"
+		backHref={localizedPath(locale, "notes")}
+		backLabel={strings.article.backNotes}
+		locale={locale}
+		alternates={alternates}
+		section="notes"
+	/>
+	<NotePage locale={locale} entry={entry} />
+</BaseLayout>

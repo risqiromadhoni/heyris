@@ -1,0 +1,44 @@
+---
+import type { Locale } from "@/shared/i18n";
+import LanguageToggle from "../LanguageToggle/LanguageToggle.astro";
+
+interface Props {
+	/** The section the back link returns to, in the page's locale. */
+	backHref: string;
+	/** Visible text of the back link, for example "Tulisan". */
+	backLabel: string;
+	/** The page's locale, which the language toggle marks as current. */
+	locale: Locale;
+	/** The article's path in each locale where it exists, as `BaseLayout` takes them. */
+	alternates: Partial<Record<Locale, string>>;
+	/** The index the language toggle falls back to when the article has no other-language version. */
+	section: "writing" | "notes";
+}
+
+const { backHref, backLabel, locale, alternates, section } = Astro.props;
+---
+
+<header class="sticky top-0 z-20 mx-auto mt-8 w-full max-w-[1440px] px-5 sm:px-[49px]">
+	<div class="relative flex h-[42px] items-start border-b border-lr-line bg-transparent">
+		<a
+			href={backHref}
+			class="type-link inline-flex h-[26px] items-center gap-1.5 underline decoration-lr-underline decoration-1 underline-offset-4 hover:decoration-lr-nav focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+		>
+			<span aria-hidden="true" class="i-ph-arrow-left size-4 shrink-0"></span>{backLabel}
+		</a>
+		<div class="ml-auto flex h-[26px] items-center">
+			<LanguageToggle locale={locale} alternates={alternates} section={section} />
+		</div>
+		<span
+			aria-hidden="true"
+			data-reading-progress
+			class="absolute -bottom-px left-0 h-0.5 w-full origin-left bg-lr-text"
+			style="transform: scaleX(0)"></span>
+	</div>
+</header>
+
+<script>
+	import { mountReadingProgress } from "./reading-progress";
+
+	mountReadingProgress();
+</script>

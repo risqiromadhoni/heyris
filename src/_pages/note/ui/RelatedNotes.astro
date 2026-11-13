@@ -1,0 +1,60 @@
+---
+import { entryLocale, entrySlug, foreignLocale, type Note } from "@/shared/api/content";
+import { dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** The older neighbour, shown as "Sebelumnya". */
+	previous?: Note;
+	/** The newer neighbour, shown as "Berikutnya". */
+	next?: Note;
+}
+
+const { locale, previous, next } = Astro.props;
+const strings = dictionaryFor(locale);
+
+const cardClass =
+	"group flex flex-col gap-1.5 rounded-lg border border-lr-line p-4 hover:bg-lr-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text";
+---
+
+{
+	(previous !== undefined || next !== undefined) && (
+		<section aria-labelledby="related-notes" class="mx-auto w-full max-w-[600px] pt-10">
+			<h2 id="related-notes" class="font-sans text-[13px] tracking-[0.4px] text-lr-nav">
+				{strings.note.related}
+			</h2>
+			<div class="mt-4 grid grid-cols-2 gap-4">
+				{previous === undefined ? (
+					<div />
+				) : (
+					<a
+						href={localizedPath(entryLocale(previous.id), "note", entrySlug(previous.id))}
+						hreflang={foreignLocale(previous, locale)}
+						class={cardClass}
+					>
+						<span class="flex items-center gap-1.5 font-sans text-[12.5px] tracking-[0.4px] text-lr-nav">
+							<span aria-hidden="true" class="i-ph-arrow-left size-3.5 shrink-0"></span>
+							{strings.note.previous}
+						</span>
+						<span class="type-related" lang={foreignLocale(previous, locale)}>{previous.data.title}</span>
+					</a>
+				)}
+				{next === undefined ? (
+					<div />
+				) : (
+					<a
+						href={localizedPath(entryLocale(next.id), "note", entrySlug(next.id))}
+						hreflang={foreignLocale(next, locale)}
+						class={`${cardClass} items-end text-right`}
+					>
+						<span class="flex items-center gap-1.5 font-sans text-[12.5px] tracking-[0.4px] text-lr-nav">
+							{strings.note.next}
+							<span aria-hidden="true" class="i-ph-arrow-right size-3.5 shrink-0"></span>
+						</span>
+						<span class="type-related" lang={foreignLocale(next, locale)}>{next.data.title}</span>
+					</a>
+				)}
+			</div>
+		</section>
+	)
+}

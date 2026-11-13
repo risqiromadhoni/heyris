@@ -1,0 +1,43 @@
+---
+import { SITE } from "@/shared/config";
+import {
+	dictionaryFor,
+	formatFullDate,
+	formatMonthYear,
+	type Locale,
+} from "@/shared/i18n";
+import Artwork from "../Artwork/Artwork.astro";
+
+interface Props {
+	locale: Locale;
+	/** The entry's date, at UTC midnight. */
+	date: Date;
+	/** `month` for posts ("Oktober 2026"), `day` for notes ("12 November 2026"). */
+	precision: "month" | "day";
+	/** Reading time in minutes. Posts omit it. */
+	minutes?: number;
+}
+
+const { locale, date, precision, minutes } = Astro.props;
+const strings = dictionaryFor(locale);
+const datetime = date.toISOString().slice(0, precision === "month" ? 7 : 10);
+const formatted = precision === "month" ? formatMonthYear(date, locale) : formatFullDate(date, locale);
+---
+
+<div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+	<p class="type-meta flex flex-wrap items-center gap-[7.2px]">
+		<Artwork crop="avatar" />
+		<time {datetime}>{formatted}</time>
+		{
+			minutes !== undefined && (
+				<>
+					<span aria-hidden="true">·</span>
+					<span>{strings.readingTime(minutes)}</span>
+				</>
+			)
+		}
+		<span aria-hidden="true">·</span>
+		<span>{SITE.author}</span>
+	</p>
+	<slot />
+</div>

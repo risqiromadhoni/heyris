@@ -1,0 +1,18 @@
+---
+interface Props {
+	/** The note's `tags` field, shown as pills in the order written. */
+	tags: readonly string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<ul class="flex flex-wrap gap-2">
+	{
+		tags.map((tag) => (
+			<li class="rounded-full border border-lr-line px-3 py-1 font-sans text-[12.5px] leading-normal text-lr-nav">
+				{tag}
+			</li>
+		))
+	}
+</ul>

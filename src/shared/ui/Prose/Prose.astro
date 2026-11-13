@@ -1,0 +1,21 @@
+---
+import { getImage } from "astro:assets";
+import artwork from "../../../../designs/generated-4.png";
+import "./prose.css";
+
+/** The illustration behind every wide figure, as a URL the CSS reads from `--figure-art`. */
+const backdrop = await getImage({ src: artwork, format: "webp" });
+---
+
+<div class="article-prose" style={`--figure-art: url("${backdrop.src}")`}>
+	<slot />
+</div>
+
+<script>
+	import { mountCarousels } from "./carousel";
+	import { mountCodeCopy } from "./code-copy";
+
+	mountCodeCopy();
+
+	mountCarousels();
+</script>

@@ -1,0 +1,104 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** Absolute URL of the page's Markdown. The button copies it, and the links cite it. */
+	markdownUrl: string;
+}
+
+const { locale, markdownUrl } = Astro.props;
+const strings = dictionaryFor(locale);
+const prompt = encodeURIComponent(strings.copy.prompt(markdownUrl));
+
+interface Service {
+	name: string;
+	href: string;
+	/** Simple Icons glyph. A service without one uses Phosphor's sparkle. */
+	icon?: string;
+}
+
+const services: Service[] = [
+	{ name: "ChatGPT", href: `https://chatgpt.com/?q=${prompt}`, icon: "i-simple-icons-openai" },
+	{ name: "Claude", href: `https://claude.ai/new?q=${prompt}`, icon: "i-simple-icons-claude" },
+	{
+		name: "Perplexity",
+		href: `https://www.perplexity.ai/search?q=${prompt}`,
+		icon: "i-simple-icons-perplexity",
+	},
+];
+
+const item =
+	"flex min-h-8 items-center gap-2 rounded-md px-2.5 py-1.5 text-lr-text hover:bg-lr-surface focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-lr-text";
+---
+
+<div class="relative" data-copy-page>
+	<div
+		class="inline-flex overflow-hidden rounded-md border border-lr-line font-sans text-[13px] text-lr-text"
+	>
+		<button
+			type="button"
+			class="inline-flex items-center gap-1.5 px-2.5 py-[5px] hover:bg-lr-surface focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-lr-text"
+			data-copy-main
+			data-copy-url={new URL(markdownUrl).pathname}
+			data-copied={strings.copy.copied}
+			data-failed={strings.copy.failed}
+		>
+			<span aria-hidden="true" class="i-ph-copy size-3.5 shrink-0 text-lr-nav" data-icon-copy></span>
+			<span aria-hidden="true" class="i-ph-check size-3.5 shrink-0 text-lr-nav" data-icon-done></span>
+			<span aria-live="polite" data-copy-label>{strings.copy.page}</span>
+		</button>
+		<span aria-hidden="true" class="w-px bg-lr-line"></span>
+		<button
+			type="button"
+			class="inline-flex items-center px-2 py-[6px] hover:bg-lr-surface focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-lr-text"
+			aria-expanded="false"
+			aria-controls="copy-page-menu"
+			aria-label={strings.copy.menu}
+			data-copy-caret
+		>
+			<span aria-hidden="true" class="i-ph-caret-down size-3 text-lr-nav"></span>
+		</button>
+	</div>
+	<div
+		id="copy-page-menu"
+		hidden
+		data-copy-menu
+		class="absolute right-0 z-30 mt-2 min-w-48 rounded-lg border border-lr-line bg-lr-bg p-1 font-sans text-[13px]"
+	>
+		<ul>
+			<li>
+				<a href={markdownUrl} class={item}>{strings.copy.viewMarkdown}</a>
+			</li>
+			{
+				services.map((service) => (
+					<li>
+						<a href={service.href} target="_blank" rel="noopener noreferrer" class={item}>
+							<span
+								aria-hidden="true"
+								class:list={[
+									"size-3.5 shrink-0 text-lr-nav",
+									service.icon ?? "i-ph-sparkle",
+								]}
+							></span>
+							{strings.copy.openIn(service.name)}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>
+
+<style>
+	[data-copy-page][data-state="copied"] [data-icon-copy],
+	[data-copy-page]:not([data-state="copied"]) [data-icon-done] {
+		display: none;
+	}
+</style>
+
+<script>
+	import { mountCopyPages } from "../model/menu";
+
+	mountCopyPages();
+</script>

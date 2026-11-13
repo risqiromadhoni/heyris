@@ -1,0 +1,32 @@
+---
+import { render } from "astro:content";
+import { CopyPage } from "@/features/copy-page";
+import { entrySlug, type Post } from "@/shared/api/content";
+import { localizedPath, type Locale } from "@/shared/i18n";
+import { Byline, FeedbackLine, Prose } from "@/shared/ui";
+
+interface Props {
+	/** Locale of the page's copy and links. */
+	locale: Locale;
+	entry: Post;
+}
+
+const { locale, entry } = Astro.props;
+const { Content } = await render(entry);
+const markdownUrl = new URL(localizedPath(locale, "postMarkdown", entrySlug(entry.id)), Astro.site).href;
+---
+
+<article class="mx-auto w-full max-w-[1440px] px-5 pt-12 pb-24 sm:px-[49px]">
+	<header class="mx-auto flex w-full max-w-[600px] flex-col gap-3 pt-6 pb-[14.8px]">
+		<h1 class="type-article">{entry.data.title}</h1>
+		<Byline locale={locale} date={entry.data.date} precision="month">
+			<CopyPage locale={locale} markdownUrl={markdownUrl} />
+		</Byline>
+	</header>
+	<Prose>
+		<Content />
+	</Prose>
+	<div class="mx-auto w-full max-w-[600px]">
+		<FeedbackLine locale={locale} title={entry.data.title} />
+	</div>
+</article>

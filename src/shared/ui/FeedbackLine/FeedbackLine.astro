@@ -1,0 +1,23 @@
+---
+import { SITE } from "@/shared/config";
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** The entry's title, which the correction email's subject names. */
+	title: string;
+}
+
+const { locale, title } = Astro.props;
+const strings = dictionaryFor(locale);
+const subject = encodeURIComponent(strings.feedback.subject(title));
+---
+
+<p class="type-meta mt-10">
+	{strings.feedback.prompt}{" "}
+	<a
+		href={`mailto:${SITE.email}?subject=${subject}`}
+		class="text-lr-text underline decoration-lr-underline decoration-1 underline-offset-4 hover:decoration-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+		>{strings.feedback.link}</a
+	>
+</p>

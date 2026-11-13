@@ -1,0 +1,25 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** The note's one-paragraph summary, from its `tldr` field. */
+	text: string;
+}
+
+const { locale, text } = Astro.props;
+const strings = dictionaryFor(locale);
+---
+
+<aside
+	aria-label={strings.note.tldr}
+	class="mx-auto mt-[23.2px] flex w-full max-w-[600px] gap-3 rounded-lg border border-lr-line bg-lr-surface px-[18px] py-4"
+>
+	<span aria-hidden="true" class="i-ph-lightbulb mt-px size-[18px] shrink-0 text-lr-text"></span>
+	<div class="flex min-w-0 flex-col gap-1">
+		<p class="font-sans text-[13px] font-semibold tracking-[0.3px] text-lr-heading">
+			{strings.note.tldr}
+		</p>
+		<p class="font-sans text-[14.5px] leading-normal text-lr-text">{text}</p>
+	</div>
+</aside>

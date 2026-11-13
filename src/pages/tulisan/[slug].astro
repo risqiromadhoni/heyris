@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { PostPage } from "@/_pages/post";
+import { entrySlug, getPosts, hasPostIn, type Post } from "@/shared/api/content";
+import {
+	counterpartPath,
+	dictionaryFor,
+	localizedPath,
+	pageTitle,
+	type Locale,
+} from "@/shared/i18n";
+import { ArticleTopBar } from "@/shared/ui";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	const posts = await getPosts("id");
+
+	return posts.map((entry) => ({ params: { slug: entrySlug(entry.id) }, props: { entry } }));
+}
+
+interface Props {
+	entry: Post;
+}
+
+const locale: Locale = "id";
+const { entry } = Astro.props;
+const slug = entrySlug(entry.id);
+const path = localizedPath(locale, "post", slug);
+const strings = dictionaryFor(locale);
+const englishPath = (await hasPostIn("en", slug)) ? counterpartPath(path) : undefined;
+const alternates = { id: path, en: englishPath };
+---
+
+<BaseLayout
+	locale={locale}
+	title={pageTitle(locale, entry.data.title)}
+	description={entry.data.summary}
+	path={path}
+	pageName={entry.data.title}
+	alternates={alternates}
+	markdownPath={localizedPath(locale, "postMarkdown", slug)}
+	ogType="article"
+>
+	<ArticleTopBar
+		slot="header"
+		backHref={localizedPath(locale, "writing")}
+		backLabel={strings.article.backWriting}
+		locale={locale}
+		alternates={alternates}
+		section="writing"
+	/>
+	<PostPage locale={locale} entry={entry} />
+</BaseLayout>
