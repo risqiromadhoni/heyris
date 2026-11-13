@@ -1,5 +1,12 @@
 /** Topic keys of posts and notes. Their labels live in `shared/i18n`. */
 export const TOPICS = [
+  "git",
+  "monorepo",
+  "networking",
+  "rust",
+  "astro",
+  "react",
+  "ruby",
   "effect",
   "cloudflare",
   "accessibility",

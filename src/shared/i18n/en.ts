@@ -4,6 +4,13 @@ import type { Dictionary } from "./id";
 const plural = new Intl.PluralRules("en");
 
 const topics: Record<Topic, string> = {
+  git: "Git",
+  monorepo: "Monorepo",
+  networking: "Networking",
+  rust: "Rust",
+  astro: "Astro",
+  react: "React",
+  ruby: "Ruby",
   effect: "Effect",
   cloudflare: "Cloudflare",
   accessibility: "Accessibility",

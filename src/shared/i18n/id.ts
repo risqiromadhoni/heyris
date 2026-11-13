@@ -1,6 +1,13 @@
 import type { Topic } from "@/shared/api/content/topics";
 
 const topics: Record<Topic, string> = {
+  git: "Git",
+  monorepo: "Monorepo",
+  networking: "Jaringan",
+  rust: "Rust",
+  astro: "Astro",
+  react: "React",
+  ruby: "Ruby",
   effect: "Effect",
   cloudflare: "Cloudflare",
   accessibility: "Aksesibilitas",
