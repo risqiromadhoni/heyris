@@ -24,5 +24,7 @@ jobs:
         with:
           version-file: pnpm-workspace.yaml
           cache: true
+      - name: Generate Astro types
+        run: vp exec astro sync
       - name: Run vp check, astro check and Knip
         run: vp run check
