@@ -156,12 +156,12 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
 **File:** `e2e/home-page/shows-the-greeting-while-the-contact-is-hovered-or-focused.spec.ts`
 
 **Steps:**
-  1. Open the home page at / and hover the contact link "Kirim email ke Risqi"
+  1. Open the home page at / and hover the contact link "GitHub"
     - expect: The level-1 heading has data-state="greeting" and the greeting is opaque
     - expect: The heading's accessible name is "@risqiromadhoni"
   2. Move the pointer away
     - expect: The heading has data-state="farewell"
-  3. Focus the contact link
+  3. Focus the contact link "GitHub"
     - expect: The heading has data-state="greeting"
     - expect: The heading's accessible name is "@risqiromadhoni"
 
@@ -175,3 +175,16 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
     - expect: The heading "@risqiromadhoni" is visible
   2. Run an axe scan limited to WCAG 2.2 Level A and AA rules
     - expect: The scan reports no violations
+
+#### 1.16. Links to email, GitHub and LinkedIn under the title
+
+**File:** `e2e/home-page/links-email-github-and-linkedin.spec.ts`
+
+**Steps:**
+  1. Open the home page at / and find the list "Kontak Risqi"
+    - expect: The list has three links
+  2. Read the link "Email"
+    - expect: Its href starts with mailto:halo@heyris.me?subject=Halo%20Risqi
+  3. Read the links "GitHub" and "LinkedIn"
+    - expect: GitHub links to https://github.com/risqiromadhoni and LinkedIn to https://www.linkedin.com/in/risqir
+    - expect: Both open in a new tab (target="_blank") with rel containing noopener

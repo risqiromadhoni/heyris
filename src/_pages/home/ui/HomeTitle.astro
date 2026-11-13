@@ -7,9 +7,9 @@ import { SITE } from "@/shared/config";
 	const HOLD_MS = 1500;
 
 	const title = document.querySelector("[data-home-title]");
-	const trigger = document.querySelector("[data-contact-trigger]");
+	const contact = document.querySelector("[data-contact]");
 
-	if (title instanceof HTMLHeadingElement && trigger instanceof HTMLAnchorElement) {
+	if (title instanceof HTMLHeadingElement && contact instanceof HTMLElement) {
 		let hold: number | undefined;
 
 		const show = (state: "default" | "greeting" | "farewell") => {
@@ -33,10 +33,14 @@ import { SITE } from "@/shared/config";
 			hold = window.setTimeout(() => show("default"), HOLD_MS);
 		};
 
-		trigger.addEventListener("pointerenter", greet);
-		trigger.addEventListener("focus", greet);
-		trigger.addEventListener("pointerleave", farewell);
-		trigger.addEventListener("blur", farewell);
+		contact.addEventListener("pointerenter", greet);
+		contact.addEventListener("focusin", greet);
+		contact.addEventListener("pointerleave", farewell);
+		contact.addEventListener("focusout", (event) => {
+			const next = event.relatedTarget;
+
+			if (!(next instanceof Node) || !contact.contains(next)) farewell();
+		});
 	}
 </script>
 
@@ -47,7 +51,7 @@ import { SITE } from "@/shared/config";
 </h1>
 
 <style>
-	/* Scales down on phones so the handle, the icon-only contact trigger and the gap fit a 320 px column. */
+	/* Scales down on phones so the handle fits a 320 px column. */
 	.home-title {
 		display: grid;
 		font-size: clamp(26px, 9vw, 42.4px);

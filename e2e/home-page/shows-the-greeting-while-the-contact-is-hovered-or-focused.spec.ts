@@ -10,7 +10,7 @@ test.describe("Home page", () => {
     // 1. Open the home page at /
     await page.goto("/");
     const heading = page.getByRole("heading", { level: 1 });
-    const contact = page.getByRole("link", { name: "Kirim email ke Risqi" });
+    const contact = page.getByRole("link", { name: "GitHub" });
 
     // 2. Hover the contact link and check the greeting is shown
     await contact.hover();

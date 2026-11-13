@@ -6,5 +6,7 @@ export const SITE = {
   name: "@risqiromadhoni",
   author: "Risqi Romadhoni",
   email: "halo@heyris.me",
+  github: "https://github.com/risqiromadhoni",
+  linkedin: "https://www.linkedin.com/in/risqir",
   url: import.meta.env.SITE,
 } as const;

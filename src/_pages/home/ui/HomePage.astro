@@ -1,7 +1,7 @@
 ---
 import type { Locale } from "@/shared/i18n";
 import BioToggle from "./BioToggle.astro";
-import ContactTrigger from "./ContactTrigger.astro";
+import ContactLinks from "./ContactLinks.astro";
 import HomeTitle from "./HomeTitle.astro";
 import IllustrationPanel from "./IllustrationPanel.astro";
 import NoteList from "./NoteList.astro";
@@ -19,9 +19,9 @@ const { locale } = Astro.props;
 	class="mx-auto max-w-[1440px] px-5 py-5 sm:px-[49px] sm:py-[49px] lg:grid lg:grid-cols-[minmax(0,600fr)_minmax(0,469fr)] lg:gap-x-[max(3rem,calc(100%_-_1069px))]"
 >
 	<div class="mx-auto flex w-full max-w-[600px] min-w-0 flex-col lg:mx-0 lg:max-w-none">
-		<div class="flex items-center gap-4">
+		<div class="flex flex-col gap-3">
 			<HomeTitle />
-			<ContactTrigger locale={locale} />
+			<ContactLinks locale={locale} />
 		</div>
 		<BioToggle locale={locale} />
 		<div class="flex flex-col gap-14">

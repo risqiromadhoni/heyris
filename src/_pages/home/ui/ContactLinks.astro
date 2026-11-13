@@ -1,0 +1,48 @@
+---
+import { SITE } from "@/shared/config";
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+const mailto = `mailto:${SITE.email}?subject=${encodeURIComponent(strings.home.contactSubject)}&body=${encodeURIComponent(strings.home.contactBody)}`;
+
+interface Row {
+	name: string;
+	href: string;
+	external: boolean;
+}
+
+const rows: Row[] = [
+	{ name: strings.home.contactEmail, href: mailto, external: false },
+	{ name: "GitHub", href: SITE.github, external: true },
+	{ name: "LinkedIn", href: SITE.linkedin, external: true },
+];
+---
+
+<ul
+	data-contact
+	aria-label={strings.home.contactLabel}
+	class="flex w-fit flex-wrap items-center gap-x-5 gap-y-1 font-sans text-[14px]/[1.4] font-medium text-lr-nav"
+>
+	{
+		rows.map((row) => (
+			<li>
+				<a
+					href={row.href}
+					target={row.external ? "_blank" : undefined}
+					rel={row.external ? "noopener noreferrer" : undefined}
+					class="inline-flex items-center gap-1 hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+				>
+					{row.name}
+					{row.external && (
+						<span aria-hidden="true" class="i-lucide-arrow-up-right size-3.5 shrink-0" />
+					)}
+				</a>
+			</li>
+		))
+	}
+</ul>

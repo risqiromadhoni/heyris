@@ -35,8 +35,8 @@ export const id = {
     current: "(bahasa aktif)",
   },
   home: {
-    contact: "Kirim email",
-    contactLabel: "Kirim email ke Risqi",
+    contactLabel: "Kontak Risqi",
+    contactEmail: "Email",
     contactSubject: "Halo Risqi",
     contactBody: "Halo Risqi,\n\nSaya menemukan website kamu dan ingin menyapa. 👋",
     bio: "Bio",

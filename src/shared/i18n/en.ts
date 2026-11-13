@@ -39,8 +39,8 @@ export const en: Dictionary = {
     current: "(current language)",
   },
   home: {
-    contact: "Send email",
-    contactLabel: "Send email to Risqi",
+    contactLabel: "Contact Risqi",
+    contactEmail: "Email",
     contactSubject: "Hi Risqi",
     contactBody: "Hi Risqi, I found your website and wanted to say hello. 👋",
     bio: "Bio",
