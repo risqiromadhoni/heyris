@@ -12,17 +12,7 @@ const topics: Record<Topic, string> = {
   react: "React",
   ruby: "Ruby",
   api: "API",
-  effect: "Effect",
   cloudflare: "Cloudflare",
-  accessibility: "Accessibility",
-  privacy: "Privacy",
-  ai: "AI",
-  performance: "Performance",
-  typescript: "TypeScript",
-  security: "Security",
-  nextjs: "Next.js",
-  css: "CSS",
-  essay: "Essay",
 };
 
 /** "1 post" or "3 posts": picks the form with `Intl.PluralRules`. */
@@ -65,14 +55,14 @@ export const en: Dictionary = {
   writing: {
     title: "Writing",
     intro:
-      "Technical writing on Effect, Cloudflare Workers, accessibility and privacy. Written in Indonesian, some of it also in English.",
+      "Technical writing on Git, monorepos, how the internet works, Cloudflare, and Rust. Each post starts in Indonesian, and I translate it into English afterward.",
     count: (n) => count(n, "post", "posts"),
     newest: "Newest",
   },
   notes: {
     title: "Notes",
     intro:
-      "Short notes: code snippets, things I just learned and reminders to myself. Shorter than posts, updated more often.",
+      "Short notes on things I have learned and tools I use. A note is shorter than a post and usually covers one idea with one code example.",
     count: (n) => count(n, "note", "notes"),
     pinned: "Pinned",
   },

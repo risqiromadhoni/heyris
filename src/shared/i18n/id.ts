@@ -9,17 +9,7 @@ const topics: Record<Topic, string> = {
   react: "React",
   ruby: "Ruby",
   api: "API",
-  effect: "Effect",
   cloudflare: "Cloudflare",
-  accessibility: "Aksesibilitas",
-  privacy: "Privasi",
-  ai: "AI",
-  performance: "Performa",
-  typescript: "TypeScript",
-  security: "Keamanan",
-  nextjs: "Next.js",
-  css: "CSS",
-  essay: "Catatan",
 };
 
 /**
@@ -61,14 +51,14 @@ export const id = {
   writing: {
     title: "Tulisan",
     intro:
-      "Catatan teknis tentang Effect, Cloudflare Workers, aksesibilitas, dan privasi. Ditulis dalam bahasa Indonesia, sebagian tersedia juga dalam bahasa Inggris.",
+      "Tulisan teknis tentang Git, monorepo, cara kerja internet, Cloudflare, dan Rust. Setiap tulisan saya tulis dalam bahasa Indonesia dulu, lalu saya terjemahkan ke bahasa Inggris.",
     count: (n: number) => `${n} tulisan`,
     newest: "Terbaru",
   },
   notes: {
     title: "Catatan",
     intro:
-      "Catatan singkat: potongan kode, hal yang baru saya pelajari, dan pengingat untuk diri sendiri. Lebih pendek dari tulisan, lebih sering diperbarui.",
+      "Catatan singkat tentang hal yang saya pelajari dan alat yang saya pakai. Catatan lebih pendek dari tulisan, biasanya berisi satu ide dan satu contoh kode.",
     count: (n: number) => `${n} catatan`,
     pinned: "Disematkan",
   },

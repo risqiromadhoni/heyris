@@ -7,14 +7,18 @@ describe("localizedPath", () => {
     expect(localizedPath("id", "home")).toBe("/");
     expect(localizedPath("id", "writing")).toBe("/tulisan");
     expect(localizedPath("id", "note", "retry")).toBe("/catatan/retry");
-    expect(localizedPath("id", "postMarkdown", "vinext")).toBe("/tulisan/vinext.md");
+    expect(localizedPath("id", "postMarkdown", "situs-ini-astro-void-cloudflare-workers")).toBe(
+      "/tulisan/situs-ini-astro-void-cloudflare-workers.md",
+    );
     expect(localizedPath("id", "rss")).toBe("/rss.xml");
   });
 
   it("prefixes English paths with /en", () => {
     expect(localizedPath("en", "home")).toBe("/en");
     expect(localizedPath("en", "writing")).toBe("/en/writing");
-    expect(localizedPath("en", "post", "vinext")).toBe("/en/writing/vinext");
+    expect(localizedPath("en", "post", "situs-ini-astro-void-cloudflare-workers")).toBe(
+      "/en/writing/situs-ini-astro-void-cloudflare-workers",
+    );
     expect(localizedPath("en", "noteMarkdown", "retry")).toBe("/en/notes/retry.md");
     expect(localizedPath("en", "rss")).toBe("/en/rss.xml");
   });
@@ -32,8 +36,8 @@ describe("counterpartPath", () => {
     ["/en/", "/"],
     ["/tulisan", "/en/writing"],
     ["/en/writing", "/tulisan"],
-    ["/catatan/retry-dengan-schedule", "/en/notes/retry-dengan-schedule"],
-    ["/en/notes/retry-dengan-schedule", "/catatan/retry-dengan-schedule"],
+    ["/catatan/google-places-session-token", "/en/notes/google-places-session-token"],
+    ["/en/notes/google-places-session-token", "/catatan/google-places-session-token"],
     ["/rss.xml", "/en/rss.xml"],
     ["/en/rss.xml", "/rss.xml"],
   ] as const)("maps %s to %s", ([path, counterpart]) => {
@@ -42,7 +46,9 @@ describe("counterpartPath", () => {
 
   it("returns undefined for unlocalized routes", () => {
     expect(counterpartPath("/llms.txt")).toBeUndefined();
-    expect(counterpartPath("/og/tulisan/vinext.png")).toBeUndefined();
+    expect(
+      counterpartPath("/og/tulisan/situs-ini-astro-void-cloudflare-workers.png"),
+    ).toBeUndefined();
   });
 
   it("keeps segments it does not know", () => {
@@ -51,7 +57,7 @@ describe("counterpartPath", () => {
   });
 
   it("is its own inverse on localized routes", () => {
-    const path = localizedPath("id", "post", "situs-pribadi");
+    const path = localizedPath("id", "post", "situs-ini-astro-void-cloudflare-workers");
 
     expect(counterpartPath(counterpartPath(path) ?? "")).toBe(path);
   });
@@ -64,7 +70,9 @@ describe("ogImagePath", () => {
   });
 
   it("mirrors any other page path", () => {
-    expect(ogImagePath("/tulisan/vinext")).toBe("/og/tulisan/vinext.png");
+    expect(ogImagePath("/tulisan/situs-ini-astro-void-cloudflare-workers")).toBe(
+      "/og/tulisan/situs-ini-astro-void-cloudflare-workers.png",
+    );
     expect(ogImagePath("/en/notes")).toBe("/og/en/notes.png");
   });
 });

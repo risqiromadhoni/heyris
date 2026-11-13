@@ -7,8 +7,8 @@ test.describe("Post page", () => {
   test("Copy menu opens, moves between items and closes on Escape with focus returned", async ({
     page,
   }) => {
-    // 1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
-    await page.goto("/tulisan/situs-pribadi-cloudflare-workers-vinext");
+    // 1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
+    await page.goto("/tulisan/situs-ini-astro-void-cloudflare-workers");
     // 2. Focus the menu caret and open the menu with Enter
     const caret = page.getByRole("button", { name: "Opsi lain" });
     await caret.focus();

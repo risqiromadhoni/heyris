@@ -8,8 +8,8 @@ test.describe("Post page", () => {
     page,
     makeAxeBuilder,
   }) => {
-    // 1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
-    await page.goto("/tulisan/situs-pribadi-cloudflare-workers-vinext");
+    // 1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
+    await page.goto("/tulisan/situs-ini-astro-void-cloudflare-workers");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     // 2. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the copy menu closed
     expect((await makeAxeBuilder().analyze()).violations).toEqual([]);

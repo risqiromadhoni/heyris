@@ -5,8 +5,8 @@ import { expect, test } from "../fixtures";
 
 test.describe("i18n", () => {
   test("Links the article's EN toggle to the English writing index", async ({ page }) => {
-    // 1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
-    await page.goto("/tulisan/situs-pribadi-cloudflare-workers-vinext");
+    // 1. Open the post at /tulisan/contoh-tanpa-terjemahan
+    await page.goto("/tulisan/contoh-tanpa-terjemahan");
     await expect(page.locator("html")).toHaveAttribute("lang", "id");
     // 2. Check the EN link in the top bar goes to the English writing index
     const english = page.getByRole("link", { name: "EN", exact: true });

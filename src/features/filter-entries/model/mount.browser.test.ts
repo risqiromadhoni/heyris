@@ -17,16 +17,16 @@ const FIXTURE = `
       <p aria-live="polite" data-filter-status></p>
     </div>
     <button type="button" data-filter-topic="all">Semua</button>
-    <button type="button" data-filter-topic="effect">Effect</button>
-    <button type="button" data-filter-topic="css">CSS</button>
+    <button type="button" data-filter-topic="api">API</button>
+    <button type="button" data-filter-topic="react">React</button>
     <section data-filter-group data-month="november">
       <p data-count></p>
-      <a href="#a" data-filter-item data-topic="effect" data-search="Retry dengan Schedule">Retry dengan Schedule</a>
-      <a href="#b" data-filter-item data-topic="css" data-search="Aksésibilitas warna">Aksesibilitas warna</a>
+      <a href="#a" data-filter-item data-topic="api" data-search="Token sesi Google Places">Token sesi Google Places</a>
+      <a href="#b" data-filter-item data-topic="react" data-search="Aksésibilitas warna">Aksesibilitas warna</a>
     </section>
     <section data-filter-group data-month="oktober">
       <p data-count></p>
-      <a href="#c" data-filter-item data-topic="css" data-search="Container queries">Container queries</a>
+      <a href="#c" data-filter-item data-topic="react" data-search="Ringkasan sesi">Ringkasan sesi</a>
     </section>
   </div>
 `;
@@ -76,24 +76,24 @@ describe("mountFilterEntries", () => {
 
   it("filters by topic", async () => {
     mountFilterEntries();
-    await page.getByRole("button", { name: "Effect" }).click();
+    await page.getByRole("button", { name: "API" }).click();
 
-    expect(visibleRows()).toEqual(["Retry dengan Schedule"]);
+    expect(visibleRows()).toEqual(["Token sesi Google Places"]);
     expect(element("[data-month=oktober]").hidden).toBe(true);
     expect(element("[data-month=november] [data-count]").textContent).toBe(STRINGS.notes.count(1));
     await expect
-      .element(page.getByRole("button", { name: "Effect" }))
+      .element(page.getByRole("button", { name: "API" }))
       .toHaveAttribute("aria-pressed", "true");
     await expect
       .element(page.getByRole("button", { name: "Semua" }))
       .toHaveAttribute("aria-pressed", "false");
     await expect.element(page.getByText(STRINGS.filter.results.notes(1))).toBeInTheDocument();
-    expect(new URL(location.href).searchParams.get("topik")).toBe("effect");
+    expect(new URL(location.href).searchParams.get("topik")).toBe("api");
   });
 
   it("clears the topic from the address on Semua", async () => {
     mountFilterEntries();
-    await page.getByRole("button", { name: "CSS" }).click();
+    await page.getByRole("button", { name: "React" }).click();
     await page.getByRole("button", { name: "Semua" }).click();
 
     expect(visibleRows()).toHaveLength(3);
@@ -133,12 +133,12 @@ describe("mountFilterEntries", () => {
   });
 
   it("restores the topic and the search from the address", async () => {
-    openWith("css", "container");
+    openWith("react", "ringkasan");
     mountFilterEntries();
 
-    expect(visibleRows()).toEqual(["Container queries"]);
+    expect(visibleRows()).toEqual(["Ringkasan sesi"]);
     expect(element("[data-month=november]").hidden).toBe(true);
-    await expect.element(page.getByRole("searchbox", { name: "Cari" })).toHaveValue("container");
+    await expect.element(page.getByRole("searchbox", { name: "Cari" })).toHaveValue("ringkasan");
   });
 
   it("ignores a topic the page has no button for", () => {

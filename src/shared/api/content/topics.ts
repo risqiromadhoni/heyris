@@ -8,17 +8,7 @@ export const TOPICS = [
   "react",
   "ruby",
   "api",
-  "effect",
   "cloudflare",
-  "accessibility",
-  "privacy",
-  "ai",
-  "performance",
-  "typescript",
-  "security",
-  "nextjs",
-  "css",
-  "essay",
 ] as const;
 
 /** A topic key, as used in the `topic` frontmatter field. */

@@ -11,35 +11,35 @@ describe("readFilterUrl", () => {
   });
 
   it("reads the topic and the search", () => {
-    const url = new URL(`${PAGE}?topik=effect&q=retry&topic=css`);
+    const url = new URL(`${PAGE}?topik=api&q=retry&topic=react`);
 
-    expect(readFilterUrl(url, "topik")).toEqual({ topic: "effect", query: "retry" });
+    expect(readFilterUrl(url, "topik")).toEqual({ topic: "api", query: "retry" });
   });
 });
 
 describe("filterUrl", () => {
   it("writes the topic and the search", () => {
-    const url = filterUrl(new URL(PAGE), "topik", "effect", "retry");
+    const url = filterUrl(new URL(PAGE), "topik", "api", "retry");
 
-    expect(url.search).toBe("?topik=effect&q=retry");
+    expect(url.search).toBe("?topik=api&q=retry");
   });
 
   it("drops default values", () => {
-    const url = filterUrl(new URL(`${PAGE}?topik=effect&q=retry`), "topik", "all", "   ");
+    const url = filterUrl(new URL(`${PAGE}?topik=api&q=retry`), "topik", "all", "   ");
 
     expect(url.href).toBe(PAGE);
   });
 
   it("keeps parameters it does not own", () => {
-    const url = filterUrl(new URL(`${PAGE}?ref=rss`), "topic", "css", "");
+    const url = filterUrl(new URL(`${PAGE}?ref=rss`), "topic", "react", "");
 
-    expect(url.search).toBe("?ref=rss&topic=css");
+    expect(url.search).toBe("?ref=rss&topic=react");
   });
 
   it("round-trips through readFilterUrl", () => {
-    const url = filterUrl(new URL(PAGE), "topic", "ai", "agen");
+    const url = filterUrl(new URL(PAGE), "topic", "ruby", "agen");
 
-    expect(readFilterUrl(url, "topic")).toEqual({ topic: "ai", query: "agen" });
+    expect(readFilterUrl(url, "topic")).toEqual({ topic: "ruby", query: "agen" });
   });
 });
 

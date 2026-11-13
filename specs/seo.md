@@ -2,7 +2,7 @@
 
 ## Application Overview
 
-Crawlers and link previews read three things. `/robots.txt` (`src/pages/robots.txt.ts`) allows every crawler and names the sitemap at `<VITE_APP_SITE>/sitemap-index.xml`. `<VITE_APP_SITE>` is the site URL the build shell sets, `https://heyris.risqi-romadhoni96.workers.dev` by default (`env.ts`). Each page with a canonical link also declares an Open Graph image, an absolute URL under `/og/` that mirrors the page path and ends in `.png`. The image is a prerendered 1200 × 630 PNG rendered at build time (`src/pages/og/[...path].png.ts`), and its `og:image:width`, `og:image:height` and `og:image:type` tags state that. This plan covers the home page and the published post "Situs pribadi di Cloudflare Workers dengan vinext".
+Crawlers and link previews read three things. `/robots.txt` (`src/pages/robots.txt.ts`) allows every crawler and names the sitemap at `<VITE_APP_SITE>/sitemap-index.xml`. `<VITE_APP_SITE>` is the site URL the build shell sets, `https://heyris.risqi-romadhoni96.workers.dev` by default (`env.ts`). Each page with a canonical link also declares an Open Graph image, an absolute URL under `/og/` that mirrors the page path and ends in `.png`. The image is a prerendered 1200 × 630 PNG rendered at build time (`src/pages/og/[...path].png.ts`), and its `og:image:width`, `og:image:height` and `og:image:type` tags state that. This plan covers the home page and the published post "Astro dan Void di Cloudflare Workers: cara situs ini dibangun".
 
 ## Test Scenarios
 
@@ -41,8 +41,8 @@ Crawlers and link previews read three things. `/robots.txt` (`src/pages/robots.t
 **File:** `e2e/seo/post-og-image-is-a-png.spec.ts`
 
 **Steps:**
-  1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
-    - expect: The meta tag og:image points to <VITE_APP_SITE>/og/tulisan/situs-pribadi-cloudflare-workers-vinext.png
-  2. Request the image path /og/tulisan/situs-pribadi-cloudflare-workers-vinext.png
+  1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
+    - expect: The meta tag og:image points to <VITE_APP_SITE>/og/tulisan/situs-ini-astro-void-cloudflare-workers.png
+  2. Request the image path /og/tulisan/situs-ini-astro-void-cloudflare-workers.png
     - expect: The response status is 200 with a Content-Type of "image/png"
     - expect: The body starts with the PNG signature and its IHDR chunk gives a width of 1200 and a height of 630

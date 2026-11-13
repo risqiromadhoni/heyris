@@ -34,7 +34,7 @@ function note(id: string, date: string, pinned = false): Note {
       title: id,
       summary: "",
       date: new Date(`${date}T00:00:00Z`),
-      topic: "effect",
+      topic: "api",
       draft: false,
       icon: "lightbulb",
       tags: [],
@@ -56,8 +56,8 @@ describe("entry ids", () => {
   });
 
   it("marks an Indonesian fallback in an English listing", () => {
-    expect(foreignLocale(post("id/vinext", "2026-10-01"), "en")).toBe("id");
-    expect(foreignLocale(post("en/vinext", "2026-10-01"), "en")).toBeUndefined();
+    expect(foreignLocale(post("id/contoh", "2026-10-01"), "en")).toBe("id");
+    expect(foreignLocale(post("en/contoh", "2026-10-01"), "en")).toBeUndefined();
   });
 });
 

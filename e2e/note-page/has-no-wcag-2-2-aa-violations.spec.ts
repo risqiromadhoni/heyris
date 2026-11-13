@@ -8,8 +8,8 @@ test.describe("Note page", () => {
     page,
     makeAxeBuilder,
   }) => {
-    // 1. Open the note at /catatan/retry-dengan-schedule
-    await page.goto("/catatan/retry-dengan-schedule");
+    // 1. Open the note at /catatan/google-places-session-token
+    await page.goto("/catatan/google-places-session-token");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     // 2. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the copy menu closed
     expect((await makeAxeBuilder().analyze()).violations).toEqual([]);

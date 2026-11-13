@@ -8,9 +8,9 @@ test.describe("Post page", () => {
     page,
     makeAxeBuilder,
   }) => {
-    // 1. Set the saved theme to dark before the page loads, then open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
+    // 1. Set the saved theme to dark before the page loads, then open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
     await page.addInitScript(() => localStorage.setItem("theme", "dark"));
-    await page.goto("/tulisan/situs-pribadi-cloudflare-workers-vinext");
+    await page.goto("/tulisan/situs-ini-astro-void-cloudflare-workers");
     await expect(page.locator("html")).toHaveClass(/\bdark\b/);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 

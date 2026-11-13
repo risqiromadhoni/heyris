@@ -25,6 +25,6 @@ test.describe("Writing index", () => {
     // 3. Check that only the Cloudflare post is listed
     const rows = page.locator("[data-filter-item]:visible");
     await expect(rows).toHaveCount(1);
-    await expect(rows).toContainText("Situs pribadi di Cloudflare Workers dengan vinext");
+    await expect(rows).toContainText("Memindahkan domain ke Cloudflare Registrar");
   });
 });

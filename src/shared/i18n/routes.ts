@@ -1,7 +1,8 @@
 import { DEFAULT_LOCALE, type Locale } from "./locale";
 
 /**
- * Localized path segment of each collection. This file is the only place that knows them.
+ * Localized path segment of each collection. This is the only TypeScript file that knows them.
+ * The folders under `src/pages` (`tulisan`, `catatan`, `en/writing`, `en/notes`) must use the same names.
  */
 const SEGMENTS = {
   writing: { id: "tulisan", en: "writing" },

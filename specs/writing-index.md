@@ -42,7 +42,7 @@ Topic tabs (Semua plus six featured topics) and a search field filter the rows i
   2. Press the "Cloudflare" tab
     - expect: The URL has the query parameter topik=cloudflare
     - expect: The "Cloudflare" tab is pressed and "Semua" is not
-    - expect: Only the post "Situs pribadi di Cloudflare Workers dengan vinext" is visible
+    - expect: Only the post "Memindahkan domain ke Cloudflare Registrar" is visible
 
 #### 1.4. Has no WCAG 2.2 AA violations in dark mode
 

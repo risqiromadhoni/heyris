@@ -15,30 +15,30 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
 **File:** `e2e/post-page/loads-with-title-heading-and-language.spec.ts`
 
 **Steps:**
-  1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
+  1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
     - expect: The html element has lang="id"
-    - expect: The document title is "Situs pribadi di Cloudflare Workers dengan vinext · Risqi Romadhoni"
-    - expect: Exactly one level-1 heading inside the main landmark reads "Situs pribadi di Cloudflare Workers dengan vinext"
+    - expect: The document title is "Astro dan Void di Cloudflare Workers: cara situs ini dibangun · Risqi Romadhoni"
+    - expect: Exactly one level-1 heading inside the main landmark reads "Astro dan Void di Cloudflare Workers: cara situs ini dibangun"
   2. Check the feedback line
-    - expect: The "Kabari saya" link is a mailto link to risqi.romadhoni96@gmail.com with the subject "Koreksi: Situs pribadi di Cloudflare Workers dengan vinext", URL-encoded
+    - expect: The "Kabari saya" link is a mailto link to risqi.romadhoni96@gmail.com with the subject "Koreksi: Astro dan Void di Cloudflare Workers: cara situs ini dibangun", URL-encoded
 
 #### 1.2. Links its Markdown alternate and serves it as text/markdown
 
 **File:** `e2e/post-page/links-and-serves-its-markdown.spec.ts`
 
 **Steps:**
-  1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
-    - expect: A link rel="alternate" with type="text/markdown" points to /tulisan/situs-pribadi-cloudflare-workers-vinext.md
-  2. Request /tulisan/situs-pribadi-cloudflare-workers-vinext.md
+  1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
+    - expect: A link rel="alternate" with type="text/markdown" points to /tulisan/situs-ini-astro-void-cloudflare-workers.md
+  2. Request /tulisan/situs-ini-astro-void-cloudflare-workers.md
     - expect: The response is 200 with a Content-Type of "text/markdown; charset=utf-8"
-    - expect: The body starts with frontmatter whose title is "Situs pribadi di Cloudflare Workers dengan vinext"
+    - expect: The body starts with frontmatter whose title is "Astro dan Void di Cloudflare Workers: cara situs ini dibangun"
 
 #### 1.3. Has no WCAG 2.2 AA violations with the copy menu closed and open
 
 **File:** `e2e/post-page/has-no-wcag-2-2-aa-violations.spec.ts`
 
 **Steps:**
-  1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
+  1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
     - expect: The level-1 heading is visible
   2. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the copy menu closed
     - expect: The scan reports no violations
@@ -51,7 +51,7 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
 **File:** `e2e/post-page/copy-menu-works-from-the-keyboard.spec.ts`
 
 **Steps:**
-  1. Open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
+  1. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
     - expect: The caret button "Opsi lain" is collapsed (aria-expanded="false")
   2. Focus the caret and press Enter
     - expect: The caret has aria-expanded="true" and the menu is visible
@@ -66,7 +66,7 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
 **File:** `e2e/post-page/has-no-wcag-2-2-aa-violations-in-dark-mode.spec.ts`
 
 **Steps:**
-  1. Set the saved theme to dark before the page loads, then open the post at /tulisan/situs-pribadi-cloudflare-workers-vinext
+  1. Set the saved theme to dark before the page loads, then open the post at /tulisan/situs-ini-astro-void-cloudflare-workers
     - expect: The html element has the dark class
     - expect: The level-1 heading is visible
   2. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the copy menu closed

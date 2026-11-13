@@ -15,13 +15,13 @@ A note is one short Indonesian entry at `/catatan/<slug>`, prerendered from `src
 **File:** `e2e/note-page/loads-with-title-tldr-and-tags.spec.ts`
 
 **Steps:**
-  1. Open the note at /catatan/retry-dengan-schedule
+  1. Open the note at /catatan/google-places-session-token
     - expect: The html element has lang="id"
-    - expect: The document title is "Retry dengan Schedule di Effect v4 · Risqi Romadhoni"
-    - expect: Exactly one level-1 heading inside the main landmark reads "Retry dengan Schedule di Effect v4"
+    - expect: The document title is "Token sesi Google Places: satu token untuk satu pencarian · Risqi Romadhoni"
+    - expect: Exactly one level-1 heading inside the main landmark reads "Token sesi Google Places: satu token untuk satu pencarian"
   2. Check the TL;DR box and the tags
-    - expect: A complementary landmark labelled "Singkatnya" contains the TL;DR text
-    - expect: Three tag pills are listed in the header
+    - expect: A complementary landmark labelled "Singkatnya" contains the TL;DR text "Pakai satu token untuk satu pencarian"
+    - expect: One tag pill, "Google Places", is listed in the header
   3. Check the feedback line and the related notes
     - expect: The "Kabari saya" link is a mailto link to risqi.romadhoni96@gmail.com
     - expect: A heading "Catatan lainnya" is visible
@@ -31,18 +31,18 @@ A note is one short Indonesian entry at `/catatan/<slug>`, prerendered from `src
 **File:** `e2e/note-page/links-and-serves-its-markdown.spec.ts`
 
 **Steps:**
-  1. Open the note at /catatan/retry-dengan-schedule
-    - expect: A link rel="alternate" with type="text/markdown" points to /catatan/retry-dengan-schedule.md
-  2. Request /catatan/retry-dengan-schedule.md
+  1. Open the note at /catatan/google-places-session-token
+    - expect: A link rel="alternate" with type="text/markdown" points to /catatan/google-places-session-token.md
+  2. Request /catatan/google-places-session-token.md
     - expect: The response is 200 with a Content-Type of "text/markdown; charset=utf-8"
-    - expect: The frontmatter has the title, the date 2026-11-12 and a tldr field
+    - expect: The frontmatter has the title, the date 2026-11-14 and a tldr field
 
 #### 1.3. Has no WCAG 2.2 AA violations with the copy menu closed and open
 
 **File:** `e2e/note-page/has-no-wcag-2-2-aa-violations.spec.ts`
 
 **Steps:**
-  1. Open the note at /catatan/retry-dengan-schedule
+  1. Open the note at /catatan/google-places-session-token
     - expect: The level-1 heading is visible
   2. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the copy menu closed
     - expect: The scan reports no violations
@@ -55,7 +55,7 @@ A note is one short Indonesian entry at `/catatan/<slug>`, prerendered from `src
 **File:** `e2e/note-page/has-no-wcag-2-2-aa-violations-in-dark-mode.spec.ts`
 
 **Steps:**
-  1. Set the saved theme to dark before the page loads, then open the note at /catatan/retry-dengan-schedule
+  1. Set the saved theme to dark before the page loads, then open the note at /catatan/google-places-session-token
     - expect: The html element has the dark class
     - expect: The level-1 heading is visible
   2. Run an axe scan limited to WCAG 2.2 Level A and AA rules
