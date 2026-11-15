@@ -11,6 +11,11 @@ describe("content schema", () => {
     expectTypeOf<Note["data"]["date"]>().toEqualTypeOf<Date>();
   });
 
+  it("turns `updated` into a list of dates, empty when missing", () => {
+    expectTypeOf<Post["data"]["updated"]>().toEqualTypeOf<Date[]>();
+    expectTypeOf<Note["data"]["updated"]>().toEqualTypeOf<Date[]>();
+  });
+
   it("makes defaulted fields required", () => {
     expectTypeOf<Post["data"]["draft"]>().toEqualTypeOf<boolean>();
     expectTypeOf<Note["data"]["tags"]>().toEqualTypeOf<string[]>();

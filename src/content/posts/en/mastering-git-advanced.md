@@ -2,6 +2,7 @@
 title: "Advanced Git for a more efficient workflow"
 summary: "Advanced Git commands for rebase, reset, and bisect, including how to set up Husky 9 and Commitlint."
 date: 2024-10-01
+updated: 2026-11-14
 topic: git
 ---
 
@@ -269,5 +270,3 @@ git gc
 If background maintenance already runs through `git maintenance start`, do not run `git gc` at the same time. Use `git maintenance run --task=gc` instead. `git gc` does not take the object database lock the same way `git maintenance run` does.
 
 Avoid `--prune=now` unless you are sure no other Git process is writing to the repository. This option deletes objects without the usual two-week grace period, which increases the risk of corruption.
-
-First published on October 1, 2024. Updated on November 14, 2026.

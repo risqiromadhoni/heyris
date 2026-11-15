@@ -1,1 +1,1 @@
-export { markdownDocument, yamlString } from "./markdown-document";
+export { markdownDocument, updatedField, yamlString } from "./markdown-document";

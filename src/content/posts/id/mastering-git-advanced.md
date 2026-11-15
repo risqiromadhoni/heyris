@@ -2,6 +2,7 @@
 title: "Git lanjutan untuk alur kerja yang lebih efisien"
 summary: "Perintah Git lanjutan untuk rebase, reset, dan bisect, termasuk cara memasang Husky 9 dan Commitlint."
 date: 2024-10-01
+updated: 2026-11-14
 topic: git
 ---
 
@@ -269,5 +270,3 @@ git gc
 Jika perawatan latar belakang sudah berjalan lewat `git maintenance start`, jangan jalankan `git gc` bersamaan dengannya. Pakai `git maintenance run --task=gc` sebagai gantinya. `git gc` tidak mengambil kunci database objek dengan cara yang sama seperti `git maintenance run`.
 
 Hindari `--prune=now` kecuali Anda yakin tidak ada proses Git lain yang sedang menulis ke repositori. Opsi ini menghapus objek tanpa masa tunggu dua minggu dan menambah risiko kerusakan.
-
-Terbit pertama kali pada 1 Oktober 2024. Diperbarui pada 14 November 2026.

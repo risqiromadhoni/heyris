@@ -74,3 +74,21 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
   3. Open the copy menu with its caret button and scan again
     - expect: The "Lihat sebagai Markdown" link is visible
     - expect: The scan reports no violations
+
+#### 1.6. Update history opens from the clock button, scans clean and closes on Escape
+
+**File:** `e2e/post-page/shows-the-update-history.spec.ts`
+
+**Steps:**
+  1. Open the updated post at /tulisan/typescript-monorepo-setup-guide
+    - expect: The body has no "Terbit pertama kali" line
+    - expect: The "Riwayat pembaruan" button is collapsed (aria-expanded="false")
+  2. Hover the "Riwayat pembaruan" button
+    - expect: The button has aria-expanded="true"
+    - expect: The panel lists "Diperbarui" on 14 November 2026 before "Terbit" on 1 Desember 2024
+  3. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the panel open
+    - expect: The scan reports no violations
+  4. Focus the button and press Escape
+    - expect: The panel closes and the button is collapsed again
+  5. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers, which has no updates
+    - expect: There is no "Riwayat pembaruan" button

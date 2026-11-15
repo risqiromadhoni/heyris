@@ -2,6 +2,7 @@
 title: "TypeScript library in a monorepo with pnpm and Turborepo"
 summary: "How to set up a monorepo with pnpm and Turborepo, then build a TypeScript library that other packages use."
 date: 2024-12-01
+updated: 2026-11-14
 topic: monorepo
 ---
 
@@ -187,5 +188,3 @@ node packages/app/src/index.ts
 The program prints `Hello, World!`. Node.js 22.18 or later can run `.ts` files directly. Node only strips type annotations and does not check types.
 
 Before you publish the library to npm, run `pnpm dlx publint` in the package folder. [publint](https://publint.dev/) checks the contents of `package.json`. In this example, publint finds no errors. publint only suggests adding `engines.node`.
-
-First published on December 1, 2024. Updated on November 14, 2026.

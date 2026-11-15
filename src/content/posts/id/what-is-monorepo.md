@@ -2,6 +2,7 @@
 title: "Monorepo: apa itu dan cara menyiapkannya dengan pnpm"
 summary: "Apa itu monorepo, cara menyiapkannya dengan workspace pnpm, dan fitur GitHub yang membantu mengelolanya."
 date: 2024-10-05
+updated: 2026-11-14
 topic: monorepo
 ---
 
@@ -196,5 +197,3 @@ GitHub Projects membantu melacak pekerjaan lintas paket dalam satu tabel atau pa
 Menurut saya, monorepo paling berguna untuk proyek yang saling bergantung. Untuk proyek yang berdiri sendiri, multi-repo bisa lebih sederhana.
 
 [Studi kasus Google tahun 2018](https://dl.acm.org/doi/10.1145/3183519.3183550) juga mencatat kelebihan multi-repo: kebebasan memilih alat, serta manfaat kontrol akses dan stabilitas.
-
-Terbit pertama kali pada 5 Oktober 2024. Diperbarui pada 14 November 2026.

@@ -81,6 +81,11 @@ export const id = {
     backWriting: "Tulisan",
     backNotes: "Catatan",
   },
+  history: {
+    label: "Riwayat pembaruan",
+    published: "Terbit",
+    updated: "Diperbarui",
+  },
   copy: {
     page: "Salin Halaman",
     copied: "Tersalin",

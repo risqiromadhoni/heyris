@@ -2,6 +2,7 @@
 title: "Internet: dari alamat IP sampai HTTPS"
 summary: "Penjelasan singkat tentang IP, DNS, TCP, HTTP, dan TLS yang perlu dipahami saat membangun aplikasi web."
 date: 2024-09-10
+updated: 2026-11-14
 topic: networking
 ---
 
@@ -70,5 +71,3 @@ TLS 1.3 dibakukan pada Agustus 2018. TLS 1.0 dan TLS 1.1 tidak boleh dipakai lag
 ## Apa itu Web3
 
 Menurut [halaman Web3 di ethereum.org](https://ethereum.org/web3/), Web3 adalah istilah payung untuk visi internet baru yang lebih baik. Intinya, Web3 memakai blockchain, mata uang kripto, dan NFT untuk mengembalikan kuasa kepada pengguna dalam bentuk kepemilikan. Menurut halaman yang sama, banyak bagian internet kini dikuasai dan dimiliki entitas terpusat. Di Web3, kepemilikannya tersebar di antara pembangun dan penggunanya. Gavin Wood, salah satu pendiri Ethereum, memperkenalkan istilah ini pada 2014.
-
-Terbit pertama kali pada 10 September 2024. Diperbarui pada 14 November 2026.

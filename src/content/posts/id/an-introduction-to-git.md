@@ -2,6 +2,7 @@
 title: "Git untuk pemula: istilah dan perintah dasar"
 summary: "Istilah dasar Git dan perintah yang Anda perlukan untuk mulai melacak perubahan kode."
 date: 2024-10-01
+updated: 2026-11-14
 topic: git
 ---
 
@@ -174,5 +175,3 @@ git config --global pull.rebase false
 ```
 
 Untuk materi yang lebih lengkap, baca [buku Pro Git dalam bahasa Indonesia](https://git-scm.com/book/id/v2) di situs resmi Git. Edisi ini baru sebagian diterjemahkan. Subbab 1.1 dan 1.2 sudah berbahasa Indonesia, tetapi subbab 2.2 dan 3.1 masih berbahasa Inggris.
-
-Terbit pertama kali pada 1 Oktober 2024. Diperbarui pada 14 November 2026.

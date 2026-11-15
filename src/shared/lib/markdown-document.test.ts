@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { markdownDocument, yamlString } from "./markdown-document";
+import { markdownDocument, updatedField, yamlString } from "./markdown-document";
 
 describe("markdownDocument", () => {
   it("writes the frontmatter, a blank line, then the body", () => {
@@ -25,5 +25,17 @@ describe("markdownDocument", () => {
 describe("yamlString", () => {
   it("escapes quotes for YAML", () => {
     expect(yamlString('Kata "kutip": ya')).toBe('"Kata \\"kutip\\": ya"');
+  });
+});
+
+describe("updatedField", () => {
+  it("lists the dates oldest first", () => {
+    const dates = [new Date("2026-11-14T00:00:00Z"), new Date("2025-03-02T00:00:00Z")];
+
+    expect(updatedField(dates)).toEqual([["updated", "[2025-03-02, 2026-11-14]"]]);
+  });
+
+  it("writes no field for an entry never updated", () => {
+    expect(updatedField([])).toEqual([]);
   });
 });

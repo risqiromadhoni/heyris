@@ -2,6 +2,7 @@
 title: "Rust and WebAssembly for TypeScript engineers: what's the benefit?"
 summary: "Rust through WebAssembly can help with the compute-heavy parts of an app, but not every project needs it."
 date: 2024-12-02
+updated: 2026-11-14
 topic: rust
 ---
 
@@ -81,5 +82,3 @@ I don't know how quickly WebAssembly will evolve. Still, Rust and WebAssembly ar
 ## Start small
 
 Rust and WebAssembly do not replace TypeScript. Both are useful for small, compute-heavy parts of a project. Start with one function that you have measured and found slow. Move that function to Rust, then measure again.
-
-First published on December 2, 2024. Updated on November 14, 2026.

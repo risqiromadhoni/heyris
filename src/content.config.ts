@@ -15,10 +15,21 @@ const date = z
     return new Date(value.length === 7 ? `${value}-01T00:00:00Z` : `${value}T00:00:00Z`);
   });
 
+/** One date or a list of them, kept as a list. Missing means the entry was never updated. */
+const updated = z
+  .union([date, z.array(date)])
+  .optional()
+  .transform((value) => {
+    if (value === undefined) return [];
+
+    return Array.isArray(value) ? value : [value];
+  });
+
 const entryFields = {
   title: z.string(),
   summary: z.string(),
   date,
+  updated,
   topic: z.enum(TOPICS),
   draft: z.boolean().default(false),
   readingTime: z.number().int().positive().optional(),

@@ -28,7 +28,7 @@ const next = index > 0 ? notes[index - 1] : undefined;
 <article class="mx-auto w-full max-w-[1440px] px-5 pt-12 pb-24 sm:px-[49px]">
 	<header class="mx-auto flex w-full max-w-[600px] flex-col gap-3 pt-6 pb-[14.8px]">
 		<h1 class="type-article">{entry.data.title}</h1>
-		<Byline locale={locale} date={entry.data.date} precision="day" minutes={readingTime(entry)}>
+		<Byline locale={locale} date={entry.data.date} updated={entry.data.updated} precision="day" minutes={readingTime(entry)}>
 			<CopyPage locale={locale} markdownUrl={markdownUrl} />
 		</Byline>
 		{entry.data.tags.length > 0 && <TagList tags={entry.data.tags} />}

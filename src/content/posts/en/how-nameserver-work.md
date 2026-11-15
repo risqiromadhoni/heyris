@@ -2,6 +2,7 @@
 title: "How nameservers work: from domain name to IP address"
 summary: "A DNS lookup passes through a resolver, root servers, TLD servers, and then authoritative nameservers until it gets an IP address."
 date: 2024-09-12
+updated: 2026-11-14
 topic: networking
 ---
 
@@ -111,5 +112,3 @@ dig +trace example.com NS +noall +authority +nodnssec
 ```
 
 If the result still shows the old nameservers, the registrar change has not reached the TLD servers yet. Wait, then check again.
-
-First published on September 12, 2024. Updated on November 14, 2026.

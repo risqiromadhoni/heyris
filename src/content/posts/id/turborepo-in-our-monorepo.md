@@ -2,6 +2,7 @@
 title: "Turborepo di monorepo: peran dan cara pakainya"
 summary: "Cara menyiapkan monorepo dengan pnpm, lalu memakai Turborepo untuk menjalankan tugas dan menyimpan hasilnya."
 date: 2024-10-06
+updated: 2026-11-14
 topic: monorepo
 ---
 
@@ -173,5 +174,3 @@ pnpm exec turbo run build test --affected
 ```
 
 Agar `--affected` punya riwayat Git yang cukup di GitHub Actions, atur `filter: blob:none` dan `fetch-depth: 0` pada `actions/checkout`.
-
-Terbit pertama kali pada 6 Oktober 2024. Diperbarui pada 14 November 2026.

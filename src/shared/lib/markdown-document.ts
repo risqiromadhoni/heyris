@@ -5,6 +5,20 @@ export type FrontmatterField = readonly [key: string, yaml: string];
 export const yamlString = (value: string): string => JSON.stringify(value);
 
 /**
+ * The `updated` field as a YAML list of `YYYY-MM-DD` dates, oldest first, or no field when the
+ * entry was never updated.
+ */
+export function updatedField(dates: readonly Date[]): FrontmatterField[] {
+  if (dates.length === 0) return [];
+
+  const days = [...dates]
+    .sort((a, b) => a.getTime() - b.getTime())
+    .map((date) => date.toISOString().slice(0, 10));
+
+  return [["updated", `[${days.join(", ")}]`]];
+}
+
+/**
  * The raw Markdown of one entry: YAML frontmatter, a blank line, then the body exactly as
  * authored, so its container directives stay readable.
  */

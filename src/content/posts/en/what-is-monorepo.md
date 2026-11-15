@@ -2,6 +2,7 @@
 title: "Monorepo: what it is and how to set it up with pnpm"
 summary: "What a monorepo is, how to set one up with pnpm workspaces, and the GitHub features that help manage it."
 date: 2024-10-05
+updated: 2026-11-14
 topic: monorepo
 ---
 
@@ -196,5 +197,3 @@ GitHub Projects helps you track work across packages in one table or board.
 In my view, a monorepo is most useful for projects that depend on each other. For standalone projects, multi-repo can be simpler.
 
 [Google's 2018 case study](https://dl.acm.org/doi/10.1145/3183519.3183550) also lists the strengths of multi-repo: freedom to choose tools, and benefits for access control and stability.
-
-First published on October 5, 2024. Updated on November 14, 2026.

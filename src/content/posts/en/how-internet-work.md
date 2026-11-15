@@ -2,6 +2,7 @@
 title: "Internet: from IP addresses to HTTPS"
 summary: "A short explanation of IP, DNS, TCP, HTTP, and TLS that you need to know when building web apps."
 date: 2024-09-10
+updated: 2026-11-14
 topic: networking
 ---
 
@@ -70,5 +71,3 @@ TLS 1.3 was standardized in August 2018. TLS 1.0 and TLS 1.1 must no longer be u
 ## What is Web3
 
 According to the [Web3 page on ethereum.org](https://ethereum.org/web3/), Web3 is an umbrella term for a new and better vision of the internet. In short, Web3 uses blockchain, cryptocurrency, and NFTs to return power to users through ownership. The same page says that many parts of the internet are now controlled and owned by centralized entities. In Web3, ownership is spread among builders and users. Gavin Wood, one of the founders of Ethereum, introduced the term in 2014.
-
-First published on September 10, 2024. Updated on November 14, 2026.

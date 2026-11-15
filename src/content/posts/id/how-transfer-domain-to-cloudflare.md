@@ -2,6 +2,7 @@
 title: "Memindahkan domain ke Cloudflare Registrar"
 summary: "Panduan memindahkan registrasi domain ke Cloudflare Registrar, sesuai dokumentasi Cloudflare per November 2026."
 date: 2024-09-15
+updated: 2026-11-14
 topic: cloudflare
 ---
 
@@ -145,5 +146,3 @@ Auto-renew aktif secara default. Cloudflare mencoba memperpanjang domain sekitar
 ### Data pribadi di WHOIS
 
 Untuk domain yang terdaftar di Cloudflare Registrar, nama, email, dan alamat pemilik tidak tampil di WHOIS publik. Fitur ini gratis. Negara dan provinsi tetap terlihat karena aturan ICANN.
-
-Terbit pertama kali pada 15 September 2024. Diperbarui pada 14 November 2026.

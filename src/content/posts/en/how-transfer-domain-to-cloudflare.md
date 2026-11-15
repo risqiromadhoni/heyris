@@ -2,6 +2,7 @@
 title: "Transferring a domain to Cloudflare Registrar"
 summary: "Guide to moving domain registration to Cloudflare Registrar, based on Cloudflare's documentation as of November 2026."
 date: 2024-09-15
+updated: 2026-11-14
 topic: cloudflare
 ---
 
@@ -145,5 +146,3 @@ Auto-renew is on by default. Cloudflare tries to renew the domain about 30 days 
 ### Personal data in WHOIS
 
 For domains registered with Cloudflare Registrar, the owner's name, email, and address don't appear in public WHOIS. This feature is free. The country and state or province stay visible because of ICANN rules.
-
-First published on September 15, 2024. Updated on November 14, 2026.

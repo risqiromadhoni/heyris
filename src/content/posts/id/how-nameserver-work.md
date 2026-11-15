@@ -2,6 +2,7 @@
 title: "Cara kerja nameserver dari nama domain sampai alamat IP"
 summary: "Pencarian DNS melewati resolver, server root, server TLD, lalu nameserver otoritatif sampai mendapat alamat IP."
 date: 2024-09-12
+updated: 2026-11-14
 topic: networking
 ---
 
@@ -111,5 +112,3 @@ dig +trace example.com NS +noall +authority +nodnssec
 ```
 
 Kalau hasilnya masih menunjuk nameserver lama, perubahan di registrar belum sampai ke server TLD. Tunggu, lalu cek lagi.
-
-Terbit pertama kali pada 12 September 2024. Diperbarui pada 14 November 2026.

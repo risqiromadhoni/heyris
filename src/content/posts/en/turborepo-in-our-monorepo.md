@@ -2,6 +2,7 @@
 title: "Turborepo in a monorepo: its role and how to use it"
 summary: "How to set up a monorepo with pnpm, then use Turborepo to run tasks and store their results."
 date: 2024-10-06
+updated: 2026-11-14
 topic: monorepo
 ---
 
@@ -173,5 +174,3 @@ pnpm exec turbo run build test --affected
 ```
 
 For `--affected` to have enough Git history in GitHub Actions, set `filter: blob:none` and `fetch-depth: 0` on `actions/checkout`.
-
-First published on October 6, 2024. Updated on November 14, 2026.

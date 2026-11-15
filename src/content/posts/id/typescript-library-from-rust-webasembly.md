@@ -2,6 +2,7 @@
 title: "Rust dan WebAssembly untuk engineer TypeScript: apa manfaatnya?"
 summary: "Rust lewat WebAssembly bisa membantu bagian aplikasi yang padat komputasi, tetapi tidak semua proyek perlu memakainya."
 date: 2024-12-02
+updated: 2026-11-14
 topic: rust
 ---
 
@@ -81,5 +82,3 @@ Saya tidak tahu seberapa cepat WebAssembly akan berkembang. Namun Rust dan WebAs
 ## Mulai dari bagian kecil
 
 Rust dan WebAssembly bukan pengganti TypeScript. Keduanya berguna untuk bagian kecil yang padat komputasi. Mulailah dari satu fungsi yang terbukti lambat saat diukur. Pindahkan fungsi itu ke Rust, lalu ukur lagi.
-
-Terbit pertama kali pada 2 Desember 2024. Diperbarui pada 14 November 2026.

@@ -19,7 +19,7 @@ const markdownUrl = new URL(localizedPath(locale, "postMarkdown", entrySlug(entr
 <article class="mx-auto w-full max-w-[1440px] px-5 pt-12 pb-24 sm:px-[49px]">
 	<header class="mx-auto flex w-full max-w-[600px] flex-col gap-3 pt-6 pb-[14.8px]">
 		<h1 class="type-article">{entry.data.title}</h1>
-		<Byline locale={locale} date={entry.data.date} precision="month">
+		<Byline locale={locale} date={entry.data.date} updated={entry.data.updated} precision="month">
 			<CopyPage locale={locale} markdownUrl={markdownUrl} />
 		</Byline>
 	</header>

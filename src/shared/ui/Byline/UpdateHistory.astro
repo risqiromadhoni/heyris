@@ -1,0 +1,77 @@
+---
+import { dictionaryFor, formatFullDate, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+	/** First publication, at UTC midnight. */
+	published: Date;
+	/** Each update, at UTC midnight, in any order. */
+	updated: readonly Date[];
+}
+
+const { locale, published, updated } = Astro.props;
+const strings = dictionaryFor(locale);
+
+// Newest first, so the latest update leads and the first publication closes the timeline.
+const events = [
+	...[...updated]
+		.sort((a, b) => b.getTime() - a.getTime())
+		.map((date) => ({ label: strings.history.updated, date })),
+	{ label: strings.history.published, date: published },
+];
+---
+
+<span class="relative inline-flex" data-update-history>
+	<button
+		type="button"
+		class="inline-flex size-5 items-center justify-center rounded text-lr-nav hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-lr-text aria-expanded:text-lr-text"
+		aria-expanded="false"
+		aria-controls="update-history"
+		aria-label={strings.history.label}
+		data-history-trigger
+	>
+		<span aria-hidden="true" class="i-ph-clock-counter-clockwise size-3.5"></span>
+	</button>
+	<span
+		id="update-history"
+		hidden
+		data-history-panel
+		class="absolute top-full left-0 z-30 mt-2 w-max min-w-52 rounded-lg border border-lr-line bg-lr-bg px-3.5 pt-2.5 pb-3 font-sans text-[13px] leading-[1.4]"
+	>
+		<span class="block type-tag">{strings.history.label}</span>
+		<ol class="mt-2.5 flex flex-col gap-2.5">
+			{
+				events.map((event, index) => (
+					<li class="relative flex items-baseline justify-between gap-6 pl-[18px]">
+						<span
+							aria-hidden="true"
+							class:list={[
+								"absolute top-[5px] left-0 size-[7px] rounded-full border border-lr-nav",
+								index === 0 && "bg-lr-nav",
+							]}
+						/>
+						{index < events.length - 1 && (
+							<span
+								aria-hidden="true"
+								class="absolute top-[14px] -bottom-[14px] left-[3px] w-px bg-lr-line"
+							/>
+						)}
+						<span class="text-lr-text">{event.label}</span>
+						<time
+							class="text-lr-nav tabular-nums"
+							datetime={event.date.toISOString().slice(0, 10)}
+						>
+							{formatFullDate(event.date, locale)}
+						</time>
+					</li>
+				))
+			}
+		</ol>
+	</span>
+</span>
+
+<script>
+	import { mountUpdateHistories } from "./update-history";
+
+	mountUpdateHistories();
+</script>

@@ -2,6 +2,7 @@
 title: "Library TypeScript di monorepo dengan pnpm dan Turborepo"
 summary: "Cara menyiapkan monorepo dengan pnpm dan Turborepo, lalu membuat library TypeScript yang dipakai paket lain."
 date: 2024-12-01
+updated: 2026-11-14
 topic: monorepo
 ---
 
@@ -187,5 +188,3 @@ node packages/app/src/index.ts
 Program mencetak `Hello, World!`. Node.js 22.18 atau versi lebih baru bisa menjalankan berkas `.ts` langsung. Node hanya menghapus anotasi tipe dan tidak memeriksa tipe.
 
 Sebelum Anda menerbitkan library ke npm, jalankan `pnpm dlx publint` di folder paket. [publint](https://publint.dev/) memeriksa isi `package.json`. Pada contoh ini, publint tidak menemukan error. publint hanya menyarankan menambahkan `engines.node`.
-
-Terbit pertama kali pada 1 Desember 2024. Diperbarui pada 14 November 2026.

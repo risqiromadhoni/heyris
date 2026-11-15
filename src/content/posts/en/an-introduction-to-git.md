@@ -2,6 +2,7 @@
 title: "Git for beginners: basic terms and commands"
 summary: "Basic Git terms and the commands you need to start tracking code changes."
 date: 2024-10-01
+updated: 2026-11-14
 topic: git
 ---
 
@@ -174,5 +175,3 @@ git config --global pull.rebase false
 ```
 
 To learn more, read the [Pro Git book](https://git-scm.com/book) on the official Git website.
-
-First published on October 1, 2024. Updated on November 14, 2026.
