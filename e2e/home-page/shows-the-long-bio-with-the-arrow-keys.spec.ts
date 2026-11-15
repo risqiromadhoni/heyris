@@ -18,6 +18,6 @@ test.describe("Home page", () => {
     await expect(long).toBeFocused();
     await expect(long).toBeChecked();
     await expect(page.getByText("Situs ini tidak memasang cookie pelacak")).toBeVisible();
-    await expect(page.getByText("dalam bahasa Indonesia, dan setiap tulisan")).toBeHidden();
+    await expect(page.getByText("menulis di blog ini sejak 2024")).toBeHidden();
   });
 });

@@ -13,7 +13,7 @@ test.describe("Home page", () => {
     await expect(page.getByRole("radio", { name: "Panjang" })).not.toBeChecked();
 
     // 3. Check the short text is visible and the text only the long bio has is hidden
-    await expect(page.getByText("dalam bahasa Indonesia, dan setiap tulisan")).toBeVisible();
+    await expect(page.getByText("menulis di blog ini sejak 2024")).toBeVisible();
     await expect(page.getByText("Situs ini tidak memasang cookie pelacak")).toBeHidden();
   });
 });
