@@ -6,11 +6,16 @@ interface Props {
 	count: string;
 	/** Id of the heading, which names the section for assistive technology. */
 	headingId: string;
+	/**
+	 * Draw the hairline above the content. Turn it off for content with its own border, such as
+	 * cards, where the line would sit on the cards' top edge.
+	 */
+	rule?: boolean;
 	/** `data-*` attributes for the section, such as the filter's group hook. */
 	[attribute: `data-${string}`]: string | undefined;
 }
 
-const { heading, count, headingId, ...attributes } = Astro.props;
+const { heading, count, headingId, rule = true, ...attributes } = Astro.props;
 ---
 
 <section
@@ -22,7 +27,7 @@ const { heading, count, headingId, ...attributes } = Astro.props;
 		<h2 id={headingId} class="type-h2">{heading}</h2>
 		<p class="mt-1 type-ui"><span data-count>{count}</span></p>
 	</div>
-	<div class="min-w-0 border-t border-lr-line">
+	<div class:list={["min-w-0", rule && "border-t border-lr-line"]}>
 		<slot />
 	</div>
 </section>
