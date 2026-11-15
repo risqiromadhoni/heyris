@@ -107,6 +107,9 @@ export const id = {
   heading: {
     anchor: "Tautan ke bagian ini",
   },
+  link: {
+    newTab: "(buka di tab baru)",
+  },
   og: {
     imageAlt: (title: string) => `Kartu berjudul “${title}” dari heyris`,
   },

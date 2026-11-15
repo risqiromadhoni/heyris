@@ -26,7 +26,7 @@ A quiet, text-first personal site: a short bio, an index of long posts and notes
 
 ## Colors
 
-Every surface is built from one neutral ramp; there is no accent color. Use `lr-text` for body copy and option labels, `lr-heading` for titles and emphasized labels, and `lr-nav` for navigation, dates, summaries, tags and other metadata. `lr-surface` is the only tinted fill, reserved for raised content such as the contact trigger, code blocks, commit lists, the TL;DR box and a highlighted post row. Separation comes from `lr-line` hairlines instead of shadows or filled blocks. `lr-bullet` marks list numbers and code line numbers, and `lr-underline` is the resting underline of inline text links.
+Every surface is built from one neutral ramp; there is no accent color. Use `lr-text` for body copy and option labels, `lr-heading` for titles and emphasized labels, and `lr-nav` for navigation, dates, summaries, tags and other metadata. `lr-surface` is the only tinted fill, reserved for raised content such as the contact trigger, code blocks, commit lists, the TL;DR box and a highlighted post row. Separation comes from `lr-line` hairlines instead of shadows or filled blocks. `lr-bullet` marks list numbers and code line numbers, and `lr-underline` is the resting underline of small text links such as the footer. Inline links in posts and notes are `lr-text` with an `lr-nav` underline, so they stand out from the body copy without an accent colour; links to other sites end with an arrow-up-right icon and open in a new tab.
 
 ## Themes
 

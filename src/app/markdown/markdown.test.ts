@@ -76,6 +76,33 @@ describe("code blocks", () => {
   });
 });
 
+describe("links", () => {
+  it("opens a link to another site in a new tab, with an icon and a hidden note", async () => {
+    const indonesian = await html("[tsdown](https://tsdown.dev/)");
+    const english = await html("[tsdown](https://tsdown.dev/)", EN_FILE);
+
+    expect(indonesian.trim()).toBe(
+      '<p><a href="https://tsdown.dev/" target="_blank" rel="noopener noreferrer" class="md-external">tsdown<span class="md-external__icon i-lucide-arrow-up-right" aria-hidden="true"></span><span class="sr-only"> (buka di tab baru)</span></a></p>',
+    );
+    expect(english).toContain('<span class="sr-only"> (opens in a new tab)</span>');
+  });
+
+  it("keeps the author's classes on an external link", async () => {
+    const output = await html("[a](https://a.example){.button}");
+
+    expect(output).toContain('class="button md-external"');
+  });
+
+  it.for(["/tulisan/contoh", "#bagian", "mailto:halo@heyris.me"] as const)(
+    "leaves %s in the same tab",
+    async (href) => {
+      const output = await html(`[a](${href})`);
+
+      expect(output.trim()).toBe(`<p><a href="${href}">a</a></p>`);
+    },
+  );
+});
+
 describe("images", () => {
   it("fails on an image without alt text, naming the file", async () => {
     await expect(html("![](/a.png)")).rejects.toThrow(

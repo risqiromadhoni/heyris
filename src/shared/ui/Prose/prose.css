@@ -86,15 +86,33 @@
 
 /* Links and inline code */
 
+/* Body-coloured text with a visible underline, so a link reads as part of the sentence and
+   still stands out; the underline strengthens on hover. */
 .article-prose a {
-  color: var(--lr-nav);
+  color: var(--lr-text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-decoration-color: var(--lr-underline);
+  text-underline-offset: 3px;
+  text-decoration-color: var(--lr-nav);
 }
 
 .article-prose a:hover {
-  text-decoration-color: var(--lr-nav);
+  color: var(--lr-heading);
+  text-decoration-color: currentcolor;
+}
+
+/* Links to other sites open in a new tab; the arrow says so before the click. */
+.article-prose .md-external__icon {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.1em;
+  vertical-align: -0.05em;
+  color: var(--lr-nav);
+}
+
+.article-prose a:hover .md-external__icon {
+  color: currentcolor;
 }
 
 .article-prose :not(pre) > code {

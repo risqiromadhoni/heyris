@@ -111,6 +111,9 @@ export const en: Dictionary = {
   heading: {
     anchor: "Link to this section",
   },
+  link: {
+    newTab: "(opens in a new tab)",
+  },
   og: {
     imageAlt: (title) => `Card titled “${title}” from heyris`,
   },

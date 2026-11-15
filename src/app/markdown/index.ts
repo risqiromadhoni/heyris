@@ -5,6 +5,7 @@ import { codeBlocks } from "./code";
 import { directiveBlocks } from "./directives";
 import { footnoteLabels } from "./footnotes";
 import { headingAnchors } from "./headings";
+import { externalLinks } from "./links";
 import { localeOf } from "./source";
 
 /**
@@ -22,5 +23,6 @@ export const satteriOptions = {
     (ctx) => footnoteLabels(localeOf(ctx.fileURL)),
     (ctx) => codeBlocks(localeOf(ctx.fileURL)),
     (ctx) => headingAnchors(localeOf(ctx.fileURL)),
+    (ctx) => externalLinks(localeOf(ctx.fileURL)),
   ],
 } satisfies SatteriProcessorOptions;

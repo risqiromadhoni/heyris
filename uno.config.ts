@@ -131,6 +131,8 @@ export default defineConfig<Theme>({
     "i-ph-caret-down",
     "i-ph-caret-left",
     "i-ph-caret-right",
+    "i-lucide-arrow-up-right",
+    "sr-only",
   ],
   theme: {
     colors: {
