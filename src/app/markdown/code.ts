@@ -1,4 +1,5 @@
-import { classes, element, present, text } from "./nodes";
+import { fenceLanguage, highlight } from "./highlight";
+import { classes, element, present, text, type Props } from "./nodes";
 import { markdownStrings } from "./strings";
 import type { HastPlugin } from "./types";
 import type { Locale } from "../../shared/i18n";
@@ -12,6 +13,9 @@ function gutterNumbers(count: number): string {
  * Wrap each code block in a `figure.md-code` with a header: the file name from `{title=…}`, and
  * a copy button. `{.line-numbers}` adds a gutter of numbers. The gutter sits outside `code`, so
  * copying the code never includes it, and it is hidden from assistive technology.
+ *
+ * The code is highlighted here rather than by Astro's `syntaxHighlight`, which runs first and
+ * replaces `<pre>` with Shiki's, dropping the `title` and classes this plugin reads.
  */
 export function codeBlocks(locale: Locale): HastPlugin {
   const strings = markdownStrings(locale);
@@ -20,7 +24,7 @@ export function codeBlocks(locale: Locale): HastPlugin {
     name: "md-code",
     element: {
       filter: ["pre"],
-      visit(pre, ctx) {
+      async visit(pre, ctx) {
         const code = pre.children.find(
           (child) => child.type === "element" && child.tagName === "code",
         );
@@ -30,7 +34,9 @@ export function codeBlocks(locale: Locale): HastPlugin {
         const title = String(code.properties.title ?? "");
         const names = Array.isArray(code.properties.className) ? code.properties.className : [];
         const numbered = names.includes("line-numbers");
-        const lines = ctx.textContent(code).replace(/\n$/, "").split("\n").length;
+        const source = ctx.textContent(code).replace(/\n$/, "");
+        const lines = source.split("\n").length;
+        const highlighted = await highlight(source, fenceLanguage(names));
 
         const gutter = element("span", { className: ["md-code__gutter"], ariaHidden: "true" }, [
           text(gutterNumbers(lines)),
@@ -66,16 +72,14 @@ export function codeBlocks(locale: Locale): HastPlugin {
         const body = element(
           "pre",
           { className: ["md-code__pre"], tabIndex: 0 },
-          numbered ? [gutter, code] : [code],
+          numbered ? [gutter, highlighted?.code ?? code] : [highlighted?.code ?? code],
         );
 
-        ctx.replaceNode(
-          pre,
-          element("figure", { className: classes("md-code", numbered && "md-code--numbered") }, [
-            header,
-            body,
-          ]),
-        );
+        const figure: Props = { className: classes("md-code", numbered && "md-code--numbered") };
+
+        if (highlighted !== undefined) figure.style = highlighted.style;
+
+        return element("figure", figure, [header, body]);
       },
     },
   };

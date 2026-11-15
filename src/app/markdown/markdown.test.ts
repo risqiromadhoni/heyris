@@ -59,7 +59,20 @@ describe("code blocks", () => {
 
     expect(output).toContain('<span class="md-code__file">retry.ts</span>');
     expect(output).toContain('data-copy-code data-copied="Tersalin"');
-    expect(output).toContain("const a = 1;");
+    expect(output.replaceAll(/<[^>]+>/g, "")).toContain("const a = 1;");
+  });
+
+  it("highlights with GitHub Light and Dark and keeps the title and gutter", async () => {
+    const output = await html("```ts {title=retry.ts .line-numbers}\nconst a = 1;\nlet b;\n```");
+
+    expect(output).toContain(
+      'style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117"',
+    );
+    expect(output).toContain(
+      '<span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">const</span>',
+    );
+    expect(output).toContain('<span class="md-code__file">retry.ts</span>');
+    expect(output).toContain('<span class="md-code__gutter" aria-hidden="true">1\n2</span>');
   });
 });
 

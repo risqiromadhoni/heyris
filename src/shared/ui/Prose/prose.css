@@ -98,10 +98,15 @@
 }
 
 .article-prose :not(pre) > code {
+  padding: 0.15em 0.4em;
   font-family: var(--font-dm-mono);
-  font-size: 15.3px;
+  font-size: 0.9em;
   line-height: 1.78;
   color: var(--lr-heading);
+  background: color-mix(in srgb, var(--lr-nav) 15%, transparent);
+  border-radius: 6px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .article-prose sup {
@@ -175,11 +180,28 @@
 
 /* Code blocks */
 
+/* Shiki tokens carry GitHub Light and GitHub Dark colours as variables; the `dark` class picks. */
 .article-prose .md-code {
   overflow: hidden;
   border: 1px solid var(--lr-line);
   border-radius: 8px;
-  background: var(--lr-surface);
+  background: var(--shiki-light-bg, var(--lr-surface));
+}
+
+.dark .article-prose .md-code {
+  background: var(--shiki-dark-bg, var(--lr-surface));
+}
+
+.article-prose .md-code__pre :is(code, code span) {
+  color: var(--shiki-light, inherit);
+  font-style: var(--shiki-light-font-style, inherit);
+  font-weight: var(--shiki-light-font-weight, inherit);
+}
+
+.dark .article-prose .md-code__pre :is(code, code span) {
+  color: var(--shiki-dark, inherit);
+  font-style: var(--shiki-dark-font-style, inherit);
+  font-weight: var(--shiki-dark-font-weight, inherit);
 }
 
 .article-prose .md-code__header {
