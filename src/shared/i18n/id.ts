@@ -81,6 +81,10 @@ export const id = {
     backWriting: "Tulisan",
     backNotes: "Catatan",
   },
+  toc: {
+    label: "Daftar isi",
+    close: "Tutup daftar isi",
+  },
   history: {
     label: "Riwayat pembaruan",
     published: "Terbit",

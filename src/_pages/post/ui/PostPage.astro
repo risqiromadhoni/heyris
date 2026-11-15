@@ -1,6 +1,7 @@
 ---
 import { render } from "astro:content";
 import { CopyPage } from "@/features/copy-page";
+import { TableOfContents, tocItems } from "@/features/table-of-contents";
 import { entrySlug, type Post } from "@/shared/api/content";
 import { localizedPath, type Locale } from "@/shared/i18n";
 import { Byline, FeedbackLine, Prose } from "@/shared/ui";
@@ -12,7 +13,8 @@ interface Props {
 }
 
 const { locale, entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const toc = tocItems(headings);
 const markdownUrl = new URL(localizedPath(locale, "postMarkdown", entrySlug(entry.id)), Astro.site).href;
 ---
 
@@ -20,7 +22,10 @@ const markdownUrl = new URL(localizedPath(locale, "postMarkdown", entrySlug(entr
 	<header class="mx-auto flex w-full max-w-[600px] flex-col gap-3 pt-6 pb-[14.8px]">
 		<h1 class="type-article">{entry.data.title}</h1>
 		<Byline locale={locale} date={entry.data.date} updated={entry.data.updated} precision="month">
-			<CopyPage locale={locale} markdownUrl={markdownUrl} />
+			<div class="flex items-stretch gap-2">
+				<CopyPage locale={locale} markdownUrl={markdownUrl} />
+				{toc.length > 0 && <TableOfContents locale={locale} items={toc} />}
+			</div>
 		</Byline>
 	</header>
 	<Prose>

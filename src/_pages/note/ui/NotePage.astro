@@ -1,6 +1,7 @@
 ---
 import { render } from "astro:content";
 import { CopyPage } from "@/features/copy-page";
+import { TableOfContents, tocItems } from "@/features/table-of-contents";
 import { entrySlug, getNoteListing, readingTime, type Note } from "@/shared/api/content";
 import { localizedPath, type Locale } from "@/shared/i18n";
 import { Byline, FeedbackLine, Prose } from "@/shared/ui";
@@ -15,7 +16,8 @@ interface Props {
 }
 
 const { locale, entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const toc = tocItems(headings);
 const markdownUrl = new URL(localizedPath(locale, "noteMarkdown", entrySlug(entry.id)), Astro.site).href;
 
 // Notes are newest first, so the older neighbour comes after this note and the newer one before it.
@@ -29,7 +31,10 @@ const next = index > 0 ? notes[index - 1] : undefined;
 	<header class="mx-auto flex w-full max-w-[600px] flex-col gap-3 pt-6 pb-[14.8px]">
 		<h1 class="type-article">{entry.data.title}</h1>
 		<Byline locale={locale} date={entry.data.date} updated={entry.data.updated} precision="day" minutes={readingTime(entry)}>
-			<CopyPage locale={locale} markdownUrl={markdownUrl} />
+			<div class="flex items-stretch gap-2">
+				<CopyPage locale={locale} markdownUrl={markdownUrl} />
+				{toc.length > 0 && <TableOfContents locale={locale} items={toc} />}
+			</div>
 		</Byline>
 		{entry.data.tags.length > 0 && <TagList tags={entry.data.tags} />}
 	</header>

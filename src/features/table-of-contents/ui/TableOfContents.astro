@@ -1,0 +1,178 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+import type { TocItem } from "../model/items";
+
+interface Props {
+	locale: Locale;
+	/** The article's sections, from `tocItems`. Render the component only when there is one. */
+	items: readonly TocItem[];
+}
+
+const { locale, items } = Astro.props;
+const strings = dictionaryFor(locale);
+
+// One 12 px step per level, measured from the track on the left.
+const INDENT = { 2: "pl-3", 3: "pl-6", 4: "pl-9" } as const;
+---
+
+<button
+	type="button"
+	class="inline-flex w-8 shrink-0 items-center justify-center self-stretch rounded-md border border-lr-line text-lr-nav hover:bg-lr-surface hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text aria-expanded:bg-lr-surface aria-expanded:text-lr-text"
+	aria-expanded="false"
+	aria-controls="table-of-contents"
+	aria-label={strings.toc.label}
+	data-toc-toggle
+>
+	<span aria-hidden="true" class="i-lucide-table-of-contents size-3.5"></span>
+</button>
+<nav
+	id="table-of-contents"
+	aria-labelledby="table-of-contents-title"
+	hidden
+	data-toc
+	class="toc-panel fixed inset-y-0 right-0 z-40 flex w-[min(320px,calc(100%_-_48px))] flex-col border-l border-lr-line bg-lr-bg font-sans xl:inset-y-auto xl:top-24 xl:right-[max(49px,calc((100%_-_1440px)/2_+_49px))] xl:z-30 xl:max-h-[calc(100dvh_-_120px)] xl:w-64 xl:rounded-lg xl:border"
+>
+	<div class="flex h-[42px] shrink-0 items-center justify-between gap-3 border-b border-lr-line pr-2 pl-3.5 xl:h-auto xl:py-2">
+		<h2 id="table-of-contents-title" class="type-tag">{strings.toc.label}</h2>
+		<button
+			type="button"
+			class="inline-flex size-6 items-center justify-center rounded text-lr-nav hover:bg-lr-surface hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-lr-text"
+			aria-label={strings.toc.close}
+			data-toc-close
+		>
+			<span aria-hidden="true" class="i-ph-x size-3.5"></span>
+		</button>
+	</div>
+	<div class="min-h-0 overflow-y-auto overscroll-contain px-3.5 py-3" data-toc-scroller>
+		<div class="relative border-l border-lr-line" data-toc-list>
+			<span aria-hidden="true" class="toc-indicator" data-toc-indicator></span>
+			<ol class="flex flex-col gap-0.5">
+			{
+				items.map((item) => (
+					<li>
+						<a
+							href={`#${item.slug}`}
+							class:list={[
+								"block rounded-sm py-1 pr-1 text-[13px] leading-[1.4] text-pretty text-lr-nav transition-colors duration-150 ease-out hover:text-lr-text motion-reduce:transition-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-lr-text aria-[current]:text-lr-heading",
+								INDENT[item.depth],
+							]}
+							data-toc-link
+						>
+							{item.text}
+						</a>
+					</li>
+				))
+			}
+			</ol>
+		</div>
+	</div>
+</nav>
+
+<style>
+	/*
+	 * Motion from the transitions.dev tokens: a panel opens in 400 ms and closes in 350 ms on the
+	 * smooth-out curve, sliding in from the right with a 2 px cross-blur; the indicator travels in
+	 * 250 ms like a sliding tab. `display` transitions discretely, so `hidden` animates out too.
+	 * Below 1280 px the panel is a side sheet and slides its full width from the screen's edge;
+	 * from 1280 px it is a card in the gutter and slides 24 px.
+	 */
+	.toc-panel {
+		--toc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+		--toc-from: translateX(100%);
+
+		opacity: 1;
+		transform: translateX(0);
+		filter: blur(0);
+		transition:
+			opacity 400ms var(--toc-ease),
+			transform 400ms var(--toc-ease),
+			filter 400ms var(--toc-ease),
+			display 400ms allow-discrete;
+	}
+
+	@media (min-width: 1280px) {
+		.toc-panel {
+			--toc-from: translateX(24px);
+		}
+	}
+
+	.toc-panel[hidden] {
+		display: none;
+		opacity: 0;
+		transform: var(--toc-from);
+		filter: blur(2px);
+		transition-duration: 350ms;
+	}
+
+	@starting-style {
+		.toc-panel:not([hidden]) {
+			opacity: 0;
+			transform: var(--toc-from);
+			filter: blur(2px);
+		}
+	}
+
+	/*
+	 * Slides like a tab pill: `transform` moves it and `height` follows the link's height. A scaled
+	 * 1 px bar would be drawn blurry while it moves and sharpen with a jump when it stops.
+	 */
+	.toc-indicator {
+		position: absolute;
+		top: 0;
+		left: -1.5px;
+		width: 2px;
+		height: var(--toc-h, 0);
+		border-radius: 1px;
+		background: var(--lr-text);
+		opacity: 0;
+		transform: translateY(var(--toc-y, 0));
+		transition:
+			transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+			height 250ms cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 150ms ease-out;
+	}
+
+	[data-toc-list][data-active] .toc-indicator {
+		opacity: 1;
+	}
+
+	[data-toc-list][data-instant] .toc-indicator {
+		transition: none;
+	}
+
+	:global(html:has([data-toc])) {
+		scroll-behavior: smooth;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.toc-panel,
+		.toc-panel[hidden] {
+			transform: none;
+			filter: none;
+			transition:
+				opacity 150ms ease-out,
+				display 150ms allow-discrete;
+		}
+
+		@starting-style {
+			.toc-panel:not([hidden]) {
+				transform: none;
+				filter: none;
+			}
+		}
+
+		.toc-indicator {
+			transition: opacity 150ms ease-out;
+		}
+
+		:global(html:has([data-toc])) {
+			scroll-behavior: auto;
+		}
+	}
+</style>
+
+<script>
+	import { mountTablesOfContents } from "../model/toc";
+
+	mountTablesOfContents();
+</script>

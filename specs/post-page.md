@@ -92,3 +92,38 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
     - expect: The panel closes and the button is collapsed again
   5. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers, which has no updates
     - expect: There is no "Riwayat pembaruan" button
+
+#### 1.7. Table of contents opens beside the text, follows the reading position and scans clean
+
+**File:** `e2e/post-page/shows-a-table-of-contents.spec.ts`
+
+**Steps:**
+  1. Open the post at /tulisan/what-is-monorepo in a 1440 x 900 viewport
+    - expect: The "Daftar isi" button is collapsed (aria-expanded="false")
+  2. Click the "Daftar isi" button
+    - expect: The button has aria-expanded="true"
+    - expect: The "Daftar isi" navigation lists "Manfaat monorepo" first and "Kapan memakai monorepo" last
+    - expect: The panel does not overlap the article text
+  3. Run an axe scan limited to WCAG 2.2 Level A and AA rules with the panel open
+    - expect: The scan reports no violations
+  4. Click the "Contoh struktur folder" link in the panel
+    - expect: The URL hash is #contoh-struktur-folder
+    - expect: The link has aria-current="location"
+    - expect: The panel stays open
+  5. Resize the viewport to 390 x 800 and press Escape with focus in the panel
+    - expect: The panel closes and focus returns to the "Daftar isi" button
+  6. Open the panel again
+    - expect: The panel spans the full viewport height at the right edge
+  7. Run an axe scan with the side sheet open
+    - expect: The scan reports no violations
+
+#### 1.8. A section URL opens the table of contents beside the text
+
+**File:** `e2e/post-page/opens-the-table-of-contents-from-a-section-url.spec.ts`
+
+**Steps:**
+  1. Open /tulisan/what-is-monorepo#workflow-github-actions in a 1440 x 900 viewport
+    - expect: The "Daftar isi" button has aria-expanded="true"
+    - expect: The "Workflow GitHub Actions" link has aria-current="location"
+  2. Open /tulisan/what-is-monorepo#workflow-github-actions in a 390 x 800 viewport
+    - expect: The "Daftar isi" button stays collapsed, so the side sheet does not cover the section

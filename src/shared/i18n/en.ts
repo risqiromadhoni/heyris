@@ -85,6 +85,10 @@ export const en: Dictionary = {
     backWriting: "Writing",
     backNotes: "Notes",
   },
+  toc: {
+    label: "Table of contents",
+    close: "Close table of contents",
+  },
   history: {
     label: "Update history",
     published: "Published",

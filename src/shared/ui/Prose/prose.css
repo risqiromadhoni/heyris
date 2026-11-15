@@ -61,6 +61,16 @@
   color: var(--lr-heading);
 }
 
+/* No anchor link: h4 only names a part of a subsection. */
+.article-prose h4 {
+  scroll-margin-top: 96px;
+  font-family: var(--font-source-serif);
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--lr-heading);
+}
+
 .article-prose strong {
   font-weight: 700;
   color: var(--lr-heading);
