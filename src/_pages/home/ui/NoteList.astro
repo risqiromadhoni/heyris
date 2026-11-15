@@ -27,14 +27,14 @@ const notes = (await getNoteListing(locale)).slice(0, 10);
 		{
 			notes.map((note) => (
 				<li class="flex gap-[12.75px] pl-[3px]">
-					<span aria-hidden="true" class="mt-[12.4px] size-[5.5px] shrink-0 bg-lr-bullet"></span>
+					<span aria-hidden="true" class="mt-[11.8px] size-[5.5px] shrink-0 bg-lr-bullet"></span>
 					<a
 						href={localizedPath(entryLocale(note.id), "note", entrySlug(note.id))}
 						hreflang={foreignLocale(note, locale)}
-						class="group type-link pt-[4.6px] pb-[3.6px] hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+						class="group type-link py-[2px] leading-[1.3] hover:text-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
 					>
 						<span
-							class="inline-block border-b border-lr-underline group-hover:border-current"
+							class="underline decoration-lr-underline decoration-1 underline-offset-[4px] group-hover:decoration-current"
 							lang={foreignLocale(note, locale)}
 						>
 							{note.data.label ?? note.data.title}
