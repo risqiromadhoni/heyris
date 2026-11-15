@@ -19,7 +19,7 @@ test.describe("Post page", () => {
     // 2. Check the feedback line links to a correction mail
     await expect(page.getByRole("link", { name: "Kabari saya" })).toHaveAttribute(
       "href",
-      "mailto:risqi.romadhoni96@gmail.com?subject=Koreksi%3A%20Astro%20dan%20Void%20di%20Cloudflare%20Workers%3A%20cara%20situs%20ini%20dibangun",
+      "mailto:risqi@heyris.me?subject=Koreksi%3A%20Astro%20dan%20Void%20di%20Cloudflare%20Workers%3A%20cara%20situs%20ini%20dibangun",
     );
   });
 });

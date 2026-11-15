@@ -22,7 +22,7 @@ test.describe("Note page", () => {
     // 3. Check the feedback line and the related notes heading
     await expect(page.getByRole("link", { name: "Kabari saya" })).toHaveAttribute(
       "href",
-      /^mailto:risqi\.romadhoni96@gmail\.com\?subject=/,
+      /^mailto:risqi@heyris\.me\?subject=/,
     );
     await expect(page.getByRole("heading", { name: "Catatan lainnya" })).toBeVisible();
   });

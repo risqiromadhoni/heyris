@@ -23,7 +23,7 @@ A note is one short Indonesian entry at `/catatan/<slug>`, prerendered from `src
     - expect: A complementary landmark labelled "Singkatnya" contains the TL;DR text "Pakai satu token untuk satu pencarian"
     - expect: One tag pill, "Google Places", is listed in the header
   3. Check the feedback line and the related notes
-    - expect: The "Kabari saya" link is a mailto link to risqi.romadhoni96@gmail.com
+    - expect: The "Kabari saya" link is a mailto link to risqi@heyris.me
     - expect: A heading "Catatan lainnya" is visible
 
 #### 1.2. Links its Markdown alternate and serves it as text/markdown

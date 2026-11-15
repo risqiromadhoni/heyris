@@ -17,7 +17,7 @@ interface Bio {
 const ID_BIO: Bio = {
   short: [
     "Saya software engineer dan penulis. Saya bekerja di Dialog sebagai Senior Fullstack Engineer jarak jauh, tempat saya membangun frontend dan backend dengan TypeScript, React, Nest.js, PHP, dan Laravel. Sebelumnya, saya bekerja di Virtual Spirit dan Yummy Corp. Saya belajar pemrograman secara otodidak, bekerja di bidang perangkat lunak sejak 2016, dan menulis di blog ini sejak 2024.",
-    "Tujuan saya adalah menjadi pemimpin yang tetap mampu membangun perangkat lunak, dan memberi pengaruh baik bagi tim dan orang di sekitar saya. Di luar kerja, saya senang menanam dengan hidroponik. Kalau Anda punya proyek atau pertanyaan, kirim email ke risqi.romadhoni96@gmail.com.",
+    "Tujuan saya adalah menjadi pemimpin yang tetap mampu membangun perangkat lunak, dan memberi pengaruh baik bagi tim dan orang di sekitar saya. Di luar kerja, saya senang menanam dengan hidroponik. Kalau Anda punya proyek atau pertanyaan, kirim email ke risqi@heyris.me.",
   ],
   long: [
     "Saya tumbuh di sebuah desa di Kabupaten Kediri, Jawa Timur. Orang tua saya bertani dan beternak sapi, dan setiap hari saya membantu pekerjaan mereka.",
@@ -31,7 +31,7 @@ const ID_BIO: Bio = {
     "Sekarang saya Senior Fullstack Engineer di Dialog, perusahaan di Leiden, Belanda, yang membuat platform perangkat lunak untuk pelibatan pemangku kepentingan. Saya bekerja dari jarak jauh. Di sana saya membangun frontend dan backend dengan TypeScript, React, Nest.js, PHP, dan Laravel.",
     "Di luar kerja, saya senang menanam dengan hidroponik. Dalam beberapa tahun ke depan, saya ingin menjadi pemimpin yang tetap mampu membangun perangkat lunak, dan memberi pengaruh baik bagi tim dan orang di sekitar saya.",
     "Situs ini berjalan di Cloudflare Workers, dan saya membangunnya dengan target WCAG 2.2 AA. Situs ini tidak memasang cookie pelacak dan tidak memakai layanan analitik. Antarmuka situs tersedia dalam bahasa Indonesia dan Inggris. Tema gelap atau terang mengikuti sistem Anda, kecuali Anda memilih sendiri.",
-    "Tulisan saya antara lain membahas Git, monorepo dengan Turborepo, serta cara kerja internet dan nameserver. Saya juga menulis tentang memindahkan domain ke Cloudflare, dan alasan engineer TypeScript belajar Rust serta WebAssembly. Catatan singkat berisi potongan kode dan hal yang baru saya pelajari. Kalau Anda punya proyek atau pertanyaan, kirim email ke risqi.romadhoni96@gmail.com.",
+    "Tulisan saya antara lain membahas Git, monorepo dengan Turborepo, serta cara kerja internet dan nameserver. Saya juga menulis tentang memindahkan domain ke Cloudflare, dan alasan engineer TypeScript belajar Rust serta WebAssembly. Catatan singkat berisi potongan kode dan hal yang baru saya pelajari. Kalau Anda punya proyek atau pertanyaan, kirim email ke risqi@heyris.me.",
   ],
 };
 
@@ -39,7 +39,7 @@ const ID_BIO: Bio = {
 const EN_BIO: Bio = {
   short: [
     "I'm a software engineer and writer. I work at Dialog as a remote Senior Fullstack Engineer, where I build frontends and backends with TypeScript, React, Nest.js, PHP, and Laravel. Before that, I worked at Virtual Spirit and Yummy Corp. I taught myself to code, have worked in software since 2016, and have written on this blog since 2024.",
-    "My goal is to be a leader who can still build software, and to have a positive effect on my team and the people around me. Outside work, I love growing plants with hydroponics. If you have a project or a question, email risqi.romadhoni96@gmail.com.",
+    "My goal is to be a leader who can still build software, and to have a positive effect on my team and the people around me. Outside work, I love growing plants with hydroponics. If you have a project or a question, email risqi@heyris.me.",
   ],
   long: [
     "I grew up in a village in Kediri Regency, East Java. My parents farmed and raised cattle, and every day I helped them with their work.",
@@ -53,7 +53,7 @@ const EN_BIO: Bio = {
     "I'm now a Senior Fullstack Engineer at Dialog, a company in Leiden, the Netherlands, that makes a software platform for stakeholder engagement. I work remotely. There I build the frontend and the backend with TypeScript, React, Nest.js, PHP, and Laravel.",
     "Outside work, I love growing plants with hydroponics. In the next few years, I want to become a leader who can still build software, and to have a positive effect on my team and the people around me.",
     "This site runs on Cloudflare Workers, and I built it with WCAG 2.2 AA as the target. It sets no tracking cookies and uses no analytics service. The interface is available in Indonesian and English. The dark or light theme follows your system setting, unless you pick one yourself.",
-    "My writing covers topics such as Git, monorepos with Turborepo, and how the internet and nameservers work. I also write about moving a domain to Cloudflare, and why TypeScript engineers learn Rust and WebAssembly. Short notes hold code snippets and things I have recently learned. If you have a project or a question, email risqi.romadhoni96@gmail.com.",
+    "My writing covers topics such as Git, monorepos with Turborepo, and how the internet and nameservers work. I also write about moving a domain to Cloudflare, and why TypeScript engineers learn Rust and WebAssembly. Short notes hold code snippets and things I have recently learned. If you have a project or a question, email risqi@heyris.me.",
   ],
 };
 
