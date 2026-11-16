@@ -44,6 +44,11 @@ export function frameUniforms(gl: WebGLRenderingContext, program: WebGLProgram):
 /** Renderer names of CPU rasterisers: Chrome's SwiftShader, Mesa's llvmpipe and Windows' WARP. */
 const SOFTWARE_RENDERER = /swiftshader|llvmpipe|softpipe|software|basic render/i;
 
+/** Whether a WebGL renderer name belongs to a CPU rasteriser, which the backdrop skips. */
+export function isSoftwareRenderer(name: string): boolean {
+  return SOFTWARE_RENDERER.test(name);
+}
+
 /**
  * The renderer's name. Chrome reports a generic `RENDERER` and gives the real one only through
  * `WEBGL_debug_renderer_info`; Firefox reports the real one directly and deprecates the extension.
@@ -67,7 +72,7 @@ function rendererName(gl: WebGLRenderingContext): string {
 export function openHardwareContext(canvas: HTMLCanvasElement): WebGLRenderingContext | null {
   const gl = canvas.getContext("webgl", { antialias: false, failIfMajorPerformanceCaveat: true });
 
-  if (!gl || !SOFTWARE_RENDERER.test(rendererName(gl))) return gl;
+  if (!gl || !isSoftwareRenderer(rendererName(gl))) return gl;
 
   gl.getExtension("WEBGL_lose_context")?.loseContext();
 
