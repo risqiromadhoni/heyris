@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "source": {
+    "name": "heyris",
+    "account_id": "34bc2037f78fbf5cb12c588a74a23d47",
+    "compatibility_date": "2026-11-10",
+    "compatibility_flags": [
+      "nodejs_als"
+    ],
+    "workers_dev": true,
+    "preview_urls": true,
+    "routes": [
+      {
+        "pattern": "heyris.me",
+        "custom_domain": true
+      }
+    ]
+  },
+  "resolved": {
+    "name": "heyris",
+    "account_id": "34bc2037f78fbf5cb12c588a74a23d47",
+    "compatibility_date": "2026-11-10",
+    "compatibility_flags": [
+      "nodejs_als"
+    ],
+    "workers_dev": true,
+    "preview_urls": true,
+    "routes": [
+      {
+        "pattern": "heyris.me",
+        "custom_domain": true
+      }
+    ]
+  },
+  "text": "// void:published-traffic:v1:eyJ3b3JrZXJzX2RldiI6dHJ1ZSwicHJldmlld191cmxzIjp0cnVlLCJyb3V0ZXMiOlt7InBhdHRlcm4iOiJoZXlyaXMubWUiLCJjdXN0b21fZG9tYWluIjp0cnVlfV19\n{\n  \"name\": \"heyris\",\n  \"account_id\": \"34bc2037f78fbf5cb12c588a74a23d47\",\n  \"compatibility_date\": \"2026-11-10\",\n  \"compatibility_flags\": [\n    \"nodejs_als\"\n  ],\n  \"workers_dev\": true,\n  \"preview_urls\": true,\n  \"routes\": [\n    {\n      \"pattern\": \"heyris.me\",\n      \"custom_domain\": true\n    }\n  ]\n}\n"
+}
