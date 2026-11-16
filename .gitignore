@@ -55,4 +55,6 @@ pnpm-debug.log*
 
 # Local notes, kept out of git
 /docs/
+# Plans written by the improve skill (plans/ is Claude Code's plan mode)
+/advisor-plans/
 src/middleware.ts

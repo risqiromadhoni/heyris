@@ -17,8 +17,8 @@ Third-party files
 
 Folders copied from other projects carry their own LICENSE file, and that
 licence applies to them instead: tools/oxlint/anti-slop/,
-.agents/skills/install-anti-slop/, .agents/skills/feature-sliced-design/ and
-.claude/skills/modern-web-guidance/.
+.agents/skills/install-anti-slop/, .agents/skills/feature-sliced-design/,
+.claude/skills/modern-web-guidance/ and .claude/skills/improve/.
 
 Code, MIT License
 -----------------
