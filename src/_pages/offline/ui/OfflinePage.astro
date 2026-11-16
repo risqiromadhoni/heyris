@@ -1,0 +1,26 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = dictionaryFor(locale);
+---
+
+<div class="mx-auto flex max-w-[1440px] flex-col gap-16 px-5 pt-16 pb-16 sm:px-[49px]">
+	<div class="flex max-w-[760px] flex-col gap-6">
+		<h1 class="type-display">{strings.offline.title}</h1>
+		<p class="type-body">{strings.offline.body}</p>
+		<p class="type-link">
+			<!-- The service worker serves this page at the URL that failed, so an empty href reloads that URL. -->
+			<a
+				href=""
+				class="border-b border-lr-underline text-lr-text hover:border-lr-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lr-text"
+			>
+				{strings.offline.retry}
+			</a>
+		</p>
+	</div>
+</div>

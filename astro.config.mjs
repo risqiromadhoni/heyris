@@ -74,6 +74,8 @@ export default defineConfig({
   integrations: [
     UnoCSS(),
     sitemap({
+      // The offline pages exist only for the service worker to serve.
+      filter: (page) => !new URL(page).pathname.endsWith("/offline"),
       i18n: {
         defaultLocale: "id",
         locales: { id: "id-ID", en: "en" },

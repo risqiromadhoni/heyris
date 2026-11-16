@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { OfflinePage } from "@/_pages/offline";
+import { dictionaryFor, pageTitle } from "@/shared/i18n";
+import { SiteFooter, SiteTopBar } from "@/shared/ui";
+
+export const prerender = true;
+
+const locale = "en";
+const strings = dictionaryFor(locale);
+---
+
+<BaseLayout
+	locale={locale}
+	title={pageTitle(locale, strings.offline.title)}
+	description={strings.offline.body}
+	noindex
+>
+	<SiteTopBar slot="header" locale={locale} alternates={{}} />
+	<OfflinePage locale={locale} />
+	<SiteFooter slot="footer" locale={locale} />
+</BaseLayout>

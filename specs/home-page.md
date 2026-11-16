@@ -214,3 +214,19 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
     - expect: The second tab's html element has the dark class, without a reload
   3. Click the theme toggle in the first tab again
     - expect: The second tab's html element does not have the dark class
+
+#### 1.19. Links the web app manifest and its icons
+
+**File:** `e2e/home-page/links-the-web-app-manifest-and-its-icons.spec.ts`
+
+**Steps:**
+  1. Open the home page at /
+    - expect: A manifest link points to /manifest.webmanifest
+    - expect: An apple-touch-icon link points to /apple-touch-icon.png
+    - expect: Two theme-color meta tags exist, one for each prefers-color-scheme value
+  2. Request /manifest.webmanifest
+    - expect: The response is 200
+    - expect: Its name is "Risqi Romadhoni" and its start_url is "/"
+    - expect: It lists an "any" icon at 192x192 and 512x512, and a "maskable" icon at 512x512
+  3. Request every icon the manifest lists, and /apple-touch-icon.png
+    - expect: Each response is 200 with an image/png content type

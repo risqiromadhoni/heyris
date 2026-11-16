@@ -140,4 +140,9 @@ export const en: Dictionary = {
     title: "Page not found",
     body: "The page you are looking for does not exist or has moved.",
   },
+  offline: {
+    title: "You're offline",
+    body: "This page can't load because your device isn't connected to the internet. Check your connection, then try again.",
+    retry: "Try again",
+  },
 };

@@ -136,6 +136,11 @@ export const id = {
     title: "Halaman tidak ditemukan",
     body: "Halaman yang Anda cari tidak ada atau sudah dipindahkan.",
   },
+  offline: {
+    title: "Anda sedang offline",
+    body: "Halaman ini belum bisa dimuat karena perangkat Anda tidak terhubung ke internet. Periksa koneksi, lalu coba lagi.",
+    retry: "Coba lagi",
+  },
 };
 
 export type Dictionary = typeof id;

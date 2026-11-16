@@ -98,8 +98,12 @@ const defaultHref = alternates[DEFAULT_LOCALE];
 		{defaultHref && <link rel="alternate" hreflang="x-default" href={absolute(defaultHref)} />}
 		<link rel="alternate" type="application/rss+xml" title={strings.footer.rss} href={localizedPath(locale, "rss")} />
 		{markdownPath && <link rel="alternate" type="text/markdown" href={markdownPath} />}
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1B1A19" media="(prefers-color-scheme: dark)" />
 		<meta property="og:type" content={ogType} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -123,6 +127,18 @@ const defaultHref = alternates[DEFAULT_LOCALE];
 		<Font cssVariable="--font-source-serif" preload />
 		<Font cssVariable="--font-dm-sans" preload />
 		<Font cssVariable="--font-dm-mono" />
+		{
+			import.meta.env.PROD && (
+				<script is:inline>
+					// The offline fallback. A failed registration only means no offline page, so it stays out of the console.
+					if ("serviceWorker" in navigator) {
+						window.addEventListener("load", () => {
+							navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+						});
+					}
+				</script>
+			)
+		}
 	</head>
 	<body class="bg-lr-bg text-lr-text">
 		<ShaderCanvas scene="backdrop" />
