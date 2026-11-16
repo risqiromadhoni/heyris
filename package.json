@@ -52,7 +52,7 @@
     "unlighthouse": "^0.19.1",
     "unocss": "^66.12.0",
     "vite-plus": "catalog:",
-    "void": "^1.7.0"
+    "void": "^1.8.0"
   },
   "devEngines": {
     "packageManager": {
