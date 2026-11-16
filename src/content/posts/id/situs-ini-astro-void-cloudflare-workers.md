@@ -2,6 +2,7 @@
 title: "Astro dan Void di Cloudflare Workers: cara situs ini dibangun"
 summary: "Teknologi di balik situs ini, dari Astro 7 dan Void sampai tes dan CI."
 date: 2026-11-14
+updated: 2026-11-16
 topic: astro
 ---
 
@@ -92,7 +93,7 @@ Berikut angkanya:
 
 ## CI dan riwayat commit
 
-`.github/workflows` berisi empat alur: `check`, `test`, `playwright`, dan `unlighthouse`. Keempatnya berjalan saat ada push dan pull request ke `main`. Alur `unlighthouse` juga bisa dijalankan manual lewat `workflow_dispatch`. Kalau input `site` diisi, job memindai situs yang sudah di-deploy, bukan hasil build lokal.
+`.github/workflows` berisi enam alur: `check`, `test`, `playwright`, `unlighthouse`, `size`, dan `release`. Alur `check` berjalan di setiap push dan pull request ke `main`. Empat alur berikutnya hanya berjalan kalau berkas yang memengaruhinya berubah. Alur `release` membuat pull request rilis dan men-deploy ke Cloudflare. Alur `unlighthouse` juga bisa dijalankan manual lewat `workflow_dispatch`. Kalau input `site` diisi, job memindai situs yang sudah di-deploy, bukan hasil build lokal.
 
 Riwayat commit dimulai 12 November 2026. Beberapa commit berikut, dari yang terbaru, menandai tahap pembangunannya:
 

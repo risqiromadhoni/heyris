@@ -9,6 +9,8 @@ export const TOPICS = [
   "ruby",
   "api",
   "cloudflare",
+  "ci",
+  "web",
 ] as const;
 
 /** A topic key, as used in the `topic` frontmatter field. */

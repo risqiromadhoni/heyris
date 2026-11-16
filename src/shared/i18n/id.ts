@@ -10,6 +10,8 @@ const topics: Record<Topic, string> = {
   ruby: "Ruby",
   api: "API",
   cloudflare: "Cloudflare",
+  ci: "CI",
+  web: "Web",
 };
 
 /**
