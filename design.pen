@@ -36,17 +36,161 @@
           "layout": "vertical",
           "children": [
             {
-              "type": "text",
-              "id": "AdAo5",
-              "name": "Title",
-              "context": "Dynamic title (transitions-dev: text states swap, 04-text-states-swap.md). Default text: '@risqiromadhoni'. On hover or keyboard focus of the 'Kirim email' contact button, swap the title in place (blurred up-and-down, --duration-quick out / --duration-fast in) to \"Hi, nice to meet you 👋\". On mouseleave or blur, swap to \"See you next time 👋\", hold ~1.5s, then swap back to the default. Re-entering the button during the hold cancels the timer and shows the greeting again. Keep the title's reserved width/height so the layout never shifts, and keep an accessible name of '@risqiromadhoni' on the heading (aria-live off; the swap is decorative). Reuse the reflow trick (void el.offsetWidth) so the swap replays; respect prefers-reduced-motion by switching text with no motion.",
-              "fill": "$lr-heading",
-              "content": "@risqiromadhoni",
-              "lineHeight": 1.15,
-              "fontFamily": "$lr-serif",
-              "fontSize": 42.4,
-              "fontWeight": "600",
-              "letterSpacing": -0.85
+              "type": "frame",
+              "id": "JbfBn",
+              "name": "Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AdAo5",
+                  "name": "Title",
+                  "context": "Dynamic title (transitions-dev: text states swap, 04-text-states-swap.md). Default text: '@risqiromadhoni'. On hover or keyboard focus of the 'Kirim email' contact button, swap the title in place (blurred up-and-down, --duration-quick out / --duration-fast in) to \"Hi, nice to meet you 👋\". On mouseleave or blur, swap to \"See you next time 👋\", hold ~1.5s, then swap back to the default. Re-entering the button during the hold cancels the timer and shows the greeting again. Keep the title's reserved width/height so the layout never shifts, and keep an accessible name of '@risqiromadhoni' on the heading (aria-live off; the swap is decorative). Reuse the reflow trick (void el.offsetWidth) so the swap replays; respect prefers-reduced-motion by switching text with no motion.",
+                  "fill": "$lr-heading",
+                  "content": "@risqiromadhoni",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$lr-serif",
+                  "fontSize": 42.4,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.85
+                },
+                {
+                  "type": "frame",
+                  "id": "pHczS",
+                  "name": "Contact Row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kaRCp",
+                      "name": "Contact Links",
+                      "context": "ul[data-contact]: Email (mailto with prefilled subject/body), GitHub and LinkedIn open in a new tab. Hovering or focusing any link swaps the title to the greeting.",
+                      "gap": 20,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OSv2t",
+                          "name": "Email",
+                          "fill": "$lr-nav",
+                          "content": "Email",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Hfy49",
+                          "name": "GitHub",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mlkXK",
+                              "name": "Label",
+                              "fill": "$lr-nav",
+                              "content": "GitHub",
+                              "lineHeight": 1.4,
+                              "fontFamily": "$lr-sans",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "TPFQf",
+                              "name": "Arrow",
+                              "width": 14,
+                              "height": 14,
+                              "icon": "arrow-up-right",
+                              "library": "lucide",
+                              "fill": "$lr-nav"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "WVzsl",
+                          "name": "LinkedIn",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "yjRx9",
+                              "name": "Label",
+                              "fill": "$lr-nav",
+                              "content": "LinkedIn",
+                              "lineHeight": 1.4,
+                              "fontFamily": "$lr-sans",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "xdJrx",
+                              "name": "Arrow",
+                              "width": 14,
+                              "height": 14,
+                              "icon": "arrow-up-right",
+                              "library": "lucide",
+                              "fill": "$lr-nav"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CTHVu",
+                      "name": "Language Toggle",
+                      "context": "LanguageToggle: current language in lr-text with aria-current, other is a link in lr-nav.",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pZ9s5",
+                          "name": "ID",
+                          "fill": "$lr-text",
+                          "content": "ID",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "bTaSQ",
+                          "name": "Slash",
+                          "fill": "$lr-nav",
+                          "content": "/",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "G5ucSc",
+                          "name": "EN",
+                          "fill": "$lr-nav",
+                          "content": "EN",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "frame",
@@ -221,16 +365,56 @@
                   "gap": 19.2,
                   "children": [
                     {
-                      "type": "text",
-                      "id": "B1jsAR",
-                      "name": "Heading",
-                      "fill": "$lr-heading",
-                      "content": "Catatan",
-                      "lineHeight": 1.4,
-                      "fontFamily": "$lr-serif",
-                      "fontSize": 23.2,
-                      "fontWeight": "600",
-                      "letterSpacing": -0.46
+                      "type": "frame",
+                      "id": "j987b5",
+                      "name": "Section Header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "B1jsAR",
+                          "name": "Heading",
+                          "fill": "$lr-heading",
+                          "content": "Catatan",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-serif",
+                          "fontSize": 23.2,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.46
+                        },
+                        {
+                          "type": "frame",
+                          "id": "akm7l",
+                          "name": "See All",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "XuuhJ",
+                              "name": "Label",
+                              "fill": "$lr-nav",
+                              "content": "Lihat semua",
+                              "lineHeight": 1.4,
+                              "fontFamily": "$lr-sans",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "xc4Zq",
+                              "name": "Arrow",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "arrow-right",
+                              "library": "lucide",
+                              "fill": "$lr-nav"
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
                       "type": "frame",
@@ -951,16 +1135,56 @@
                   "gap": 19.2,
                   "children": [
                     {
-                      "type": "text",
-                      "id": "TxbKc",
-                      "name": "Heading",
-                      "fill": "$lr-heading",
-                      "content": "Tulisan",
-                      "lineHeight": 1.4,
-                      "fontFamily": "$lr-serif",
-                      "fontSize": 23.2,
-                      "fontWeight": "600",
-                      "letterSpacing": -0.46
+                      "type": "frame",
+                      "id": "g8L1J",
+                      "name": "Section Header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TxbKc",
+                          "name": "Heading",
+                          "fill": "$lr-heading",
+                          "content": "Tulisan",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-serif",
+                          "fontSize": 23.2,
+                          "fontWeight": "600",
+                          "letterSpacing": -0.46
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fIGu8",
+                          "name": "See All",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "O6c6jD",
+                              "name": "Label",
+                              "fill": "$lr-nav",
+                              "content": "Lihat semua",
+                              "lineHeight": 1.4,
+                              "fontFamily": "$lr-sans",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "vDnzC",
+                              "name": "Arrow",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "arrow-right",
+                              "library": "lucide",
+                              "fill": "$lr-nav"
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
                       "type": "frame",
@@ -1205,51 +1429,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "frame",
-              "id": "WQJh9",
-              "layoutPosition": "absolute",
-              "x": 343,
-              "y": 8,
-              "name": "Contact Trigger",
-              "context": "Contact trigger, icon + label button. Implement as <a href=\"mailto:risqi.romadhoni96@gmail.com?subject=Halo%20Risqi&body=Halo%20Risqi%2C%0A%0ASaya%20menemukan%20website%20kamu%20dan%20ingin%20menyapa.%20%F0%9F%91%8B\">. Opens the visitor's mail client with a prefilled greeting. Motion (transitions-dev): icon swap (09-icon-swap.md) from mail to arrow-up-right on hover/focus. Visible keyboard focus ring; respect prefers-reduced-motion. On narrow screens collapse to icon only with aria-label 'Kirim email ke Risqi'.",
-              "height": 34,
-              "fill": "$lr-surface",
-              "cornerRadius": 17,
-              "stroke": "$lr-line",
-              "strokeWidth": 1,
-              "gap": 6,
-              "padding": [
-                0,
-                14,
-                0,
-                12
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "IPDUD",
-                  "name": "Mail Icon",
-                  "width": 16,
-                  "height": 16,
-                  "icon": "mail",
-                  "library": "lucide",
-                  "fill": "$lr-heading"
-                },
-                {
-                  "type": "text",
-                  "id": "WKyM4",
-                  "name": "Label",
-                  "fill": "$lr-heading",
-                  "content": "Kirim email",
-                  "fontFamily": "$lr-sans",
-                  "fontSize": 13,
-                  "fontWeight": "500"
-                }
-              ]
             }
           ]
         },
@@ -1414,17 +1593,161 @@
           "layout": "vertical",
           "children": [
             {
-              "type": "text",
-              "id": "V5abIP",
-              "name": "Title",
-              "context": "Dynamic title (transitions-dev: text states swap, 04-text-states-swap.md). Default text: '@risqiromadhoni'. On hover or keyboard focus of the 'Kirim email' contact button, swap the title in place (blurred up-and-down, --duration-quick out / --duration-fast in) to \"Hi, nice to meet you 👋\". On mouseleave or blur, swap to \"See you next time 👋\", hold ~1.5s, then swap back to the default. Re-entering the button during the hold cancels the timer and shows the greeting again. Keep the title's reserved width/height so the layout never shifts, and keep an accessible name of '@risqiromadhoni' on the heading (aria-live off; the swap is decorative). Reuse the reflow trick (void el.offsetWidth) so the swap replays; respect prefers-reduced-motion by switching text with no motion.",
-              "fill": "$lr-heading",
-              "content": "@risqiromadhoni",
-              "lineHeight": 1.15,
-              "fontFamily": "$lr-serif",
-              "fontSize": 42.4,
-              "fontWeight": "600",
-              "letterSpacing": -0.85
+              "type": "frame",
+              "id": "eaVNu",
+              "name": "Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "V5abIP",
+                  "name": "Title",
+                  "context": "Dynamic title (transitions-dev: text states swap, 04-text-states-swap.md). Default text: '@risqiromadhoni'. On hover or keyboard focus of the 'Kirim email' contact button, swap the title in place (blurred up-and-down, --duration-quick out / --duration-fast in) to \"Hi, nice to meet you 👋\". On mouseleave or blur, swap to \"See you next time 👋\", hold ~1.5s, then swap back to the default. Re-entering the button during the hold cancels the timer and shows the greeting again. Keep the title's reserved width/height so the layout never shifts, and keep an accessible name of '@risqiromadhoni' on the heading (aria-live off; the swap is decorative). Reuse the reflow trick (void el.offsetWidth) so the swap replays; respect prefers-reduced-motion by switching text with no motion.",
+                  "fill": "$lr-heading",
+                  "content": "@risqiromadhoni",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$lr-serif",
+                  "fontSize": 42.4,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.85
+                },
+                {
+                  "type": "frame",
+                  "id": "ewgNu",
+                  "name": "Contact Row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "lRw9R",
+                      "name": "Contact Links",
+                      "context": "ul[data-contact]: Email (mailto with prefilled subject/body), GitHub and LinkedIn open in a new tab. Hovering or focusing any link swaps the title to the greeting.",
+                      "gap": 20,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "f6Xeh",
+                          "name": "Email",
+                          "fill": "$lr-nav",
+                          "content": "Email",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "REjfo",
+                          "name": "GitHub",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "xFbLc",
+                              "name": "Label",
+                              "fill": "$lr-nav",
+                              "content": "GitHub",
+                              "lineHeight": 1.4,
+                              "fontFamily": "$lr-sans",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "B5x8es",
+                              "name": "Arrow",
+                              "width": 14,
+                              "height": 14,
+                              "icon": "arrow-up-right",
+                              "library": "lucide",
+                              "fill": "$lr-nav"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Tnmwr",
+                          "name": "LinkedIn",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "GBHWD",
+                              "name": "Label",
+                              "fill": "$lr-nav",
+                              "content": "LinkedIn",
+                              "lineHeight": 1.4,
+                              "fontFamily": "$lr-sans",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "OveSO",
+                              "name": "Arrow",
+                              "width": 14,
+                              "height": 14,
+                              "icon": "arrow-up-right",
+                              "library": "lucide",
+                              "fill": "$lr-nav"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WI7z4",
+                      "name": "Language Toggle",
+                      "context": "LanguageToggle: current language in lr-text with aria-current, other is a link in lr-nav.",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "s0Y1yh",
+                          "name": "ID",
+                          "fill": "$lr-text",
+                          "content": "ID",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "S1iRM",
+                          "name": "Slash",
+                          "fill": "$lr-nav",
+                          "content": "/",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qN4k6",
+                          "name": "EN",
+                          "fill": "$lr-nav",
+                          "content": "EN",
+                          "lineHeight": 1.4,
+                          "fontFamily": "$lr-sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "frame",
@@ -1600,8 +1923,8 @@
                   "children": [
                     {
                       "type": "frame",
-                      "id": "oxzSZ",
-                      "name": "Heading Row",
+                      "id": "NVt0I",
+                      "name": "Section Header",
                       "width": "fill_container",
                       "justifyContent": "space_between",
                       "alignItems": "center",
@@ -1620,25 +1943,26 @@
                         },
                         {
                           "type": "frame",
-                          "id": "L5WWP",
+                          "id": "WcXwH",
                           "name": "See All",
                           "gap": 4,
                           "alignItems": "center",
                           "children": [
                             {
                               "type": "text",
-                              "id": "blcva",
-                              "name": "See All Label",
+                              "id": "Jsi06",
+                              "name": "Label",
                               "fill": "$lr-nav",
                               "content": "Lihat semua",
+                              "lineHeight": 1.4,
                               "fontFamily": "$lr-sans",
                               "fontSize": 14,
                               "fontWeight": "500"
                             },
                             {
                               "type": "icon",
-                              "id": "BjcVi",
-                              "name": "See All Icon",
+                              "id": "WtPC0",
+                              "name": "Arrow",
                               "width": 16,
                               "height": 16,
                               "icon": "arrow-right",
@@ -2369,8 +2693,8 @@
                   "children": [
                     {
                       "type": "frame",
-                      "id": "N4wrJ",
-                      "name": "Heading Row",
+                      "id": "z2OGLp",
+                      "name": "Section Header",
                       "width": "fill_container",
                       "justifyContent": "space_between",
                       "alignItems": "center",
@@ -2389,25 +2713,26 @@
                         },
                         {
                           "type": "frame",
-                          "id": "omA96",
+                          "id": "TNyv2",
                           "name": "See All",
                           "gap": 4,
                           "alignItems": "center",
                           "children": [
                             {
                               "type": "text",
-                              "id": "mJTQn",
-                              "name": "See All Label",
+                              "id": "Dqgnt",
+                              "name": "Label",
                               "fill": "$lr-nav",
                               "content": "Lihat semua",
+                              "lineHeight": 1.4,
                               "fontFamily": "$lr-sans",
                               "fontSize": 14,
                               "fontWeight": "500"
                             },
                             {
                               "type": "icon",
-                              "id": "JHQhy",
-                              "name": "See All Icon",
+                              "id": "V33aPe",
+                              "name": "Arrow",
                               "width": 16,
                               "height": 16,
                               "icon": "arrow-right",
@@ -2659,51 +2984,6 @@
                       ]
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "ZrNtl",
-              "layoutPosition": "absolute",
-              "x": 343,
-              "y": 8,
-              "name": "Contact Trigger",
-              "context": "Contact trigger, icon + label button. Implement as <a href=\"mailto:risqi.romadhoni96@gmail.com?subject=Halo%20Risqi&body=Halo%20Risqi%2C%0A%0ASaya%20menemukan%20website%20kamu%20dan%20ingin%20menyapa.%20%F0%9F%91%8B\">. Opens the visitor's mail client with a prefilled greeting. Motion (transitions-dev): icon swap (09-icon-swap.md) from mail to arrow-up-right on hover/focus. Visible keyboard focus ring; respect prefers-reduced-motion. On narrow screens collapse to icon only with aria-label 'Kirim email ke Risqi'.",
-              "height": 34,
-              "fill": "$lr-surface",
-              "cornerRadius": 17,
-              "stroke": "$lr-line",
-              "strokeWidth": 1,
-              "gap": 6,
-              "padding": [
-                0,
-                14,
-                0,
-                12
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "Woa8w",
-                  "name": "Mail Icon",
-                  "width": 16,
-                  "height": 16,
-                  "icon": "mail",
-                  "library": "lucide",
-                  "fill": "$lr-heading"
-                },
-                {
-                  "type": "text",
-                  "id": "EFdNZ",
-                  "name": "Label",
-                  "fill": "$lr-heading",
-                  "content": "Kirim email",
-                  "fontFamily": "$lr-sans",
-                  "fontSize": 13,
-                  "fontWeight": "500"
                 }
               ]
             }
@@ -3173,7 +3453,7 @@
                   "id": "MStTG",
                   "name": "Post Count",
                   "fill": "$lr-nav",
-                  "content": "21 tulisan",
+                  "content": "12 tulisan",
                   "fontFamily": "$lr-sans",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -4429,7 +4709,7 @@
                   "id": "WlSXF",
                   "name": "Year Count",
                   "fill": "$lr-nav",
-                  "content": "13 tulisan",
+                  "content": "4 tulisan",
                   "fontFamily": "$lr-sans",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -5248,7 +5528,7 @@
                   "id": "V75pw",
                   "name": "Post Count",
                   "fill": "$lr-nav",
-                  "content": "21 tulisan",
+                  "content": "12 tulisan",
                   "fontFamily": "$lr-sans",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -6502,7 +6782,7 @@
                   "id": "khoAt",
                   "name": "Year Count",
                   "fill": "$lr-nav",
-                  "content": "13 tulisan",
+                  "content": "4 tulisan",
                   "fontFamily": "$lr-sans",
                   "fontSize": 14,
                   "fontWeight": "normal"
