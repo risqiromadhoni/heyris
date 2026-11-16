@@ -1,5 +1,11 @@
 import { startLink, type Link } from "./gl-link";
-import { frameUniforms, setUniforms, TRIANGLE_VERTICES, type FrameUniforms } from "./gl-program";
+import {
+  frameUniforms,
+  openHardwareContext,
+  setUniforms,
+  TRIANGLE_VERTICES,
+  type FrameUniforms,
+} from "./gl-program";
 import { activeShader, quietZone, type SceneName, type Shader } from "./scenes";
 
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
@@ -16,7 +22,7 @@ interface Active {
  * program keeps drawing until the new one is ready.
  */
 export function runShader(canvas: HTMLCanvasElement, scene: SceneName, settled: () => void): void {
-  const gl = canvas.getContext("webgl", { antialias: false });
+  const gl = openHardwareContext(canvas);
 
   if (!gl) {
     settled();
