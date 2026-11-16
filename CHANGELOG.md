@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/risqiromadhoni/heyris/compare/v1.0.0...v1.1.0) (2026-11-16)
+
+
+### Features
+
+* **content:** publish the release, WebGL backdrop and CI notes ([#14](https://github.com/risqiromadhoni/heyris/issues/14)) ([12a07ea](https://github.com/risqiromadhoni/heyris/commit/12a07eaa771834a060f3054e788dcf6118b6ee5b))
+* **prose:** frame tables and restyle checklists ([#12](https://github.com/risqiromadhoni/heyris/issues/12)) ([e779aef](https://github.com/risqiromadhoni/heyris/commit/e779aef682af1391b95cacb36d4675415f87a615))
+
 ## [1.0.0](https://github.com/risqiromadhoni/heyris/compare/v0.0.1...v1.0.0) (2026-11-16)
 
 
