@@ -28,34 +28,39 @@ jobs:
       - uses: googleapis/release-please-action@v5.0.0
         id: release
 
-  verify:
-    name: Check, Vitest and size budgets
+  check:
+    name: Check
     needs: release-please
     if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: voidzero-dev/setup-vp@v1.22.0
-        with:
-          version-file: pnpm-workspace.yaml
-          cache: true
-      - name: Generate Astro types
-        run: vp exec astro sync
-      - name: Install Chromium for browser mode
-        run: vp exec playwright install --with-deps chromium
-      - name: Run vp check, astro check and Knip
-        run: vp run check
-      - name: Run Vitest
-        run: vp run test
-      - name: Build
-        run: vp run build
-      - name: Check size budgets
-        run: vp run size
+    uses: ./.github/workflows/check.yml
+
+  test:
+    name: Test
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
+    uses: ./.github/workflows/test.yml
+
+  e2e:
+    name: Playwright
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
+    uses: ./.github/workflows/playwright.yml
+
+  lighthouse:
+    name: Unlighthouse
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
+    uses: ./.github/workflows/unlighthouse.yml
+
+  size:
+    name: Size
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
+    uses: ./.github/workflows/size.yml
 
   deploy:
     name: Deploy to Cloudflare
-    needs: [release-please, verify]
+    needs: [release-please, check, test, e2e, lighthouse, size]
     if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15

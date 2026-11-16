@@ -5,6 +5,12 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_call:
+    inputs:
+      site:
+        description: Deployed URL to scan instead of a local production build
+        required: false
+        type: string
   workflow_dispatch:
     inputs:
       site:
@@ -16,7 +22,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-unlighthouse-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -26,6 +32,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
       - uses: voidzero-dev/setup-vp@v1.22.0
         with:
           version-file: pnpm-workspace.yaml
