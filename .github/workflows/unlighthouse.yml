@@ -3,8 +3,22 @@ name: Unlighthouse
 on:
   push:
     branches: [main]
+    paths: &paths
+      - "src/**"
+      - "public/**"
+      - "astro.config.mjs"
+      - "uno.config.ts"
+      - "void.config.ts"
+      - "env.ts"
+      - "tsconfig.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "unlighthouse.config.ts"
+      - ".github/workflows/unlighthouse.yml"
   pull_request:
     branches: [main]
+    paths: *paths
   workflow_call:
     inputs:
       site:
@@ -28,6 +42,8 @@ concurrency:
 jobs:
   scan:
     name: Lighthouse budgets
+    # Release calls this workflow after the release PR merges, so the PR itself skips it.
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
