@@ -4,7 +4,7 @@ minimumReleaseAgeExclude:
   - "@astrojs/vite-plugin-astro@0.1.2"
   - astro@7.4.11
 catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@1.5.1
+  vite: npm:@voidzero-dev/vite-plus-core@1.6.0
   vite-plus: 1.6.0
 overrides:
   vite@*: "catalog:"
