@@ -9,7 +9,7 @@
 
 ## Baseline
 
-Every file in this directory except this `UPSTREAM.md` is byte-identical to the upstream path at the commit above. This was checked by comparing each file's `git hash-object` with the blob SHAs in that commit's tree, 38 of 38 files.
+Every file in this directory except this `UPSTREAM.md` and `LICENSE` (upstream's root MIT licence, added so the copy carries its notice) is byte-identical to the upstream path at the commit above. This was checked by comparing each file's `git hash-object` with the blob SHAs in that commit's tree, 38 of 38 files.
 
 That upstream path at that commit is the pristine base for a future three-way merge.
 

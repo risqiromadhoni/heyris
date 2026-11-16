@@ -1,43 +1,33 @@
-# Astro Starter Kit: Minimal
+# heyris
+
+Source of [heyris.me](https://heyris.me), Risqi Romadhoni's personal site: writing and notes in Indonesian and English.
+
+Built with [Astro](https://astro.build) and [UnoCSS](https://unocss.dev), deployed to Cloudflare Workers with [Void](https://void.cloud), and checked with [Vite+](https://viteplus.dev).
+
+## Develop
+
+Needs Node.js 22.23.4 or later (`engines` in `package.json`). pnpm downloads the version pinned in `devEngines` itself.
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install
+pnpm astro sync
+pnpm astro dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+| Command         | What it does                                  |
+| --------------- | --------------------------------------------- |
+| `pnpm build`    | Production build into `dist/`                 |
+| `pnpm check`    | Format, lint, types and unused code           |
+| `pnpm test`     | Vitest: unit, browser and type tests          |
+| `pnpm test:e2e` | Playwright end-to-end and accessibility tests |
+| `pnpm size`     | JS and CSS size budgets, after a build        |
 
-## 🚀 Project Structure
+Conventions, layout and known pitfalls are in [`CLAUDE.md`](CLAUDE.md). Posts and notes live in `src/content/`.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Release
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Commits follow [Conventional Commits](https://www.conventionalcommits.org). release-please keeps a release PR open on `main`; merging it tags the release, runs every CI workflow, and deploys only if all of them pass.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Licence
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The code is MIT. Posts, notes and design files are all rights reserved. See [`LICENSE`](LICENSE) for which files are which.

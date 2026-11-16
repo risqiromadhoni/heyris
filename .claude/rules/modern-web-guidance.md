@@ -6,6 +6,7 @@ It's installed as a project skill in `.claude/skills/modern-web-guidance/` and r
 
 - Update: `DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 pnpx skills update modern-web-guidance -p -y`.
 - Reinstall: `DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 pnpx skills add GoogleChrome/modern-web-guidance --skill modern-web-guidance --agent claude-code --copy -y`.
+- `LICENSE` in the skill folder is upstream's Apache-2.0 licence, which must travel with the copy. After an update or reinstall, check it is still there and restore it from git if not.
 
 ## Running the CLI here
 
