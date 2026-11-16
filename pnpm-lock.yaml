@@ -198,8 +198,8 @@ importers:
         specifier: ^4.14.0
         version: 4.14.0(playwright-core@1.65.0)
       '@iconify-json/lucide':
-        specifier: ^1.2.153
-        version: 1.2.153
+        specifier: ^1.2.154
+        version: 1.2.154
       '@iconify-json/ph':
         specifier: ^1.2.2
         version: 1.2.2
@@ -1422,8 +1422,8 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
-  '@iconify-json/lucide@1.2.153':
-    resolution: {integrity: sha512-fvb2SSbCxsj6CPUl2adKGWavwV90GvCd8zT/SnW0kd4Eg/Jc/ISQPbYuFjPFOiK7ohOgDWUMGeTIzxMDDMEoHQ==}
+  '@iconify-json/lucide@1.2.154':
+    resolution: {integrity: sha512-8+fuquLzqefUqEsnQSn77laDESOd9AX5ZM9zQzL5HT9DN58DtzwMIkLXxDjX77GAQ8PF4HTMuxhShQCOynwADg==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -7993,7 +7993,7 @@ snapshots:
     dependencies:
       tslib: 2.9.1
 
-  '@iconify-json/lucide@1.2.153':
+  '@iconify-json/lucide@1.2.154':
     dependencies:
       '@iconify/types': 2.0.0
 
