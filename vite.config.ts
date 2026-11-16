@@ -61,6 +61,8 @@ export default defineConfig({
       "src/content/**",
       "CHANGELOG.md",
       ".release-please-manifest.json",
+      // Void rewrites it in its own format whenever its plugin loads.
+      "void.lock.json",
     ],
   },
   lint: {
