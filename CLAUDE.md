@@ -17,6 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - End-to-end and accessibility tests are Playwright (`pnpm test:e2e`); read `.claude/rules/playwright.md` before writing one.
 - Lighthouse budgets (in `unlighthouse.config.ts`: performance 90, accessibility 100, best practices 100, SEO 90): `pnpm build`, `pnpm astro preview`, then `pnpm unlighthouse:ci`. Stop the preview with `pnpm astro preview stop`.
 - CI in `.github/workflows/` runs the check, test, Playwright and Unlighthouse workflows on pushes and pull requests to `main`, through `voidzero-dev/setup-vp` pinned to an exact release.
+- Dependabot (`.github/dependabot.yml`) opens weekly grouped PRs for npm and GitHub Actions. Coupled packages share a group: astro with `@astrojs/*`, vite-plus with `@vitest/browser-playwright`, and `playwright` with `@playwright/test`. An astro upgrade PR still needs its exact versions updated by hand in `minimumReleaseAgeExclude` in `pnpm-workspace.yaml`. `.github/CODEOWNERS` makes `@risqiromadhoni` the owner of every file.
 - Deploy with `pnpm void:deploy` (`void deploy --platform cloudflare`). Plain `void deploy` fails without an interactive terminal, and `pnpm deploy` is a pnpm built-in, not the script.
 
 ## Conventions
