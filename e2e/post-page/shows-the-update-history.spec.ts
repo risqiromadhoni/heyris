@@ -30,8 +30,8 @@ test.describe("Post page", () => {
     await expect(items.first()).toBeHidden();
     await expect(history).toHaveAttribute("aria-expanded", "false");
 
-    // 5. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers, which has no updates
-    await page.goto("/tulisan/situs-ini-astro-void-cloudflare-workers");
+    // 5. Open the post at /tulisan/rilis-1-0-0-github-actions, which has no updates
+    await page.goto("/tulisan/rilis-1-0-0-github-actions");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(history).toHaveCount(0);
   });

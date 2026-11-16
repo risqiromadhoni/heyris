@@ -90,7 +90,7 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
     - expect: The scan reports no violations
   4. Focus the button and press Escape
     - expect: The panel closes and the button is collapsed again
-  5. Open the post at /tulisan/situs-ini-astro-void-cloudflare-workers, which has no updates
+  5. Open the post at /tulisan/rilis-1-0-0-github-actions, which has no updates
     - expect: There is no "Riwayat pembaruan" button
 
 #### 1.7. Table of contents opens beside the text, follows the reading position and scans clean
@@ -136,4 +136,17 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
   1. Open /tulisan/how-transfer-domain-to-cloudflare at 1280 and 375 pixels wide
     - expect: Every `.md-checklist__label` in the first checklist has the same left edge
   2. Run an axe scan in light and dark mode
+    - expect: The scan reports no violations
+
+#### 1.10. A wide table scrolls inside a labelled frame
+
+**File:** `e2e/post-page/frames-a-wide-table.spec.ts`
+
+**Steps:**
+  1. Open /tulisan/backdrop-webgl-renderer-software in a 375 x 812 viewport
+    - expect: The page does not scroll sideways
+    - expect: The table sits in a `.md-table` frame with role="region" and tabindex="0" whose content is wider than the frame
+  2. Focus the frame and press ArrowRight
+    - expect: The frame scrolls sideways
+  3. Run an axe scan in light and dark mode
     - expect: The scan reports no violations

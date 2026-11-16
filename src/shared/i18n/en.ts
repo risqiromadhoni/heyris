@@ -13,6 +13,8 @@ const topics: Record<Topic, string> = {
   ruby: "Ruby",
   api: "API",
   cloudflare: "Cloudflare",
+  ci: "CI",
+  web: "Web",
 };
 
 /** "1 post" or "3 posts": picks the form with `Intl.PluralRules`. */

@@ -2,6 +2,7 @@
 title: "Astro and Void on Cloudflare Workers: how this site is built"
 summary: "The technology behind this site, from Astro 7 and Void to tests and CI."
 date: 2026-11-14
+updated: 2026-11-16
 topic: astro
 ---
 
@@ -92,7 +93,7 @@ The minimum scores are:
 
 ## CI and commit history
 
-`.github/workflows` has four workflows: `check`, `test`, `playwright`, and `unlighthouse`. All four run on pushes and pull requests to `main`. The `unlighthouse` workflow can also run by hand through `workflow_dispatch`. When the `site` input is set, the job scans the deployed site instead of a local build.
+`.github/workflows` has six workflows: `check`, `test`, `playwright`, `unlighthouse`, `size`, and `release`. The `check` workflow runs on every push and pull request to `main`. The next four run only when a file that affects them changes. The `release` workflow opens the release pull request and deploys to Cloudflare. The `unlighthouse` workflow can also run by hand through `workflow_dispatch`. When the `site` input is set, the job scans the deployed site instead of a local build.
 
 The commit history starts on November 12, 2026. The commits below, from newest to oldest, mark the build stages:
 
