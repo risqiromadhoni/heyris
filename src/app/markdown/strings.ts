@@ -9,9 +9,10 @@ export interface MarkdownStrings {
   footnotes: string;
   footnoteBack: (n: number) => string;
   carousel: { label: string; previous: string; next: string };
+  table: { label: string };
 }
 
-/** Localized text for code copy buttons, heading anchors, external links, footnotes and carousels. */
+/** Localized text for code copy buttons, heading anchors, external links, footnotes, carousels and tables. */
 export function markdownStrings(locale: Locale): MarkdownStrings {
   const dictionary = dictionaryFor(locale);
 
@@ -23,5 +24,6 @@ export function markdownStrings(locale: Locale): MarkdownStrings {
     footnotes: dictionary.footnotes,
     footnoteBack: dictionary.footnote.back,
     carousel: dictionary.carousel,
+    table: dictionary.table,
   };
 }

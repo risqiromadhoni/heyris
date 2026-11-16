@@ -2,6 +2,7 @@
 import { getImage } from "astro:assets";
 import artwork from "../../../../designs/generated-4.png";
 import "./prose.css";
+import "./table.css";
 
 /** The illustration behind every wide figure, as a URL the CSS reads from `--figure-art`. */
 const backdrop = await getImage({ src: artwork, format: "webp" });

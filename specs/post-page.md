@@ -127,3 +127,13 @@ A post is one Indonesian article at `/tulisan/<slug>`, prerendered from `src/con
     - expect: The "Workflow GitHub Actions" link has aria-current="location"
   2. Open /tulisan/what-is-monorepo#workflow-github-actions in a 390 x 800 viewport
     - expect: The "Daftar isi" button stays collapsed, so the side sheet does not cover the section
+
+#### 1.9. Checklist rows line up at every width
+
+**File:** `e2e/post-page/aligns-checklist-rows.spec.ts`
+
+**Steps:**
+  1. Open /tulisan/how-transfer-domain-to-cloudflare at 1280 and 375 pixels wide
+    - expect: Every `.md-checklist__label` in the first checklist has the same left edge
+  2. Run an axe scan in light and dark mode
+    - expect: The scan reports no violations

@@ -7,6 +7,7 @@ import { footnoteLabels } from "./footnotes";
 import { headingAnchors } from "./headings";
 import { externalLinks } from "./links";
 import { localeOf } from "./source";
+import { tableFrames } from "./tables";
 
 /**
  * Options for `satteri({...})` in `astro.config.mjs`. Every plugin is a factory, so it sees the
@@ -17,7 +18,11 @@ import { localeOf } from "./source";
  */
 export const satteriOptions = {
   features: { attributes: true, directive: true },
-  mdastPlugins: [(ctx) => directiveBlocks(ctx.fileURL), (ctx) => altTextRule(ctx.fileURL)],
+  mdastPlugins: [
+    (ctx) => directiveBlocks(ctx.fileURL),
+    (ctx) => tableFrames(ctx.fileURL),
+    (ctx) => altTextRule(ctx.fileURL),
+  ],
   hastPlugins: [
     satteriHeadingIdsPlugin(),
     (ctx) => footnoteLabels(localeOf(ctx.fileURL)),
