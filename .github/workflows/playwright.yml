@@ -3,8 +3,23 @@ name: Playwright
 on:
   push:
     branches: [main]
+    paths: &paths
+      - "src/**"
+      - "public/**"
+      - "astro.config.mjs"
+      - "uno.config.ts"
+      - "void.config.ts"
+      - "env.ts"
+      - "tsconfig.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "e2e/**"
+      - "playwright.config.ts"
+      - ".github/workflows/playwright.yml"
   pull_request:
     branches: [main]
+    paths: *paths
   workflow_call:
 
 permissions:
@@ -17,6 +32,8 @@ concurrency:
 jobs:
   e2e:
     name: End-to-end and accessibility tests
+    # Release calls this workflow after the release PR merges, so the PR itself skips it.
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

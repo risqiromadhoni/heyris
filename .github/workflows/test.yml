@@ -3,8 +3,19 @@ name: Test
 on:
   push:
     branches: [main]
+    paths: &paths
+      - "src/**"
+      - "vite.config.ts"
+      - "astro.config.mjs"
+      - "env.ts"
+      - "tsconfig.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/test.yml"
   pull_request:
     branches: [main]
+    paths: *paths
   workflow_call:
 
 permissions:
@@ -17,6 +28,8 @@ concurrency:
 jobs:
   vitest:
     name: Unit, browser and type tests
+    # Release calls this workflow after the release PR merges, so the PR itself skips it.
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
