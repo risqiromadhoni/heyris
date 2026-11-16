@@ -46,7 +46,7 @@ export function checklistBlock(rows: readonly ChecklistRow[]) {
       htmlBlock("li", { className: ["md-checklist__item"] }, [
         htmlBlock(
           "span",
-          { className: ["md-checklist__icon", "i-ph-check-circle"], ariaHidden: "true" },
+          { className: ["md-checklist__icon", "i-ph-check-circle-fill"], ariaHidden: "true" },
           [],
         ),
         htmlBlock("span", { className: ["md-checklist__label"] }, [text(row.label)]),

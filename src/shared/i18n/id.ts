@@ -131,6 +131,9 @@ export const id = {
     previous: "Sebelumnya",
     next: "Berikutnya",
   },
+  table: {
+    label: "Tabel, bisa digulir",
+  },
   skipLink: "Langsung ke konten",
   notFound: {
     title: "Halaman tidak ditemukan",

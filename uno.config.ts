@@ -127,7 +127,7 @@ export default defineConfig<Theme>({
   safelist: [
     "i-ph-copy",
     "i-ph-git-commit",
-    "i-ph-check-circle",
+    "i-ph-check-circle-fill",
     "i-ph-caret-down",
     "i-ph-caret-left",
     "i-ph-caret-right",

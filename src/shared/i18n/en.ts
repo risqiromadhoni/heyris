@@ -135,6 +135,9 @@ export const en: Dictionary = {
     previous: "Previous",
     next: "Next",
   },
+  table: {
+    label: "Table, scrollable",
+  },
   skipLink: "Skip to content",
   notFound: {
     title: "Page not found",

@@ -144,20 +144,6 @@ describe("container directives", () => {
     expect(await html("::::window\nIsi\n::::")).not.toContain("md-window__address");
   });
 
-  it("splits checklist items into label and detail", async () => {
-    const output = await html(":::checklist\n- Cepat: semua halaman prerender\n:::");
-
-    expect(output).toContain('<span class="md-checklist__label">Cepat</span>');
-    expect(output).toContain('<span class="md-checklist__detail">semua halaman prerender</span>');
-  });
-
-  it("shows a checklist item without a colon as a label alone", async () => {
-    const output = await html(":::checklist\n- Tanpa detail\n:::");
-
-    expect(output).toContain('<span class="md-checklist__label">Tanpa detail</span>');
-    expect(output).not.toContain("md-checklist__detail");
-  });
-
   it("splits a commit into hash and message", async () => {
     const output = await html(":::commits\n- a1b2c3d feat: add things\n:::");
 

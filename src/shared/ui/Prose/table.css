@@ -1,0 +1,48 @@
+/* Tables: a scroll frame (`.md-table`, from src/app/markdown/tables.ts) around the GFM table */
+
+.article-prose .md-table {
+  overflow-x: auto;
+  background: var(--lr-surface);
+  border: 1px solid var(--lr-line);
+  border-radius: 8px;
+  scrollbar-width: thin;
+}
+
+.article-prose .md-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 13px/18px var(--font-dm-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Three or more columns scroll inside the frame instead of squeezing. */
+.article-prose .md-table table:has(th:nth-child(3)) {
+  min-width: 30rem;
+}
+
+.article-prose .md-table :is(th, td) {
+  padding: 9px 14px;
+  text-align: start;
+  vertical-align: top;
+  border-bottom: 1px solid var(--lr-line);
+}
+
+.article-prose .md-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.article-prose .md-table th {
+  font-weight: 600;
+  color: var(--lr-heading);
+}
+
+.article-prose .md-table td {
+  color: var(--lr-text);
+  text-wrap: pretty;
+}
+
+.article-prose .md-table code {
+  padding: 0.1em 0.35em;
+  font-size: 12px;
+  line-height: 1.5;
+}
