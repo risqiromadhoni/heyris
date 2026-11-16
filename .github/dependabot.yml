@@ -42,6 +42,10 @@ updates:
         update-types:
           - minor
           - patch
+      size-limit:
+        patterns:
+          - size-limit
+          - "@size-limit/*"
       minor-and-patch:
         patterns:
           - "*"

@@ -1,0 +1,13 @@
+[
+  {
+    "name": "WebGL backdrop JS",
+    "path": "dist/client/_astro/ShaderCanvas.*.js",
+    "limit": "4.5 kB"
+  },
+  {
+    "name": "Other JS",
+    "path": ["dist/client/_astro/*.js", "!dist/client/_astro/ShaderCanvas.*.js"],
+    "limit": "3 kB"
+  },
+  { "name": "CSS", "path": "dist/client/_astro/*.css", "limit": "14 kB" }
+]
