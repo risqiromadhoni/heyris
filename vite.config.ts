@@ -55,7 +55,13 @@ export default defineConfig({
     "*": () => ["vpr check:fix", "vp test"],
   },
   fmt: {
-    ignorePatterns: [...TOOLING_IGNORE_PATTERNS, "specs/**", "src/content/**", "CHANGELOG.md"],
+    ignorePatterns: [
+      ...TOOLING_IGNORE_PATTERNS,
+      "specs/**",
+      "src/content/**",
+      "CHANGELOG.md",
+      ".release-please-manifest.json",
+    ],
   },
   lint: {
     ignorePatterns: TOOLING_IGNORE_PATTERNS,
