@@ -5,7 +5,7 @@ The `inspo` server (`https://inspomcp.dev/api/mcp`) is an archive of captured pr
 ## When to use it
 
 - Call it when designing or redesigning a page, screen or section, when the user asks for references or what something should look like, or when the brief names an aesthetic (editorial, brutalist, dark SaaS, agency portfolio).
-- Skip it when the design is already decided: by the user's brief, by `design.pen` and `designs/` in this repo, or by a pattern already established in `src/`. When the project and Inspo disagree, the project wins.
+- Skip it when the design is already decided: by the user's brief, by `DESIGN.md` and `designs/` in this repo, or by a pattern already established in `src/`. When the project and Inspo disagree, the project wins.
 - Skip it for copy, logic, tests, config and infrastructure.
 - Pair it with the `ui-skills` MCP (see `ui-skills.md`): Inspo for the look, one ui-skill for the implementation rules.
 

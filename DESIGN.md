@@ -22,7 +22,7 @@ typography:
 
 ## Overview
 
-A quiet, text-first personal site: a short bio, an index of long posts and notes, and reading pages. Light and dark modes are both first-class, and a day or night illustration with an animated sun and moon toggle carries the atmosphere on the home page. The source of truth is `design.pen`; this document mirrors its variables and behavior notes.
+A quiet, text-first personal site: a short bio, an index of long posts and notes, and reading pages. Light and dark modes are both first-class, and a day or night illustration with an animated sun and moon toggle carries the atmosphere on the home page. This document and the implementation in `src/` are the source of truth.
 
 ## Colors
 
