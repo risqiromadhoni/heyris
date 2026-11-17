@@ -10,7 +10,7 @@ These notes were measured on the owner's self-hosted Penpot 2.19 (https://penpot
 - Penpot allows one connected plugin tab per user. Never open Penpot in a browser yourself, and never press Connect in a tab of your own: it disconnects the owner's tab.
 - "The Penpot plugin tab appears to be suspended by the browser (no heartbeat for N s)" means Chrome throttled the background tab. Work sent before the error usually finished, so check for it before redoing anything. Wait (arm a Monitor or a background timer, not a chained `sleep`) and retry. If the tab stays suspended, ask the owner to focus it.
 - Drive Penpot from one agent at a time. Every call runs in the same tab, which has a single active page, so agents working in parallel move each other's page.
-- The MCP URL can carry a `userToken`, which is a credential. Don't commit it, especially to a public repo: move it to an env-var header or the user-level MCP config first.
+- The MCP URL carries a `userToken`, which is a credential. Configure the server at user scope (`claude mcp add --scope user --transport http penpot "<url>"`, stored in `~/.claude.json`), so it works in every repo and stays out of git. Never add it to a project's `.mcp.json`. Pre-commit hooks that reformat and restage files can pull a modified `.mcp.json` into a commit you didn't mean it for.
 
 ## Before the first call
 
