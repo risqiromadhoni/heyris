@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/risqiromadhoni/heyris/compare/v1.1.0...v1.2.0) (2026-11-19)
+
+
+### Features
+
+* **home:** link previous companies in the bio ([#17](https://github.com/risqiromadhoni/heyris/issues/17)) ([b6460af](https://github.com/risqiromadhoni/heyris/commit/b6460af3d405c33af607edfbbd1a0f05571c813b))
+
 ## [1.1.0](https://github.com/risqiromadhoni/heyris/compare/v1.0.0...v1.1.0) (2026-11-16)
 
 
