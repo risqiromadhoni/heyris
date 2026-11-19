@@ -9,7 +9,7 @@ Content, all rights reserved
 The following are not covered by the MIT License. All rights reserved:
 
 - the posts and notes in src/content/
-- the design files: design.pen, DESIGN.md and designs/
+- the design files: DESIGN.md and designs/
 - the logo, favicons and app icons in public/ (favicon.*, apple-touch-icon.png, icon-*.png)
 
 Third-party files
