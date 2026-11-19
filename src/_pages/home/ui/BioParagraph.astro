@@ -1,0 +1,54 @@
+---
+import { dictionaryFor, type Locale } from "@/shared/i18n";
+import { bioSegments } from "../model/bio-links";
+
+interface Props {
+	text: string;
+	locale: Locale;
+}
+
+const { text, locale } = Astro.props;
+const strings = dictionaryFor(locale);
+---
+
+<p class="type-body">
+	{
+		bioSegments(text).map((segment) => {
+			if (segment.kind === "text") return segment.text;
+			if (segment.kind === "mail")
+				return (
+					<a href={segment.href} class="bio-link">
+						{segment.text}
+					</a>
+				);
+			return (
+				<a href={segment.href} target="_blank" rel="noopener noreferrer" class="bio-link">
+					{segment.text}
+					<span class="bio-link-icon i-lucide-arrow-up-right" aria-hidden="true" />
+					<span class="sr-only">{` ${strings.link.newTab}`}</span>
+				</a>
+			);
+		})
+	}
+</p>
+
+<style>
+	.bio-link {
+		color: var(--lr-nav);
+		text-decoration: underline;
+		text-decoration-color: var(--lr-underline);
+		text-underline-offset: 3px;
+	}
+
+	.bio-link:hover {
+		text-decoration-color: var(--lr-nav);
+	}
+
+	.bio-link-icon {
+		display: inline-block;
+		width: 0.8em;
+		height: 0.8em;
+		margin-left: 0.1em;
+		vertical-align: -0.05em;
+	}
+</style>
