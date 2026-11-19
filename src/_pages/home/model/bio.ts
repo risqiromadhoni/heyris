@@ -1,8 +1,8 @@
 import type { Locale } from "@/shared/i18n";
 
 /**
- * The home bio in two lengths. Each entry is one paragraph. BioToggle turns every `SITE.email` in
- * the text into a mail link, so the address in the copy must match `SITE.email`.
+ * The home bio in two lengths. Each entry is one paragraph. `bioSegments` turns every `SITE.email`
+ * into a mail link and each company name into a link, so both must match `bio-links.ts` exactly.
  *
  * The shape follows leerob.com: the short bio says who the author is, where they work now and
  * before, then a goal, a personal line and a contact hook. The long bio is a first-person story in

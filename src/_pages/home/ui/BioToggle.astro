@@ -1,7 +1,7 @@
 ---
-import { SITE } from "@/shared/config";
 import { dictionaryFor, type Locale } from "@/shared/i18n";
 import { bioFor } from "../model/bio";
+import BioParagraph from "./BioParagraph.astro";
 
 interface Props {
 	locale: Locale;
@@ -10,9 +10,6 @@ interface Props {
 const { locale } = Astro.props;
 const strings = dictionaryFor(locale);
 const bio = bioFor(locale);
-
-/** Splits a paragraph around the contact address so the address can be a mail link. */
-const parts = (text: string) => text.split(SITE.email);
 ---
 
 <div class="bio flex flex-col gap-[21.6px] pt-[40.3px] pb-14">
@@ -33,41 +30,11 @@ const parts = (text: string) => text.split(SITE.email);
 	</div>
 
 	<div class="bio-text bio-short">
-		{
-			bio.short.map((text) => (
-				<p class="type-body">
-					{parts(text).map((part, index) => (
-						<>
-							{index > 0 && (
-								<a href={`mailto:${SITE.email}`} class="mail-link">
-									{SITE.email}
-								</a>
-							)}
-							{part}
-						</>
-					))}
-				</p>
-			))
-		}
+		{bio.short.map((text) => <BioParagraph text={text} locale={locale} />)}
 	</div>
 
 	<div class="bio-text bio-long">
-		{
-			bio.long.map((text) => (
-				<p class="type-body">
-					{parts(text).map((part, index) => (
-						<>
-							{index > 0 && (
-								<a href={`mailto:${SITE.email}`} class="mail-link">
-									{SITE.email}
-								</a>
-							)}
-							{part}
-						</>
-					))}
-				</p>
-			))
-		}
+		{bio.long.map((text) => <BioParagraph text={text} locale={locale} />)}
 	</div>
 </div>
 
@@ -119,16 +86,5 @@ const parts = (text: string) => text.split(SITE.email);
 
 	.bio:has(input[value="long"]:checked) .bio-long {
 		display: flex;
-	}
-
-	.mail-link {
-		color: var(--lr-nav);
-		text-decoration: underline;
-		text-decoration-color: var(--lr-underline);
-		text-underline-offset: 3px;
-	}
-
-	.mail-link:hover {
-		text-decoration-color: var(--lr-nav);
 	}
 </style>
