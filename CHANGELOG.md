@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/risqiromadhoni/heyris/compare/v1.2.0...v1.3.0) (2026-11-21)
+
+
+### Features
+
+* **home:** name Jatiteknologi in the bio ([#20](https://github.com/risqiromadhoni/heyris/issues/20)) ([90e126b](https://github.com/risqiromadhoni/heyris/commit/90e126b68d7cf68904bd966f710fe4bdd6059926))
+
 ## [1.2.0](https://github.com/risqiromadhoni/heyris/compare/v1.1.0...v1.2.0) (2026-11-19)
 
 
