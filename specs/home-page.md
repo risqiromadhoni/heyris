@@ -29,7 +29,7 @@ heyris is the personal site of @risqiromadhoni, built with Astro 7 and served by
     - expect: The html element has lang="id"
     - expect: A meta charset tag declares utf-8
     - expect: A viewport meta tag sets width=device-width
-    - expect: The meta description is "Situs pribadi @risqiromadhoni, software engineer sejak 2016. Berisi tulisan teknis tentang Git, TypeScript, dan cara kerja internet, serta catatan singkat."
+    - expect: The meta description is "Situs pribadi @risqiromadhoni, software engineer sejak 2016 dan pendiri Jatiteknologi. Berisi tulisan teknis tentang Git, TypeScript, dan cara kerja internet."
 
 #### 1.3. Serves both favicons
 
