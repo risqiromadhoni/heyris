@@ -7,6 +7,7 @@ describe("bioSegments", () => {
     ["Dialog", "https://www.getdialog.io/?ref=heyris.me"],
     ["Yummy Corp", "https://www.yummycorp.com/?ref=heyris.me"],
     ["Virtual Spirit", "https://virtualspirit.me/?ref=heyris.me"],
+    ["Jatiteknologi", "https://jatiteknologi.com/?ref=heyris.me"],
   ] as const)("links %s to its site with the ref parameter", ([name, href]) => {
     expect(bioSegments(`I worked at ${name}.`)).toEqual([
       { kind: "text", text: "I worked at " },
@@ -35,12 +36,12 @@ describe("bioSegments", () => {
     ]);
   });
 
-  it.for(["id", "en"] as const)("links all three companies in the %s short bio", (locale) => {
+  it.for(["id", "en"] as const)("links all four companies in the %s short bio", (locale) => {
     const companies = bioFor(locale)
       .short.flatMap(bioSegments)
       .filter((segment) => segment.kind === "company")
       .map((segment) => segment.text);
 
-    expect(companies).toEqual(["Dialog", "Virtual Spirit", "Yummy Corp"]);
+    expect(companies).toEqual(["Dialog", "Virtual Spirit", "Yummy Corp", "Jatiteknologi"]);
   });
 });

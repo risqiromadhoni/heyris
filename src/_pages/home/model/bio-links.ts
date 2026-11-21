@@ -8,6 +8,7 @@ const COMPANIES = new Map([
   ["Dialog", "https://www.getdialog.io"],
   ["Yummy Corp", "https://www.yummycorp.com"],
   ["Virtual Spirit", "https://virtualspirit.me"],
+  ["Jatiteknologi", "https://jatiteknologi.com"],
 ]);
 
 /** One run of a bio paragraph: plain text, the contact address, or a company name with its link. */
