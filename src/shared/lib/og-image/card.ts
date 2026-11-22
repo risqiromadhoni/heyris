@@ -63,7 +63,7 @@ function escapeChar(char: string): string {
   }
 }
 
-const escapeXml = (value: string) => value.replace(/[&<>"']/g, escapeChar);
+const escapeXml = (value: string) => value.replaceAll(/[&<>"']/g, escapeChar);
 
 /** One `<text>` element. Its baseline is `y`, and its family and weight come from the font. */
 function textElement(run: Run): string {
