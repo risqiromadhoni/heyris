@@ -87,6 +87,8 @@ export default defineConfig({
     ],
     rules: {
       ...cloudflare.rules,
+      // One-line guard clauses stay; a body that spans lines needs braces.
+      curly: ["error", "multi-line"],
       // DOM scripts narrow elements with instanceof, and anti-slop already bans typeof checks.
       "@nkzw/no-instanceof": "off",
       // No React here. The rule flags every function named use*, such as Playwright's fixture `use`.
@@ -161,7 +163,6 @@ export default defineConfig({
       "anti-slop/require-readable-spacing": "error",
       "anti-slop/require-safety-comment-for-type-assertion": "error",
       // Temporary while migrating: the commit that enables each rule removes its line.
-      curly: "off",
       "unicorn/prefer-string-replace-all": "off",
       "unicorn/prefer-string-raw": "off",
       "unicorn/numeric-separators-style": "off",
