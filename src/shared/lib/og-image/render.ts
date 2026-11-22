@@ -1,6 +1,7 @@
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
 import rasteriserModule from "@resvg/resvg-wasm/index_bg.wasm?module";
-import { cardSvg, type OgCardContent } from "./card";
+import { cardSvg } from "./card";
+import type { OgCardContent } from "./card";
 import { loadCardFonts } from "./fonts";
 
 let rasteriserReady: Promise<void> | undefined;

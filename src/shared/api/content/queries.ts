@@ -1,6 +1,8 @@
 import { getCollection } from "astro:content";
-import { DEFAULT_LOCALE, type Locale } from "@/shared/i18n";
-import { entryLocale, entrySlug, newestFirst, type Note, type Post } from "./entries";
+import { DEFAULT_LOCALE } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
+import { entryLocale, entrySlug, newestFirst } from "./entries";
+import type { Note, Post } from "./entries";
 
 /** Drafts are listed in `pnpm dev` only; production output leaves them out. */
 const isListed = (entry: Post | Note): boolean => import.meta.env.DEV || entry.data.draft !== true;

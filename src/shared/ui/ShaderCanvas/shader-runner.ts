@@ -1,12 +1,9 @@
-import { startLink, type Link } from "./gl-link";
-import {
-  frameUniforms,
-  openHardwareContext,
-  setUniforms,
-  TRIANGLE_VERTICES,
-  type FrameUniforms,
-} from "./gl-program";
-import { activeShader, quietZone, type SceneName, type Shader } from "./scenes";
+import { startLink } from "./gl-link";
+import type { Link } from "./gl-link";
+import { frameUniforms, openHardwareContext, setUniforms, TRIANGLE_VERTICES } from "./gl-program";
+import type { FrameUniforms } from "./gl-program";
+import { activeShader, quietZone } from "./scenes";
+import type { SceneName, Shader } from "./scenes";
 
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
 

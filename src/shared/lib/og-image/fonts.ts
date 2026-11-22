@@ -1,4 +1,5 @@
-import { parse, type Font } from "opentype.js";
+import { parse } from "opentype.js";
+import type { Font } from "opentype.js";
 
 /** Family names the card's fonts are drawn under. They match the site's Astro font families. */
 const FONT_FAMILY = { serif: "Source Serif 4", sans: "DM Sans" } as const;

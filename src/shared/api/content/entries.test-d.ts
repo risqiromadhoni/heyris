@@ -1,7 +1,9 @@
 import { describe, expectTypeOf, it } from "vite-plus/test";
 
-import { newestFirst, readingTime, type Note, type Post } from "./entries";
-import { groupNotesByMonth, groupPostsByYear, type NoteMonth, type PostYear } from "./groups";
+import { newestFirst, readingTime } from "./entries";
+import type { Note, Post } from "./entries";
+import { groupNotesByMonth, groupPostsByYear } from "./groups";
+import type { NoteMonth, PostYear } from "./groups";
 import type { NoteIcon, Topic } from "./topics";
 
 // These pin the output of the schemas in `src/content.config.ts`, as Astro generates it.

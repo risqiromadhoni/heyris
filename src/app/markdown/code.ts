@@ -1,5 +1,6 @@
 import { fenceLanguage, highlight } from "./highlight";
-import { classes, element, present, text, type Props } from "./nodes";
+import { classes, element, present, text } from "./nodes";
+import type { Props } from "./nodes";
 import { markdownStrings } from "./strings";
 import type { HastPlugin } from "./types";
 import type { Locale } from "../../shared/i18n";

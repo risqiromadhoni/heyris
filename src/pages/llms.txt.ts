@@ -1,7 +1,8 @@
 import type { APIContext } from "astro";
 import { entrySlug, getPublishedNotes, getPublishedPosts } from "@/shared/api/content";
 import { SITE } from "@/shared/config";
-import { dictionaryFor, localizedPath, type Locale } from "@/shared/i18n";
+import { dictionaryFor, localizedPath } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 export const prerender = true;
 

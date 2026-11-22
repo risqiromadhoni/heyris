@@ -1,14 +1,10 @@
 ---
 import BaseLayout from "@/app/layouts/BaseLayout.astro";
 import { PostPage } from "@/_pages/post";
-import { entrySlug, getPosts, hasPostIn, type Post } from "@/shared/api/content";
-import {
-	counterpartPath,
-	dictionaryFor,
-	localizedPath,
-	pageTitle,
-	type Locale,
-} from "@/shared/i18n";
+import { entrySlug, getPosts, hasPostIn } from "@/shared/api/content";
+import type { Post } from "@/shared/api/content";
+import { counterpartPath, dictionaryFor, localizedPath, pageTitle } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 import { ArticleTopBar } from "@/shared/ui";
 
 export const prerender = true;

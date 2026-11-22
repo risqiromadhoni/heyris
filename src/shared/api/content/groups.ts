@@ -1,4 +1,5 @@
-import { newestFirst, type Note, type Post } from "./entries";
+import { newestFirst } from "./entries";
+import type { Note, Post } from "./entries";
 
 /** The posts of one calendar year (UTC). */
 export type PostYear = { year: number; posts: Array<Post> };

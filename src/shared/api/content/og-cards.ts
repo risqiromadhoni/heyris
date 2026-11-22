@@ -5,8 +5,8 @@ import {
   formatFullDate,
   formatMonthYear,
   localizedPath,
-  type Locale,
 } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 import type { OgCardContent } from "@/shared/lib/og-image";
 import { entrySlug } from "./entries";
 import { getNotes, getPosts } from "./queries";

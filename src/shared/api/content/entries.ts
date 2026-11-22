@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
-import { LOCALES, type Locale } from "@/shared/i18n";
+import { LOCALES } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 /** An entry of the `posts` collection. */
 export type Post = CollectionEntry<"posts">;

@@ -1,4 +1,5 @@
-import { activeIndex, findParts, linkIndexForHash, targetsOf, type Parts } from "./dom";
+import { activeIndex, findParts, linkIndexForHash, targetsOf } from "./dom";
+import type { Parts } from "./dom";
 
 // From this width the panel sits in the right gutter beside the text instead of over it.
 const ASIDE_QUERY = "(min-width: 1280px)";
