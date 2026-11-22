@@ -1,7 +1,7 @@
 interface Carousel {
   track: HTMLElement;
-  slides: HTMLElement[];
-  dots: HTMLElement[];
+  slides: Array<HTMLElement>;
+  dots: Array<HTMLElement>;
   counter: HTMLElement | undefined;
   previous: HTMLButtonElement | undefined;
   next: HTMLButtonElement | undefined;
@@ -10,7 +10,7 @@ interface Carousel {
 
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
 
-const htmlElements = (root: Element | Document, selector: string): HTMLElement[] =>
+const htmlElements = (root: Element | Document, selector: string): Array<HTMLElement> =>
   [...root.querySelectorAll(selector)].filter(
     (node): node is HTMLElement => node instanceof HTMLElement,
   );

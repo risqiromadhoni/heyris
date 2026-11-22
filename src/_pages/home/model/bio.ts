@@ -9,8 +9,8 @@ import type { Locale } from "@/shared/i18n";
  * time order. Every fact comes from the author; add none they have not confirmed.
  */
 interface Bio {
-  readonly short: readonly string[];
-  readonly long: readonly string[];
+  readonly short: ReadonlyArray<string>;
+  readonly long: ReadonlyArray<string>;
 }
 
 /** Indonesian bio. */

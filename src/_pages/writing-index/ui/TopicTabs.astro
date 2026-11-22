@@ -1,12 +1,13 @@
 ---
 import type { Post } from "@/shared/api/content";
 import { FEATURED_WRITING_TOPICS } from "@/shared/config";
-import { dictionaryFor, type Locale } from "@/shared/i18n";
+import { dictionaryFor } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 interface Props {
 	locale: Locale;
 	/** Every listed post. A featured topic with no posts gets no tab. */
-	posts: Post[];
+	posts: Array<Post>;
 }
 
 const TAB =

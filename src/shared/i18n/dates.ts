@@ -1,4 +1,5 @@
-import { INTL_TAG, type Locale } from "./locale";
+import { INTL_TAG } from "./locale";
+import type { Locale } from "./locale";
 
 /** "Oktober 2026" or "October 2026", in UTC. */
 export function formatMonthYear(date: Date, locale: Locale): string {

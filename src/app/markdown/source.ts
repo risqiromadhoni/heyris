@@ -1,4 +1,5 @@
-import { DEFAULT_LOCALE, LOCALES, type Locale } from "../../shared/i18n/locale";
+import { DEFAULT_LOCALE, LOCALES } from "../../shared/i18n/locale";
+import type { Locale } from "../../shared/i18n/locale";
 
 const CONTENT_LOCALE = /\/content\/[^/]+\/([^/]+)\//;
 

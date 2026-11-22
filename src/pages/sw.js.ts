@@ -7,8 +7,9 @@ export const prerender = true;
 const PLACEHOLDER = 'const VERSION = "dev";';
 
 export const GET: APIRoute = () => {
-  if (!source.includes(PLACEHOLDER))
+  if (!source.includes(PLACEHOLDER)) {
     throw new Error(`service-worker.js must declare ${PLACEHOLDER}`);
+  }
 
   // Prerendering runs once per build, so the version changes with every build.
   const version = Date.now().toString(36);

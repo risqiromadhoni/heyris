@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
-import { LOCALES, type Locale } from "@/shared/i18n";
+import { LOCALES } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 /** An entry of the `posts` collection. */
 export type Post = CollectionEntry<"posts">;
@@ -47,7 +48,7 @@ export function readingTime(entry: Post | Note): number {
 }
 
 /** A copy of the entries, newest first by date. Entries on the same date keep id order. */
-export function newestFirst<T extends Post | Note>(entries: readonly T[]): T[] {
+export function newestFirst<T extends Post | Note>(entries: ReadonlyArray<T>): Array<T> {
   return [...entries].sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id),
   );

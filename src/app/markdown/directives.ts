@@ -5,7 +5,8 @@ import { checklistBlock, commitsBlock } from "./blocks/lists";
 import { splitCommit, splitFirst } from "./blocks/parse";
 import { windowBlock } from "./blocks/window";
 import { describeSource, localeOf } from "./source";
-import { markdownStrings, type MarkdownStrings } from "./strings";
+import { markdownStrings } from "./strings";
+import type { MarkdownStrings } from "./strings";
 import { text } from "./nodes";
 import type { MdastPlugin } from "./types";
 

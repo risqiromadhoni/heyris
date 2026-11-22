@@ -22,6 +22,6 @@ export default defineConfig({
     command: "astro dev --ignore-lock",
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
-    gracefulShutdown: { signal: "SIGTERM", timeout: 5_000 },
+    gracefulShutdown: { signal: "SIGTERM", timeout: 5000 },
   },
 });

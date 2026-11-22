@@ -1,7 +1,8 @@
 ---
 import { FilterSearch } from "@/features/filter-entries";
 import { getNoteListing, groupNotesByMonth, pinnedNotes } from "@/shared/api/content";
-import { dictionaryFor, formatMonthYear, type Locale } from "@/shared/i18n";
+import { dictionaryFor, formatMonthYear } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 import { RailSection } from "@/shared/ui";
 import NoteRow from "./NoteRow.astro";
 import PinnedNoteCard from "./PinnedNoteCard.astro";

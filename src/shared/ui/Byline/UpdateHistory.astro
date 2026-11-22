@@ -1,12 +1,13 @@
 ---
-import { dictionaryFor, formatFullDate, type Locale } from "@/shared/i18n";
+import { dictionaryFor, formatFullDate } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 interface Props {
 	locale: Locale;
 	/** First publication, at UTC midnight. */
 	published: Date;
 	/** Each update, at UTC midnight, in any order. */
-	updated: readonly Date[];
+	updated: ReadonlyArray<Date>;
 }
 
 const { locale, published, updated } = Astro.props;

@@ -1,5 +1,6 @@
 import { markdownDocument, updatedField, yamlString } from "@/shared/lib";
-import { entryLocale, type Post } from "@/shared/api/content";
+import { entryLocale } from "@/shared/api/content";
+import type { Post } from "@/shared/api/content";
 import { INTL_TAG } from "@/shared/i18n";
 
 /**

@@ -1,4 +1,5 @@
-import { activeIndex, findParts, linkIndexForHash, targetsOf, type Parts } from "./dom";
+import { activeIndex, findParts, linkIndexForHash, targetsOf } from "./dom";
+import type { Parts } from "./dom";
 
 // From this width the panel sits in the right gutter beside the text instead of over it.
 const ASIDE_QUERY = "(min-width: 1280px)";
@@ -125,7 +126,7 @@ function mountTableOfContents(parts: Parts): void {
 
   panel.addEventListener("click", (event) => {
     const link = event.target instanceof Element ? event.target.closest("[data-toc-link]") : null;
-    const index = links.findIndex((candidate) => candidate === link);
+    const index = link instanceof HTMLAnchorElement ? links.indexOf(link) : -1;
 
     if (index === -1) return;
 

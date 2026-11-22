@@ -1,5 +1,6 @@
 ---
-import { dictionaryFor, type Locale } from "@/shared/i18n";
+import { dictionaryFor } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 interface Props {
 	locale: Locale;
@@ -18,7 +19,7 @@ interface Service {
 	icon?: string;
 }
 
-const services: Service[] = [
+const services: Array<Service> = [
 	{ name: "ChatGPT", href: `https://chatgpt.com/?q=${prompt}`, icon: "i-simple-icons-openai" },
 	{ name: "Claude", href: `https://claude.ai/new?q=${prompt}`, icon: "i-simple-icons-claude" },
 	{

@@ -37,7 +37,7 @@ function arrow(direction: "previous" | "next", label: string) {
  * scrolls without JavaScript. The first slide and dot start active; the client script moves them.
  */
 export function carouselBlock<C extends { type: string }>(
-  slides: readonly C[],
+  slides: ReadonlyArray<C>,
   strings: CarouselStrings,
 ) {
   const total = slides.length;

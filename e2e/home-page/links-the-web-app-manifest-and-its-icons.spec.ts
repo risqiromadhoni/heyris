@@ -3,6 +3,12 @@
 
 import { expect, test } from "../fixtures";
 
+interface WebManifest {
+  name: string;
+  start_url: string;
+  icons: Array<{ src: string; sizes: string; purpose: string }>;
+}
+
 test.describe("Home page", () => {
   test("Links the web app manifest and its icons", async ({ page }) => {
     // 1. Open the home page at /
@@ -26,7 +32,7 @@ test.describe("Home page", () => {
     // 2. Request /manifest.webmanifest
     const response = await page.request.get("/manifest.webmanifest");
     expect(response.status()).toBe(200);
-    const manifest = await response.json();
+    const manifest: WebManifest = await response.json();
     expect(manifest).toMatchObject({ name: "Risqi Romadhoni", start_url: "/" });
     expect(manifest.icons).toEqual([
       expect.objectContaining({ sizes: "192x192", purpose: "any" }),

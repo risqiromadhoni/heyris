@@ -1,7 +1,7 @@
 import type { Topic } from "@/shared/api/content/topics";
 
 /** Topics the writing index shows as tabs, in this order. Entries on other topics appear under "Semua" only. */
-export const FEATURED_WRITING_TOPICS: readonly Topic[] = [
+export const FEATURED_WRITING_TOPICS: ReadonlyArray<Topic> = [
   "git",
   "monorepo",
   "networking",
@@ -11,7 +11,7 @@ export const FEATURED_WRITING_TOPICS: readonly Topic[] = [
 ];
 
 /** Topics the notes index shows as pills, in this order. Entries on other topics appear under "Semua" only. */
-export const FEATURED_NOTE_TOPICS: readonly Topic[] = [
+export const FEATURED_NOTE_TOPICS: ReadonlyArray<Topic> = [
   "api",
   "react",
   "ruby",

@@ -1,14 +1,7 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import {
-  entryLocale,
-  entrySlug,
-  foreignLocale,
-  newestFirst,
-  readingTime,
-  type Note,
-  type Post,
-} from "./entries";
+import { entryLocale, entrySlug, foreignLocale, newestFirst, readingTime } from "./entries";
+import type { Note, Post } from "./entries";
 import { groupNotesByMonth, groupPostsByYear, pinnedNotes } from "./groups";
 
 function post(id: string, date: string, body = ""): Post {
@@ -45,7 +38,7 @@ function note(id: string, date: string, pinned = false): Note {
   };
 }
 
-const ids = (entries: readonly (Post | Note)[]) => entries.map((entry) => entry.id);
+const ids = (entries: ReadonlyArray<Post | Note>) => entries.map((entry) => entry.id);
 
 describe("entry ids", () => {
   it("reads the locale and the slug from the id", () => {

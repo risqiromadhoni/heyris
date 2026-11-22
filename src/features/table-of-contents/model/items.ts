@@ -25,7 +25,7 @@ const ANCHOR_SUFFIX = /\s*#$/;
  * The sections of an article in reading order, three levels deep (`h2` to `h4`), without the
  * footnotes heading, and with the `#` of the heading anchor removed from the `h2` and `h3` titles.
  */
-export function tocItems(headings: readonly RenderedHeading[]): TocItem[] {
+export function tocItems(headings: ReadonlyArray<RenderedHeading>): Array<TocItem> {
   return headings.flatMap((heading) => {
     if (heading.slug === FOOTNOTES_SLUG) return [];
 

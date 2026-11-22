@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
-import { localizedPath, type Locale } from "@/shared/i18n";
+import { localizedPath } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 /**
  * Permanent redirect from a post URL of the previous heyris.me to the same slug in a locale.

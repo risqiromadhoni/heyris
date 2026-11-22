@@ -1,11 +1,7 @@
 ---
 import { SITE } from "@/shared/config";
-import {
-	dictionaryFor,
-	formatFullDate,
-	formatMonthYear,
-	type Locale,
-} from "@/shared/i18n";
+import { dictionaryFor, formatFullDate, formatMonthYear } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 import Artwork from "../Artwork/Artwork.astro";
 import UpdateHistory from "./UpdateHistory.astro";
 
@@ -18,7 +14,7 @@ interface Props {
 	/** Reading time in minutes. Posts omit it. */
 	minutes?: number;
 	/** Dates the entry was updated. A clock button beside the date shows them when present. */
-	updated?: readonly Date[];
+	updated?: ReadonlyArray<Date>;
 }
 
 const { locale, date, precision, minutes, updated = [] } = Astro.props;

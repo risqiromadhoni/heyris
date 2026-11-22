@@ -18,7 +18,7 @@ function chrome(address: string | undefined) {
 /** `::window{address=…}`: browser chrome around its content. */
 export function windowBlock<C extends { type: string }>(
   address: string | undefined,
-  children: readonly C[],
+  children: ReadonlyArray<C>,
 ) {
   return htmlBlock("div", { className: ["md-window"] }, [
     chrome(address),

@@ -1,4 +1,5 @@
-import { DEFAULT_LOCALE, type Locale } from "./locale";
+import { DEFAULT_LOCALE } from "./locale";
+import type { Locale } from "./locale";
 
 /**
  * Localized path segment of each collection. This is the only TypeScript file that knows them.

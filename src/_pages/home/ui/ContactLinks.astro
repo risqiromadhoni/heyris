@@ -1,6 +1,7 @@
 ---
 import { SITE } from "@/shared/config";
-import { dictionaryFor, type Locale } from "@/shared/i18n";
+import { dictionaryFor } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 interface Props {
 	locale: Locale;
@@ -16,7 +17,7 @@ interface Row {
 	external: boolean;
 }
 
-const rows: Row[] = [
+const rows: Array<Row> = [
 	{ name: strings.home.contactEmail, href: mailto, external: false },
 	{ name: "GitHub", href: SITE.github, external: true },
 	{ name: "LinkedIn", href: SITE.linkedin, external: true },

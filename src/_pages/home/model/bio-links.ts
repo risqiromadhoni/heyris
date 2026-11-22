@@ -17,7 +17,7 @@ export type BioSegment =
   | { readonly kind: "mail"; readonly text: string; readonly href: string }
   | { readonly kind: "company"; readonly text: string; readonly href: string };
 
-const escape = (value: string) => value.replaceAll(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escape = (value: string) => value.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
 
 const TOKEN = new RegExp(`\\b(${[SITE.email, ...COMPANIES.keys()].map(escape).join("|")})\\b`, "u");
 
@@ -42,7 +42,7 @@ function segmentFor(part: string): BioSegment {
  * Splits a bio paragraph so the contact address becomes a mail link and each company name a link
  * to the company's site with `?ref=heyris.me`. Names match whole words only, so "Yummyshop" stays text.
  */
-export function bioSegments(paragraph: string): BioSegment[] {
+export function bioSegments(paragraph: string): Array<BioSegment> {
   // `split` with a capture group keeps each match as its own part.
   return paragraph
     .split(TOKEN)

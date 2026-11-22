@@ -1,6 +1,7 @@
 import rss from "@astrojs/rss";
 import { entrySlug, getPublishedNotes, getPublishedPosts } from "@/shared/api/content";
-import { dictionaryFor, INTL_TAG, localizedPath, type Locale } from "@/shared/i18n";
+import { dictionaryFor, INTL_TAG, localizedPath } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 
 /**
  * RSS 2.0 feed of one locale's published posts and notes, newest first, with absolute links. A

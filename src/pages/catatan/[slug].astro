@@ -1,14 +1,10 @@
 ---
 import BaseLayout from "@/app/layouts/BaseLayout.astro";
 import { NotePage } from "@/_pages/note";
-import { entrySlug, getNotes, hasNoteIn, type Note } from "@/shared/api/content";
-import {
-	counterpartPath,
-	dictionaryFor,
-	localizedPath,
-	pageTitle,
-	type Locale,
-} from "@/shared/i18n";
+import { entrySlug, getNotes, hasNoteIn } from "@/shared/api/content";
+import type { Note } from "@/shared/api/content";
+import { counterpartPath, dictionaryFor, localizedPath, pageTitle } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 import { ArticleTopBar } from "@/shared/ui";
 
 export const prerender = true;

@@ -1,4 +1,5 @@
-import { satteriHeadingIdsPlugin, type SatteriProcessorOptions } from "@astrojs/markdown-satteri";
+import { satteriHeadingIdsPlugin } from "@astrojs/markdown-satteri";
+import type { SatteriProcessorOptions } from "@astrojs/markdown-satteri";
 
 import { altTextRule } from "./alt-text";
 import { codeBlocks } from "./code";

@@ -8,7 +8,7 @@ export const yamlString = (value: string): string => JSON.stringify(value);
  * The `updated` field as a YAML list of `YYYY-MM-DD` dates, oldest first, or no field when the
  * entry was never updated.
  */
-export function updatedField(dates: readonly Date[]): FrontmatterField[] {
+export function updatedField(dates: ReadonlyArray<Date>): Array<FrontmatterField> {
   if (dates.length === 0) return [];
 
   const days = [...dates]
@@ -22,7 +22,7 @@ export function updatedField(dates: readonly Date[]): FrontmatterField[] {
  * The raw Markdown of one entry: YAML frontmatter, a blank line, then the body exactly as
  * authored, so its container directives stay readable.
  */
-export function markdownDocument(fields: readonly FrontmatterField[], body: string): string {
+export function markdownDocument(fields: ReadonlyArray<FrontmatterField>, body: string): string {
   const frontmatter = fields.map(([key, yaml]) => `${key}: ${yaml}`).join("\n");
   const text = body.endsWith("\n") ? body : `${body}\n`;
 

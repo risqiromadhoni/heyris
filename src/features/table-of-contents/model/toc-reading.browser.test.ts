@@ -37,11 +37,15 @@ describe("table of contents reading position", () => {
       .dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
     // Stop at "Dua" for a few frames, as a smooth scroll passes it on the way.
     heading("dua").scrollIntoView();
-    await new Promise((resolve) => setTimeout(resolve, 80));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 80);
+    });
     heading("tiga").scrollIntoView();
 
     await expect.element(link("Tiga")).toHaveAttribute("aria-current", "location");
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 300);
+    });
     observer.disconnect();
 
     expect([...marked]).toEqual(["Tiga"]);
@@ -91,12 +95,16 @@ describe("table of contents reading position", () => {
   it("stays closed for a fragment that is not a section, or over the text", async () => {
     await page.viewport(1440, 900);
     loadWithHash("#lain");
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    });
     expect(panelHidden()).toBe(true);
 
     await page.viewport(414, 896);
     loadWithHash("#dua");
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    });
     expect(panelHidden()).toBe(true);
   });
 });

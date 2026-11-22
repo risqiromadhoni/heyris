@@ -5,8 +5,8 @@ import {
   formatFullDate,
   formatMonthYear,
   localizedPath,
-  type Locale,
 } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
 import type { OgCardContent } from "@/shared/lib/og-image";
 import { entrySlug } from "./entries";
 import { getNotes, getPosts } from "./queries";
@@ -22,7 +22,7 @@ interface OgCard {
  * post and note in its own locale. An English card exists only for an English entry, the same rule
  * the pages follow. Drafts follow the page rule too.
  */
-export async function ogCards(): Promise<OgCard[]> {
+export async function ogCards(): Promise<Array<OgCard>> {
   const perLocale = await Promise.all(LOCALES.map(cardsOf));
 
   return perLocale.flat();
@@ -33,7 +33,7 @@ const card = (path: string, title: string, meta: string): OgCard => ({
   content: { title, siteName: SITE.name, meta },
 });
 
-async function cardsOf(locale: Locale): Promise<OgCard[]> {
+async function cardsOf(locale: Locale): Promise<Array<OgCard>> {
   const strings = dictionaryFor(locale);
   const [posts, notes] = await Promise.all([getPosts(locale), getNotes(locale)]);
 

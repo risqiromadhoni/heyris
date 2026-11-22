@@ -1,6 +1,8 @@
 import { getCollection } from "astro:content";
-import { DEFAULT_LOCALE, type Locale } from "@/shared/i18n";
-import { entryLocale, entrySlug, newestFirst, type Note, type Post } from "./entries";
+import { DEFAULT_LOCALE } from "@/shared/i18n";
+import type { Locale } from "@/shared/i18n";
+import { entryLocale, entrySlug, newestFirst } from "./entries";
+import type { Note, Post } from "./entries";
 
 /** Drafts are listed in `pnpm dev` only; production output leaves them out. */
 const isListed = (entry: Post | Note): boolean => import.meta.env.DEV || entry.data.draft !== true;
@@ -9,7 +11,7 @@ const isListed = (entry: Post | Note): boolean => import.meta.env.DEV || entry.d
  * What a locale's listings show, newest first: its own entry for each slug, and the default
  * locale's entry where the slug has no translation. Expects drafts to be filtered already.
  */
-function withFallback<T extends Post | Note>(entries: readonly T[], locale: Locale): T[] {
+function withFallback<T extends Post | Note>(entries: ReadonlyArray<T>, locale: Locale): Array<T> {
   const translated = new Set(
     entries.flatMap((entry) => (entryLocale(entry.id) === locale ? [entrySlug(entry.id)] : [])),
   );
@@ -24,7 +26,7 @@ function withFallback<T extends Post | Note>(entries: readonly T[], locale: Loca
 }
 
 /** The posts of a locale only, newest first. Drafts appear in `pnpm dev` only. */
-export async function getPosts(locale: Locale): Promise<Post[]> {
+export async function getPosts(locale: Locale): Promise<Array<Post>> {
   const posts = await getCollection(
     "posts",
     (entry) => entryLocale(entry.id) === locale && isListed(entry),
@@ -34,7 +36,7 @@ export async function getPosts(locale: Locale): Promise<Post[]> {
 }
 
 /** The notes of a locale only, newest first. Drafts appear in `pnpm dev` only. */
-export async function getNotes(locale: Locale): Promise<Note[]> {
+export async function getNotes(locale: Locale): Promise<Array<Note>> {
   const notes = await getCollection(
     "notes",
     (entry) => entryLocale(entry.id) === locale && isListed(entry),
@@ -47,7 +49,7 @@ export async function getNotes(locale: Locale): Promise<Note[]> {
  * The posts an index, the home page or a related-note list shows in a locale: every post, with the
  * Indonesian entry where there is no translation. Drafts appear in `pnpm dev` only.
  */
-export async function getPostListing(locale: Locale): Promise<Post[]> {
+export async function getPostListing(locale: Locale): Promise<Array<Post>> {
   return withFallback(await getCollection("posts", isListed), locale);
 }
 
@@ -55,7 +57,7 @@ export async function getPostListing(locale: Locale): Promise<Post[]> {
  * The notes an index, the home page or a note's neighbours show in a locale, with the Indonesian
  * entry where there is no translation. Drafts appear in `pnpm dev` only.
  */
-export async function getNoteListing(locale: Locale): Promise<Note[]> {
+export async function getNoteListing(locale: Locale): Promise<Array<Note>> {
   return withFallback(await getCollection("notes", isListed), locale);
 }
 
@@ -110,7 +112,7 @@ export async function getNewestPost(locale: Locale): Promise<Post | undefined> {
 }
 
 /** The published posts of a locale, newest first. Unlike `getPosts`, drafts never appear, even in `pnpm dev`. */
-export async function getPublishedPosts(locale: Locale): Promise<Post[]> {
+export async function getPublishedPosts(locale: Locale): Promise<Array<Post>> {
   const posts = await getCollection(
     "posts",
     (entry) => entryLocale(entry.id) === locale && entry.data.draft !== true,
@@ -120,7 +122,7 @@ export async function getPublishedPosts(locale: Locale): Promise<Post[]> {
 }
 
 /** The published notes of a locale, newest first. Unlike `getNotes`, drafts never appear, even in `pnpm dev`. */
-export async function getPublishedNotes(locale: Locale): Promise<Note[]> {
+export async function getPublishedNotes(locale: Locale): Promise<Array<Note>> {
   const notes = await getCollection(
     "notes",
     (entry) => entryLocale(entry.id) === locale && entry.data.draft !== true,

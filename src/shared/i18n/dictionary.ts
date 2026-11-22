@@ -1,5 +1,6 @@
 import { en } from "./en";
-import { id, type Dictionary } from "./id";
+import { id } from "./id";
+import type { Dictionary } from "./id";
 import type { Locale } from "./locale";
 
 /** The interface strings for a locale. */

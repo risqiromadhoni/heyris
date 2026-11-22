@@ -13,7 +13,7 @@ export interface ChecklistRow {
 }
 
 /** `:::commits`: one row per commit, with the full message in the `title` tooltip. */
-export function commitsBlock(rows: readonly CommitRow[]) {
+export function commitsBlock(rows: ReadonlyArray<CommitRow>) {
   return htmlBlock(
     "ul",
     { className: ["md-commits"] },
@@ -38,7 +38,7 @@ export function commitsBlock(rows: readonly CommitRow[]) {
 }
 
 /** `:::checklist`: a check icon, the label and the detail of each row. */
-export function checklistBlock(rows: readonly ChecklistRow[]) {
+export function checklistBlock(rows: ReadonlyArray<ChecklistRow>) {
   return htmlBlock(
     "ul",
     { className: ["md-checklist"] },

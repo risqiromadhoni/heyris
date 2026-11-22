@@ -2,7 +2,8 @@ import { describe, expectTypeOf, it } from "vite-plus/test";
 
 import { en } from "./en";
 import type { Dictionary } from "./id";
-import { counterpartPath, dictionaryFor, localizedPath, type Locale } from "./index";
+import { counterpartPath, dictionaryFor, localizedPath } from "./index";
+import type { Locale } from "./index";
 
 describe("locales", () => {
   it("are Indonesian and English only", () => {
