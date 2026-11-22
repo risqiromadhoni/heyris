@@ -23,14 +23,14 @@
     "prepare": "vp config && void prepare"
   },
   "dependencies": {
-    "astro": "^7.4.11"
+    "astro": "^7.4.13"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "@astrojs/cloudflare": "^14.4.7",
-    "@astrojs/markdown-satteri": "0.4.9",
+    "@astrojs/cloudflare": "^14.4.9",
+    "@astrojs/markdown-satteri": "0.4.10",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/sitemap": "^3.7.6",
     "@axe-core/playwright": "^4.14.0",
     "@cloudflare/oxlint-config": "0.1.0",
     "@iconify-json/lucide": "^1.2.154",
