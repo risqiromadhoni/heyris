@@ -18,7 +18,7 @@ interface Service {
 	icon?: string;
 }
 
-const services: Service[] = [
+const services: Array<Service> = [
 	{ name: "ChatGPT", href: `https://chatgpt.com/?q=${prompt}`, icon: "i-simple-icons-openai" },
 	{ name: "Claude", href: `https://claude.ai/new?q=${prompt}`, icon: "i-simple-icons-claude" },
 	{

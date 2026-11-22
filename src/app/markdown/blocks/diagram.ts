@@ -15,7 +15,7 @@ function connector() {
 }
 
 /** `:::diagram`: boxes in order, each joined to the next by a connector. */
-export function diagramBlock(boxes: readonly DiagramBox[]) {
+export function diagramBlock(boxes: ReadonlyArray<DiagramBox>) {
   return htmlBlock(
     "ol",
     { className: ["md-diagram"] },

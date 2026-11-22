@@ -5,7 +5,7 @@ const IDLE_TIMEOUT_MS = 1000;
 const FALLBACK_DELAY_MS = 200;
 
 /** The backdrop starts first, so the panel's compile begins only once the backdrop's program is ready. */
-const SCENE_ORDER: readonly SceneName[] = ["backdrop", "panel"];
+const SCENE_ORDER: ReadonlyArray<SceneName> = ["backdrop", "panel"];
 
 interface ShaderJob {
   readonly canvas: HTMLCanvasElement;
@@ -30,7 +30,7 @@ function whenIdle(task: () => void): void {
 }
 
 /** Run the jobs in turn: each starts once the one before it has its program, or knows it has none. */
-function startNext(jobs: readonly ShaderJob[]): void {
+function startNext(jobs: ReadonlyArray<ShaderJob>): void {
   const [job, ...rest] = jobs;
 
   if (!job) return;
@@ -43,7 +43,7 @@ export function mountShaderCanvases(): void {
   const canvases = document.querySelectorAll("canvas[data-shader-scene]");
 
   whenIdle(() => {
-    const jobs: ShaderJob[] = [];
+    const jobs: Array<ShaderJob> = [];
 
     canvases.forEach((element) => {
       if (!(element instanceof HTMLCanvasElement)) return;

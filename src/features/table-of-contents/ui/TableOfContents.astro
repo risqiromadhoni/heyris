@@ -5,7 +5,7 @@ import type { TocItem } from "../model/items";
 interface Props {
 	locale: Locale;
 	/** The article's sections, from `tocItems`. Render the component only when there is one. */
-	items: readonly TocItem[];
+	items: ReadonlyArray<TocItem>;
 }
 
 const { locale, items } = Astro.props;

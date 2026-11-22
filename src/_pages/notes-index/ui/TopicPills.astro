@@ -6,7 +6,7 @@ import { dictionaryFor, type Locale } from "@/shared/i18n";
 interface Props {
 	locale: Locale;
 	/** Every listed note, pinned ones included, so the counts agree with the page. A featured topic with no notes gets no pill. */
-	notes: Note[];
+	notes: Array<Note>;
 }
 
 const PILL =

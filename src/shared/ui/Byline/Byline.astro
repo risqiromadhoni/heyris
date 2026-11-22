@@ -18,7 +18,7 @@ interface Props {
 	/** Reading time in minutes. Posts omit it. */
 	minutes?: number;
 	/** Dates the entry was updated. A clock button beside the date shows them when present. */
-	updated?: readonly Date[];
+	updated?: ReadonlyArray<Date>;
 }
 
 const { locale, date, precision, minutes, updated = [] } = Astro.props;

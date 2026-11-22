@@ -12,13 +12,13 @@ describe("content schema", () => {
   });
 
   it("turns `updated` into a list of dates, empty when missing", () => {
-    expectTypeOf<Post["data"]["updated"]>().toEqualTypeOf<Date[]>();
-    expectTypeOf<Note["data"]["updated"]>().toEqualTypeOf<Date[]>();
+    expectTypeOf<Post["data"]["updated"]>().toEqualTypeOf<Array<Date>>();
+    expectTypeOf<Note["data"]["updated"]>().toEqualTypeOf<Array<Date>>();
   });
 
   it("makes defaulted fields required", () => {
     expectTypeOf<Post["data"]["draft"]>().toEqualTypeOf<boolean>();
-    expectTypeOf<Note["data"]["tags"]>().toEqualTypeOf<string[]>();
+    expectTypeOf<Note["data"]["tags"]>().toEqualTypeOf<Array<string>>();
     expectTypeOf<Note["data"]["pinned"]>().toEqualTypeOf<boolean>();
   });
 
@@ -41,10 +41,10 @@ describe("content schema", () => {
 
 describe("entry helpers", () => {
   it("keep the entry type", () => {
-    expectTypeOf(newestFirst<Note>).returns.toEqualTypeOf<Note[]>();
-    expectTypeOf(groupPostsByYear).returns.toEqualTypeOf<PostYear[]>();
-    expectTypeOf(groupNotesByMonth).returns.toEqualTypeOf<NoteMonth[]>();
-    expectTypeOf<PostYear["posts"]>().toEqualTypeOf<Post[]>();
+    expectTypeOf(newestFirst<Note>).returns.toEqualTypeOf<Array<Note>>();
+    expectTypeOf(groupPostsByYear).returns.toEqualTypeOf<Array<PostYear>>();
+    expectTypeOf(groupNotesByMonth).returns.toEqualTypeOf<Array<NoteMonth>>();
+    expectTypeOf<PostYear["posts"]>().toEqualTypeOf<Array<Post>>();
   });
 
   it("accept only posts and notes", () => {

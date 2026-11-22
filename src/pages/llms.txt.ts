@@ -9,7 +9,7 @@ export const prerender = true;
 const itemLine = (site: URL, title: string, path: string, summary: string) =>
   `- [${title}](${new URL(path, site).href}): ${summary}`;
 
-async function postLines(site: URL, locale: Locale): Promise<string[]> {
+async function postLines(site: URL, locale: Locale): Promise<Array<string>> {
   const posts = await getPublishedPosts(locale);
 
   return posts.map((post) =>
@@ -22,7 +22,7 @@ async function postLines(site: URL, locale: Locale): Promise<string[]> {
   );
 }
 
-async function noteLines(site: URL, locale: Locale): Promise<string[]> {
+async function noteLines(site: URL, locale: Locale): Promise<Array<string>> {
   const notes = await getPublishedNotes(locale);
 
   return notes.map((note) =>

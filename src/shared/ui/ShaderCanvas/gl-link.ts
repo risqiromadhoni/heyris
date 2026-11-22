@@ -102,7 +102,7 @@ export function startLink(gl: WebGLRenderingContext, fragmentSource: string, don
     else later(() => awaitParallel(program, completion));
   };
 
-  const runInFrames = (steps: readonly (() => void)[]) => {
+  const runInFrames = (steps: ReadonlyArray<() => void>) => {
     const [step, ...rest] = steps;
 
     if (!step) return;

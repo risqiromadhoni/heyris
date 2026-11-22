@@ -1,7 +1,7 @@
 ---
 interface Props {
 	/** The note's `tags` field, shown as pills in the order written. */
-	tags: readonly string[];
+	tags: ReadonlyArray<string>;
 }
 
 const { tags } = Astro.props;

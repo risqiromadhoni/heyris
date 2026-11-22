@@ -47,7 +47,7 @@ export function readingTime(entry: Post | Note): number {
 }
 
 /** A copy of the entries, newest first by date. Entries on the same date keep id order. */
-export function newestFirst<T extends Post | Note>(entries: readonly T[]): T[] {
+export function newestFirst<T extends Post | Note>(entries: ReadonlyArray<T>): Array<T> {
   return [...entries].sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id),
   );

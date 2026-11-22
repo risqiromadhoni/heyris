@@ -7,8 +7,8 @@ import { expect, test } from "../fixtures";
 const FILE_EXTENSION = /\.[a-z0-9]+$/i;
 
 interface PageScan {
-  targets: string[];
-  ids: string[];
+  targets: Array<string>;
+  ids: Array<string>;
 }
 
 /** Reads a page's link targets and element ids. It runs in the browser through `page.evaluate`, so it has no closure. */
@@ -39,8 +39,8 @@ test.describe("Links", () => {
     const queue = ["/", "/en"].map((path) => new URL(path, origin).href);
     const seen = new Set(queue);
     const idsByUrl = new Map<string, Set<string>>();
-    const fragments: { from: string; to: string; id: string }[] = [];
-    const failures: string[] = [];
+    const fragments: Array<{ from: string; to: string; id: string }> = [];
+    const failures: Array<string> = [];
 
     for (let index = 0; index < queue.length; index += 1) {
       const url = queue[index];

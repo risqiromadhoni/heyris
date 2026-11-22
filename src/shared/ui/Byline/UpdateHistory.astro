@@ -6,7 +6,7 @@ interface Props {
 	/** First publication, at UTC midnight. */
 	published: Date;
 	/** Each update, at UTC midnight, in any order. */
-	updated: readonly Date[];
+	updated: ReadonlyArray<Date>;
 }
 
 const { locale, published, updated } = Astro.props;

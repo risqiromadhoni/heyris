@@ -65,8 +65,8 @@ export function wrapText(
   text: string,
   maxWidth: number,
   maxLines: number,
-): string[] {
-  const lines: string[] = [];
+): Array<string> {
+  const lines: Array<string> = [];
   let line = "";
 
   for (const word of text.split(/\s+/).filter((part) => part !== "")) {

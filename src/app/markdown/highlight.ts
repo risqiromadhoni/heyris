@@ -25,7 +25,7 @@ export interface Highlighted {
 }
 
 /** The fence's language, from the `language-*` class Sätteri gives `<code>`. */
-export function fenceLanguage(names: readonly (string | number)[]): string {
+export function fenceLanguage(names: ReadonlyArray<string | number>): string {
   const name = names.map(String).find((entry) => entry.startsWith("language-"));
 
   return name === undefined ? "plaintext" : name.slice("language-".length);

@@ -118,7 +118,7 @@ export function cardSvg(content: OgCardContent, fonts: CardFonts): string {
     value: line,
   }));
 
-  const runs: Run[] = [
+  const runs: Array<Run> = [
     {
       font: serif,
       size: SITE_SIZE,

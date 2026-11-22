@@ -45,7 +45,7 @@ function note(id: string, date: string, pinned = false): Note {
   };
 }
 
-const ids = (entries: readonly (Post | Note)[]) => entries.map((entry) => entry.id);
+const ids = (entries: ReadonlyArray<Post | Note>) => entries.map((entry) => entry.id);
 
 describe("entry ids", () => {
   it("reads the locale and the slug from the id", () => {
