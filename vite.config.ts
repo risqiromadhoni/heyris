@@ -163,7 +163,6 @@ export default defineConfig({
       "anti-slop/require-readable-spacing": "error",
       "anti-slop/require-safety-comment-for-type-assertion": "error",
       // Temporary while migrating: the commit that enables each rule removes its line.
-      "typescript/no-unsafe-call": "off",
       "typescript/no-unsafe-argument": "off",
       "typescript/no-unsafe-assignment": "off",
       "typescript/no-unsafe-member-access": "off",
