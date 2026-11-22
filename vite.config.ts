@@ -162,8 +162,6 @@ export default defineConfig({
       "anti-slop/no-widen-then-assert": "error",
       "anti-slop/require-readable-spacing": "error",
       "anti-slop/require-safety-comment-for-type-assertion": "error",
-      // Temporary while migrating: the commit that enables each rule removes its line.
-      "typescript/no-unsafe-member-access": "off",
     },
     options: { ...cloudflare.options, typeCheck: true },
   },
