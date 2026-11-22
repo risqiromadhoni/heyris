@@ -163,7 +163,6 @@ export default defineConfig({
       "anti-slop/require-readable-spacing": "error",
       "anti-slop/require-safety-comment-for-type-assertion": "error",
       // Temporary while migrating: the commit that enables each rule removes its line.
-      "unicorn/prefer-string-raw": "off",
       "unicorn/numeric-separators-style": "off",
       "no-promise-executor-return": "off",
       "unicorn/prefer-array-index-of": "off",

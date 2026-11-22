@@ -24,7 +24,7 @@ describe("markdownDocument", () => {
 
 describe("yamlString", () => {
   it("escapes quotes for YAML", () => {
-    expect(yamlString('Kata "kutip": ya')).toBe('"Kata \\"kutip\\": ya"');
+    expect(yamlString('Kata "kutip": ya')).toBe(String.raw`"Kata \"kutip\": ya"`);
   });
 });
 

@@ -17,7 +17,7 @@ export type BioSegment =
   | { readonly kind: "mail"; readonly text: string; readonly href: string }
   | { readonly kind: "company"; readonly text: string; readonly href: string };
 
-const escape = (value: string) => value.replaceAll(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escape = (value: string) => value.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
 
 const TOKEN = new RegExp(`\\b(${[SITE.email, ...COMPANIES.keys()].map(escape).join("|")})\\b`, "u");
 
