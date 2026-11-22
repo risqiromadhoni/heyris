@@ -126,7 +126,7 @@ function mountTableOfContents(parts: Parts): void {
 
   panel.addEventListener("click", (event) => {
     const link = event.target instanceof Element ? event.target.closest("[data-toc-link]") : null;
-    const index = links.findIndex((candidate) => candidate === link);
+    const index = link instanceof HTMLAnchorElement ? links.indexOf(link) : -1;
 
     if (index === -1) return;
 

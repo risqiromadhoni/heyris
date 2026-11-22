@@ -93,7 +93,8 @@ function mountCopyPage(root: HTMLElement): void {
     }
 
     const list = items();
-    const index = list.findIndex((link) => link === document.activeElement);
+    const active = document.activeElement;
+    const index = active instanceof HTMLAnchorElement ? list.indexOf(active) : -1;
     const target = targetIndex(event.key, index, list.length);
 
     if (target === undefined || !isOpen()) return;
